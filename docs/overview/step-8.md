@@ -6,10 +6,12 @@
 
 ## 실습 흐름
 
-1. `main`에서 `practice/intro.md`의 같은 문장을 하나 수정하고 commit 합니다.
-2. 이전 상태에서 만든 브랜치 `branch/intro-other`로 이동합니다.
-3. 같은 문장을 다른 내용으로 수정하고 commit 합니다.
-4. `main`으로 돌아와 `branch/intro-other`를 merge 합니다.
+1. `main`에서 새 브랜치 `branch/intro-other`를 먼저 만듭니다.
+2. 다시 `main`으로 돌아옵니다.
+3. `main`에서 `practice/intro.md`의 한 문장을 수정하고 commit 합니다.
+4. `branch/intro-other`로 이동합니다.
+5. 같은 문장을 다른 내용으로 수정하고 commit 합니다.
+6. `main`으로 돌아와 `branch/intro-other`를 merge 합니다.
 
 ## VSCode에서 볼 것
 
