@@ -8,7 +8,7 @@ VSCode conflict 화면의 기본 버튼 의미를 익힙니다.
 
 1. 충돌이 난 파일을 엽니다.
 2. `Accept Current Change`를 눌렀을 때 어떤 문장이 남는지 확인합니다.
-3. 되돌린 뒤 `Accept Incoming Change`를 눌렀을 때 어떤 문장이 남는지 확인합니다.
+3. `Ctrl+Z`로 되돌린 뒤 `Accept Incoming Change`를 눌렀을 때 어떤 문장이 남는지 확인합니다.
 4. 필요하면 `Accept Both Changes`도 확인합니다.
 5. 최종으로 남길 문장을 선택하고 저장합니다.
 6. conflict 해결 commit을 만듭니다.
