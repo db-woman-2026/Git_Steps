@@ -13,6 +13,7 @@
 | `step-3` | [lecture/step-3.md](./step-3.md) | 첫 브랜치를 만들고 브랜치 안에서만 보이는 변경을 commit합니다. |
 | `step-4` | [lecture/step-4.md](./step-4.md) | `branch/profile-edit`의 변경을 `main`에 충돌 없이 merge합니다. |
 | `step-5` | [lecture/step-5.md](./step-5.md) | 새 파일을 만드는 브랜치를 만들고 `main`에 merge합니다. |
+| `step-6` | [lecture/step-6.md](./step-6.md) | 서로 다른 파일을 고친 두 브랜치를 `main`에 차례로 merge합니다. |
 
 ## 실습 방식
 
