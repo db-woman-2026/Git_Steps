@@ -18,6 +18,7 @@
 | `step-8` | [lecture/step-8.md](./step-8.md) | 같은 줄을 서로 다르게 수정해 첫 conflict를 만듭니다. |
 | `step-9` | [lecture/step-9.md](./step-9.md) | VSCode conflict 버튼으로 Current, Incoming, Both를 확인하고 해결 commit을 만듭니다. |
 | `step-10` | [lecture/step-10.md](./step-10.md) | conflict 내용을 읽고 직접 새 최종 문장을 작성해 해결합니다. |
+| `step-11` | [lecture/step-11.md](./step-11.md) | 한쪽은 파일을 수정하고 한쪽은 삭제한 modify/delete conflict를 해결합니다. |
 
 ## 실습 방식
 
