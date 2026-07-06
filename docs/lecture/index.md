@@ -9,7 +9,7 @@
 | 단계 | 강의 자료 | 요약 |
 | --- | --- | --- |
 | `step-0` | [lecture/step-0.md](./step-0.md) | Git 저장소를 초기화하고 첫 commit을 만든 뒤 GitHub에 최초 push합니다. |
-| `step-1` | [lecture/step-1.md](./step-1.md) | `practice/intro.md`에 문장을 추가하고 첫 commit을 만듭니다. |
+| `step-1` | [lecture/step-1.md](./step-1.md) | `practice/intro.md`에 문장을 추가하고 첫 파일 수정 commit을 만듭니다. |
 
 ## 실습 방식
 
