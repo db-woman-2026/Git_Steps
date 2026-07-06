@@ -26,9 +26,10 @@ git merge-base --is-ancestor step-N step-(N+1)
 - `README.md`: explains the purpose of the repository from the `main` branch.
 - `Git_Steps.info.md`: project maintenance and curriculum capsule.
 - `docs/overview/`: short step overview files.
+- `docs/lecture/`: detailed student-facing lecture materials with exact practice steps and expected diffs.
 - `practice/`: simple Markdown files used for beginner Git exercises.
 
-Only `docs/overview` is expanded in the first version of the curriculum. Full lecture notes can be added later if needed.
+Each step branch contains lecture materials up to that step. For example, `step-7` contains lecture documents for `step-1` through `step-7`, not later steps.
 
 ## Curriculum Scope
 
