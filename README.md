@@ -14,7 +14,7 @@
 - 실습에 사용할 Markdown 파일
 - 단계별 개요 문서가 들어갈 `docs/overview` 폴더
 
-각 수업 단계는 `step-1`, `step-2`처럼 별도 브랜치에 누적됩니다.
+각 수업 단계는 `step-0`, `step-1`, `step-2`처럼 별도 브랜치에 누적됩니다.
 
 ## 이 저장소를 처음 만든 흐름
 
@@ -31,6 +31,13 @@ git init
 ```bash
 git add .
 git commit -m "Initialize Git learning project"
+```
+
+이후 GitHub에 빈 저장소를 만들고 원격 저장소를 연결한 뒤 최초 push를 합니다.
+
+```bash
+git remote add origin https://github.com/내계정/git-steps-practice.git
+git push -u origin main
 ```
 
 수업에서는 명령어를 모두 외우는 것보다 VSCode의 Source Control 화면에서 변경된 파일, 스테이지, 커밋, 브랜치, 머지를 눈으로 확인하는 데 집중합니다.
