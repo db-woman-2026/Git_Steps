@@ -20,6 +20,7 @@
 | `step-10` | [lecture/step-10.md](./step-10.md) | conflict 내용을 읽고 직접 새 최종 문장을 작성해 해결합니다. |
 | `step-11` | [lecture/step-11.md](./step-11.md) | 한쪽은 파일을 수정하고 한쪽은 삭제한 modify/delete conflict를 해결합니다. |
 | `step-12` | [lecture/step-12.md](./step-12.md) | 여러 줄 문단 conflict를 만들고 필요한 문장만 남겨 해결합니다. |
+| `step-13` | [lecture/step-13.md](./step-13.md) | 브랜치 만들기, 수정, commit, merge 흐름을 두 번 반복합니다. |
 
 ## 실습 방식
 
