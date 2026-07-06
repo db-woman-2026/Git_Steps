@@ -73,7 +73,7 @@ Excluded:
 - `step-11`: handle a file modified on one side and deleted on the other
 - `step-12`: resolve a multi-line conflict
 - `step-13`: repeat the branch and merge flow
-- `step-14`: push to GitHub
+- `step-14`: push the final practice result to GitHub
 
 ## Operational Notes
 
