@@ -10,6 +10,7 @@
 | --- | --- | --- |
 | `step-1` | [lecture/step-1.md](./step-1.md) | `practice/intro.md`에 문장을 추가하고 첫 commit을 만듭니다. |
 | `step-2` | [lecture/step-2.md](./step-2.md) | `practice/profile.md`를 수정하고 Git diff에서 바뀐 줄을 읽습니다. |
+| `step-3` | [lecture/step-3.md](./step-3.md) | 첫 브랜치를 만들고 브랜치 안에서만 보이는 변경을 commit합니다. |
 
 ## 실습 방식
 
