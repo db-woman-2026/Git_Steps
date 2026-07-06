@@ -14,6 +14,7 @@
 | `step-4` | [lecture/step-4.md](./step-4.md) | `branch/profile-edit`의 변경을 `main`에 충돌 없이 merge합니다. |
 | `step-5` | [lecture/step-5.md](./step-5.md) | 새 파일을 만드는 브랜치를 만들고 `main`에 merge합니다. |
 | `step-6` | [lecture/step-6.md](./step-6.md) | 서로 다른 파일을 고친 두 브랜치를 `main`에 차례로 merge합니다. |
+| `step-7` | [lecture/step-7.md](./step-7.md) | 같은 파일의 떨어진 위치를 수정한 두 브랜치가 자동 merge되는 것을 확인합니다. |
 
 ## 실습 방식
 
