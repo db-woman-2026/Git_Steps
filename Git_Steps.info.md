@@ -10,10 +10,11 @@ The teaching style follows the `step-N` branch approach used by `NextJsBlog_Step
 
 ## Branch Structure
 
-- `main`: starter project and explanation of how the Git practice repository is created.
-- `step-1` to `step-14`: cumulative overview documents for beginner Git practice.
+- `main`: starter files for the Git practice project.
+- `step-0`: initializes a local Git repository, creates the first commit, connects a GitHub remote, and pushes `main`.
+- `step-1` to `step-14`: cumulative overview and lecture documents for beginner Git practice.
 
-Branches are cumulative. `step-2` is based on `step-1`, `step-3` is based on `step-2`, and so on.
+Branches are cumulative. `step-1` is based on `step-0`, `step-2` is based on `step-1`, and so on.
 
 The branch chain should preserve this invariant:
 
@@ -58,7 +59,8 @@ Excluded:
 
 ## Overview Steps
 
-- `step-1`: first commit
+- `step-0`: initialize Git, create the first commit, connect GitHub, and push `main`
+- `step-1`: first content edit commit
 - `step-2`: compare changed content
 - `step-3`: create the first branch
 - `step-4`: merge a branch without conflict
