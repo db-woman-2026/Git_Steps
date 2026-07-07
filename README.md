@@ -34,7 +34,9 @@ git init -> 첫 commit -> GitHub 최초 push -> 파일 수정 commit -> branch -
 - `step-0`: 로컬 Git 저장소 초기화, 첫 commit, GitHub remote 연결, `main` 최초 push
 - `step-1` to `step-14`: Git 기초 기능과 상황별 branch, merge, conflict 실습
 
-브랜치는 누적 구조입니다. `step-1`은 `step-0` 위에 있고, `step-2`는 `step-1` 위에 있습니다.
+브랜치는 독립적인 예제 복사본이 아니라 부모-자식 관계를 가진 누적형 학습 이력입니다. 학습 흐름은 `main -> step-0 -> step-1 -> step-2 -> ... -> step-14` 순서이며, `step-1`은 `step-0` 위에 있고 `step-2`는 `step-1` 위에 있습니다.
+
+향후 작업할 때도 이 관계를 전제로 해야 합니다. 특정 단계에 속한 수정은 가장 이른 affected step에서 먼저 고치고, 뒤 step으로 순서대로 merge해서 전파합니다. 중간 step을 건너뛰어 별도 커밋을 만들면 교육용 브랜치의 부모-자식 관계가 깨질 수 있습니다.
 
 브랜치 체인은 다음 조건을 유지해야 합니다.
 
