@@ -22,7 +22,6 @@
 
 ```text
 README.md
-Git_Steps.info.md
 .gitignore
 docs/overview/index.md
 practice/intro.md
@@ -98,7 +97,6 @@ git status --short
 
 ```text
 ?? .gitignore
-?? Git_Steps.info.md
 ?? README.md
 ?? docs/
 ?? practice/
@@ -132,7 +130,6 @@ git status --short
 
 ```text
 A  .gitignore
-A  Git_Steps.info.md
 A  README.md
 A  docs/overview/index.md
 A  practice/goal.md
@@ -165,7 +162,6 @@ No commits yet
 
 Changes to be committed:
   new file:   .gitignore
-  new file:   Git_Steps.info.md
   new file:   README.md
   new file:   docs/overview/index.md
   new file:   practice/goal.md
@@ -191,7 +187,7 @@ git commit -m "Initialize Git learning project"
 
 ```text
 [main (root-commit) ea10cb3] Initialize Git learning project
- 9 files changed, ...
+ 8 files changed, ...
 ```
 
 `root-commit`은 이 저장소의 첫 commit이라는 뜻입니다.
