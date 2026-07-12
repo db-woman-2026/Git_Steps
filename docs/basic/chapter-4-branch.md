@@ -1,96 +1,80 @@
 # Chapter 4. branch
 
-## 핵심 생각
+## branch의 의미
 
-branch는 작업 흐름을 나누는 이름입니다.
-
-처음에는 `main`이라는 기본 흐름 하나만 있다고 생각하면 됩니다.
+**branch**는 특정 commit을 가리키는 이름입니다. 새로운 commit이 생기면 현재 branch는 그 commit을 가리키도록 이동합니다.
 
 ```text
-main: 첫 commit -> intro 수정 commit
+A -> B
+     ^
+     main
 ```
 
-새 branch를 만들면 기존 기록 위에서 다른 작업을 따로 해볼 수 있습니다.
+`main`은 기본 branch에 흔히 사용하는 이름입니다.
 
-## branch가 필요한 이유
+## branch를 나누는 이유
 
-예를 들어 `profile.md`를 고쳐보고 싶은데, 바로 `main`에 섞고 싶지 않을 수 있습니다.
+branch를 사용하면 같은 이력에서 서로 다른 변경 흐름을 만들 수 있습니다. 한 흐름의 변경은 합치기 전까지 다른 흐름에 영향을 주지 않습니다.
 
-이때 새 branch를 만듭니다.
+새 branch가 만들어진 직후에는 두 branch가 같은 commit을 가리킵니다.
+
+```text
+A -> B
+     ^
+     main
+     topic
+```
+
+`topic` branch에서 새 commit을 만들면 가리키는 위치가 달라집니다.
+
+```text
+A -> B
+     ^ \
+     main C
+          ^
+          topic
+```
+
+## branch 만들기와 이동
+
+새 branch를 만들면서 이동하는 명령은 다음과 같습니다.
 
 ```bash
-git switch -c branch/profile-edit
+git switch -c topic
 ```
 
-이 명령은 새 branch를 만들고 그 branch로 이동합니다.
+기존 branch로 이동할 때는 branch 이름만 지정합니다.
 
-## branch 구조 예시
-
-처음 상태:
-
-```text
-main
-  |
-  v
-A -- B
+```bash
+git switch main
 ```
 
-새 branch를 만든 직후:
-
-```text
-main
-  |
-  v
-A -- B
-     ^
-     |
-branch/profile-edit
-```
-
-branch에서 commit을 만들면 흐름이 나뉩니다.
-
-```text
-main
-  |
-  v
-A -- B
-      \
-       C
-       ^
-       |
-branch/profile-edit
-```
-
-## 현재 branch 확인
+현재 branch 목록은 다음 명령으로 확인할 수 있습니다.
 
 ```bash
 git branch
 ```
 
-예시:
-
 ```text
-* branch/profile-edit
+* topic
   main
 ```
 
-`*`가 붙은 곳이 현재 branch입니다.
+`*`는 현재 선택된 branch를 표시합니다.
 
-## VSCode에서 볼 것
+## branch와 HEAD
 
-VSCode 왼쪽 아래 또는 Source Control 주변에서 현재 branch 이름을 볼 수 있습니다.
-
-예시:
+HEAD는 보통 현재 branch를 가리키고, branch는 최신 commit을 가리킵니다.
 
 ```text
-branch/profile-edit
+HEAD -> topic -> commit C
 ```
 
-branch를 바꾸면 열려 있는 파일 내용도 달라질 수 있습니다. Git이 "현재 branch의 파일 상태"를 보여주기 때문입니다.
+branch를 바꾸면 HEAD가 다른 branch를 가리키며, 작업 폴더도 그 branch의 파일 상태에 맞게 바뀝니다.
 
 ## 정리
 
-- branch는 작업 흐름의 이름입니다.
-- 새 branch를 만들면 기존 commit 위에서 다른 작업을 해볼 수 있습니다.
-- `git branch`에서 `*`가 현재 branch를 뜻합니다.
-- branch에서 만든 commit은 merge하기 전까지 main에 섞이지 않습니다.
+- branch는 특정 commit을 가리키는 이름입니다.
+- branch를 나누면 독립적인 변경 흐름을 만들 수 있습니다.
+- 현재 branch에서 commit을 만들면 그 branch가 새 commit으로 이동합니다.
+- HEAD는 보통 현재 선택된 branch를 가리킵니다.
