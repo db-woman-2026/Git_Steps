@@ -1,33 +1,35 @@
-# Git Basic README
+# Git 기초 개념
 
-이 폴더는 `/docs/lecture` 실습을 시작하기 전에 읽는 기초 자료입니다.
+이 폴더는 Git을 이해하는 데 필요한 기본 개념을 설명합니다.
 
-목표는 Git을 깊게 이해하는 것이 아닙니다. 수강생이 VSCode Source Control 화면에서 보게 될 단어와 구조를 미리 익혀서, 이후 실습에서 당황하지 않게 만드는 것입니다.
+Git은 파일의 변경 이력을 저장하고, 여러 작업 흐름을 나누거나 다시 합칠 수 있게 해 주는 버전 관리 도구입니다. 명령어를 외우기보다 각 명령이 Git의 어떤 상태를 바꾸는지 이해하는 것이 중요합니다.
 
-## 학습 순서
+## 문서 구성
 
 | 순서 | 문서 | 내용 |
 | --- | --- | --- |
-| 1 | [chapter-1-repository.md](./chapter-1-repository.md) | Git 저장소, 작업 폴더, 파일 변경의 기본 구조 |
-| 2 | [chapter-2-status-stage-commit.md](./chapter-2-status-stage-commit.md) | status, stage, commit의 의미 |
-| 3 | [chapter-3-history-head.md](./chapter-3-history-head.md) | commit 기록, 최신 위치, HEAD |
-| 4 | [chapter-4-branch.md](./chapter-4-branch.md) | branch가 왜 필요한지와 어떻게 생겼는지 |
-| 5 | [chapter-5-merge.md](./chapter-5-merge.md) | merge가 하는 일과 자동 merge되는 상황 |
-| 6 | [chapter-6-conflict.md](./chapter-6-conflict.md) | conflict가 생기는 이유와 표시 읽기 |
-| 부록 | [glossary.md](./glossary.md) | 초급 Git 용어 정리 |
+| 1 | [chapter-1-repository.md](./chapter-1-repository.md) | 저장소, 작업 폴더, 파일 상태 |
+| 2 | [chapter-2-status-stage-commit.md](./chapter-2-status-stage-commit.md) | status, stage, commit |
+| 3 | [chapter-3-history-head.md](./chapter-3-history-head.md) | commit 이력과 HEAD |
+| 4 | [chapter-4-branch.md](./chapter-4-branch.md) | branch의 의미와 구조 |
+| 5 | [chapter-5-merge.md](./chapter-5-merge.md) | merge의 의미와 결과 |
+| 6 | [chapter-6-conflict.md](./chapter-6-conflict.md) | conflict의 원인과 해결 원리 |
+| 부록 | [glossary.md](./glossary.md) | Git 기본 용어 |
 
-## 읽는 방법
+## 핵심 흐름
 
-1. 명령어를 외우려고 하지 않습니다.
-2. 코드 블록을 보며 "Git이 어떤 상태를 보여주는지"에 집중합니다.
-3. 모르는 단어는 [glossary.md](./glossary.md)에서 확인합니다.
-4. 이 자료를 읽은 뒤 강의 step 브랜치의 `/docs/lecture/step-0.md`부터 실제 실습을 시작합니다.
+```text
+파일 변경 -> 변경 선택(stage) -> 기록(commit)
+                                  -> 흐름 분리(branch)
+                                  -> 흐름 합치기(merge)
+```
 
-## 이 자료에서 다루지 않는 것
+Git의 기본은 다음 세 가지 질문으로 정리할 수 있습니다.
 
-- 여러 사람이 동시에 작업하는 협업 방식
-- rebase, stash, tag, revert
-- Git 내부 동작 원리
-- 복잡한 명령어 옵션
+1. 어떤 파일이 바뀌었는가?
+2. 어떤 변경을 하나의 기록으로 남길 것인가?
+3. 나뉜 기록을 어떻게 합칠 것인가?
 
-처음에는 Git을 "변경 내용을 저장하고, 다른 흐름을 만들고, 다시 합치는 도구" 정도로 이해하면 충분합니다.
+## 범위
+
+여기에서는 repository, working tree, stage, commit, HEAD, branch, merge, conflict와 remote의 기본 의미를 다룹니다. rebase, stash, tag, revert와 복잡한 협업 방식은 다루지 않습니다.
