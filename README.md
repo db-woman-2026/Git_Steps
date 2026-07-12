@@ -23,6 +23,7 @@ git init -> 첫 commit -> GitHub 최초 push -> 파일 수정 commit -> branch -
 이 브랜치에는 다음 내용만 들어 있습니다.
 
 - 프로젝트 소개 README
+- 기초 Git 구조와 용어를 설명하는 `docs/basic` 폴더
 - 실습에 사용할 Markdown 파일
 - 단계별 개요 문서가 들어갈 `docs/overview` 폴더
 
@@ -49,10 +50,13 @@ git merge-base --is-ancestor step-N step-(N+1)
 ## Documentation Layout
 
 - `README.md`: 프로젝트 목적, 브랜치 구조, 문서 구조, 커리큘럼 운영 기준
+- `docs/basic/`: 실습 전에 읽는 Git 기본 구조, 용어, 명령어 형태 설명
 - `docs/overview/`: 짧은 단계별 개요 문서
 - `docs/lecture/README.md`: 현재 step 브랜치에서 볼 수 있는 강의 목록과 실습 방식
 - `docs/lecture/step-N.md`: 수강생이 그대로 따라 할 수 있는 상세 강의 자료
 - `practice/`: 실습에 사용할 간단한 Markdown 파일
+
+`docs/basic`은 Git 명령을 직접 수행하기 전에 눈으로 구조를 익히는 읽기 자료입니다. `docs/lecture`는 실제로 파일을 수정하고 commit, branch, merge, conflict를 경험하는 실습 자료입니다.
 
 각 step 브랜치는 해당 단계까지의 강의 자료만 포함합니다.
 
@@ -71,6 +75,8 @@ git merge-base --is-ancestor step-N step-(N+1)
 포함하는 내용:
 
 - Git 저장소 초기화
+- 작업 폴더, 저장소, stage, commit의 기본 의미
+- branch, merge, conflict의 기본 구조
 - GitHub remote 연결과 최초 push
 - 변경 파일 확인
 - stage와 commit
