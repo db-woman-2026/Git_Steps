@@ -1,105 +1,84 @@
 # Chapter 6. conflict
 
-## 핵심 생각
+## conflict의 의미
 
-conflict는 Git이 자동으로 하나를 고를 수 없는 상황입니다.
+**conflict**는 서로 다른 변경을 Git이 자동으로 합칠 수 없는 상태입니다. 대표적인 원인은 두 branch가 같은 파일의 같은 부분을 다르게 수정한 경우입니다.
 
-보통 두 branch가 같은 파일의 같은 부분을 다르게 고쳤을 때 생깁니다.
+기준 내용:
 
-## conflict가 생기는 예시
-
-처음 파일:
-
-```md
-# Intro
-
-오늘 Git을 배웁니다.
+```text
+오늘 문서를 작성합니다.
 ```
 
-`main`에서 수정:
+현재 branch의 변경:
 
-```md
-# Intro
-
-오늘 Git의 commit을 배웁니다.
+```text
+오늘 안내 문서를 작성합니다.
 ```
 
-다른 branch에서 수정:
+들어오는 branch의 변경:
 
-```md
-# Intro
-
-오늘 Git의 branch를 배웁니다.
+```text
+오늘 소개 문서를 작성합니다.
 ```
 
-둘 다 같은 줄을 다르게 바꿨기 때문에 Git은 어느 쪽을 선택해야 할지 모릅니다.
+두 변경 중 무엇을 최종 내용으로 삼아야 하는지는 Git이 판단할 수 없습니다.
 
 ## conflict 표시
 
-merge 중 conflict가 나면 파일 안에 다음과 비슷한 표시가 생길 수 있습니다.
+merge 중 conflict가 발생하면 파일 안에 다음과 같은 표시가 생길 수 있습니다.
 
-```md
-# Intro
-
-<<<<<<< HEAD
-오늘 Git의 commit을 배웁니다.
-=======
-오늘 Git의 branch를 배웁니다.
->>>>>>> branch/intro-edit
+```text
+1 | <<<<<<< HEAD
+2 | 오늘 안내 문서를 작성합니다.
+3 | =======
+4 | 오늘 소개 문서를 작성합니다.
+5 | >>>>>>> topic
 ```
 
-표시의 의미는 다음과 같습니다.
+`1 |`부터 `5 |`까지의 줄 번호는 설명을 위해 붙인 것이며 실제 파일에는 나타나지 않습니다.
 
 | 표시 | 의미 |
 | --- | --- |
-| `<<<<<<< HEAD` | 현재 branch 쪽 내용 시작 |
+| `<<<<<<< HEAD` | 현재 branch의 내용 시작 |
 | `=======` | 두 내용의 구분선 |
-| `>>>>>>> branch/intro-edit` | merge로 들어오는 branch 쪽 내용 끝 |
+| `>>>>>>> topic` | 들어오는 branch의 내용 끝 |
 
-## 사람이 해야 할 일
+## conflict 해결의 원리
 
-conflict가 나면 사람이 최종 문장을 결정해야 합니다.
+conflict 해결은 둘 중 하나를 무조건 선택하는 일이 아닙니다. 최종 파일에 남길 내용을 사람이 결정하는 일입니다.
 
-예를 들어 두 내용을 합쳐서 다음처럼 고칠 수 있습니다.
-
-```md
-# Intro
-
-오늘 Git의 commit과 branch를 배웁니다.
-```
-
-중요한 점은 conflict 표시를 모두 지우는 것입니다.
+현재 내용을 남길 수 있습니다.
 
 ```text
-지워야 하는 표시:
-<<<<<<< HEAD
-=======
->>>>>>> branch/intro-edit
+오늘 안내 문서를 작성합니다.
 ```
 
-## VSCode에서 볼 것
-
-VSCode는 conflict 파일 위에 선택 버튼을 보여줄 수 있습니다.
+들어오는 내용을 남길 수도 있습니다.
 
 ```text
-Accept Current Change
-Accept Incoming Change
-Accept Both Changes
-Compare Changes
+오늘 소개 문서를 작성합니다.
 ```
 
-처음에는 버튼 이름을 이렇게 이해하면 됩니다.
+두 변경을 조합해 새로운 내용으로 만들 수도 있습니다.
 
-| 버튼 | 쉬운 의미 |
-| --- | --- |
-| Current | 현재 branch 내용 선택 |
-| Incoming | merge로 들어오는 branch 내용 선택 |
-| Both | 두 내용을 모두 남김 |
-| Compare | 두 내용을 비교 |
+```text
+오늘 안내와 소개 문서를 작성합니다.
+```
+
+최종 내용이 정해지면 `<<<<<<<`, `=======`, `>>>>>>>` 표시는 모두 제거되어야 합니다.
+
+## 해결된 상태 기록
+
+내용을 정리한 뒤 해당 파일을 stage하면 Git은 conflict가 해결되었다고 인식합니다. 그다음 commit으로 merge 결과를 기록합니다.
+
+```text
+conflict 발생 -> 최종 내용 결정 -> stage -> commit
+```
 
 ## 정리
 
-- conflict는 Git이 자동으로 고를 수 없는 상황입니다.
-- 같은 줄을 서로 다르게 고치면 conflict가 날 수 있습니다.
-- conflict 표시는 최종 파일에 남기면 안 됩니다.
-- 해결 후에는 파일을 stage하고 conflict 해결 commit을 만듭니다.
+- conflict는 Git이 변경 결과를 자동으로 결정할 수 없는 상태입니다.
+- 같은 파일의 같은 부분을 다르게 수정하면 conflict가 발생할 수 있습니다.
+- 사람이 최종 내용을 결정하고 conflict 표시를 제거해야 합니다.
+- 정리된 파일을 stage하고 commit하면 merge가 완료됩니다.
