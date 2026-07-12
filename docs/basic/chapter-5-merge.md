@@ -1,84 +1,101 @@
 # Chapter 5. merge
 
-## 핵심 생각
+## merge의 의미
 
-merge는 branch에서 만든 변경을 다른 branch에 합치는 작업입니다.
-
-가장 흔한 흐름은 다음과 같습니다.
+**merge**는 나뉜 branch의 이력을 하나로 합치는 기능입니다.
 
 ```text
-1. branch를 만든다.
-2. branch에서 파일을 수정하고 commit한다.
-3. main으로 돌아온다.
-4. branch를 main에 merge한다.
+A -> B --------
+     \          \
+      C -> D ----M
 ```
 
-## 기본 명령 구조
+`M`은 두 흐름을 함께 이어 주는 merge commit입니다.
 
-작업 branch에서 commit을 만든 뒤 `main`으로 돌아옵니다.
+## merge의 방향
+
+merge는 현재 branch를 기준으로 동작합니다.
 
 ```bash
 git switch main
+git merge topic
 ```
 
-그 다음 branch를 합칩니다.
-
-```bash
-git merge branch/profile-edit
-```
-
-## 자동 merge되는 예시
-
-`main`에서는 `intro.md`를 수정하고, 다른 branch에서는 `profile.md`를 수정했다고 가정합니다.
+이 명령은 `topic`의 변경을 현재 branch인 `main`에 합친다는 뜻입니다.
 
 ```text
-main에서 수정:
-  practice/intro.md
-
-branch/profile-edit에서 수정:
-  practice/profile.md
+현재 branch <- 합칠 branch
+main           topic
 ```
 
-서로 다른 파일을 수정했기 때문에 Git이 자동으로 합칠 가능성이 높습니다.
+## fast-forward merge
 
-merge 후에는 두 변경이 모두 들어 있습니다.
+branch가 나뉜 뒤 `main`에 새 commit이 없다면, `main`의 위치만 앞으로 이동해도 이력이 합쳐집니다. 이를 **fast-forward merge**라고 합니다.
+
+merge 전:
 
 ```text
-practice/intro.md    main에서 수정한 내용 있음
-practice/profile.md  branch에서 수정한 내용 있음
+A -> B -> C
+     ^    ^
+     main topic
 ```
 
-## 같은 파일이어도 자동 merge될 수 있음
+merge 후:
 
-같은 파일을 고쳐도 서로 멀리 떨어진 줄이면 자동 merge될 수 있습니다.
-
-```md
-# Profile
-
-이름: 홍길동
-
-좋아하는 도구: VSCode
-
-오늘의 목표: Git branch 이해하기
+```text
+A -> B -> C
+          ^
+          main
+          topic
 ```
 
-한 branch는 `좋아하는 도구` 줄을 고치고, 다른 branch는 `오늘의 목표` 줄을 고치면 Git이 자동으로 합칠 수 있습니다.
+이 경우 별도의 merge commit이 필요하지 않습니다.
 
 ## merge commit
 
-상황에 따라 merge 결과로 새 commit이 생길 수 있습니다.
+두 branch 모두에 새로운 commit이 있다면 Git은 두 흐름을 연결하는 merge commit을 만들 수 있습니다.
+
+merge 전:
 
 ```text
-A -- B ------ M
-      \      /
-       C -- D
+A -> B -> C
+     \    ^
+      D   main
+      ^
+      topic
 ```
 
-`M`은 두 흐름을 합친 merge commit입니다.
+merge 후:
+
+```text
+A -> B -> C -> M
+     \        /
+      D ------
+               ^
+               main
+```
+
+## 자동으로 합쳐지는 경우
+
+Git은 변경 위치가 겹치지 않으면 내용을 자동으로 합칠 수 있습니다.
+
+```text
+main:  notes.txt 수정
+topic: profile.md 수정
+```
+
+같은 파일이라도 서로 떨어진 부분을 수정했다면 자동 merge가 가능할 수 있습니다.
+
+```text
+main:  document.md의 첫 문단 수정
+topic: document.md의 마지막 문단 수정
+```
+
+반대로 같은 부분의 내용이 서로 다르면 conflict가 발생할 수 있습니다.
 
 ## 정리
 
-- merge는 branch의 변경을 다른 branch에 합치는 작업입니다.
-- 서로 다른 파일을 고치면 자동 merge될 가능성이 높습니다.
-- 같은 파일이어도 서로 떨어진 줄이면 자동 merge될 수 있습니다.
-- Git이 자동으로 고르지 못하면 conflict가 납니다.
+- merge는 나뉜 branch 이력을 합칩니다.
+- merge는 현재 branch에 다른 branch를 가져오는 방향으로 동작합니다.
+- 현재 branch의 위치만 이동하면 되는 경우를 fast-forward merge라고 합니다.
+- 나뉜 두 이력을 연결하기 위해 merge commit이 생길 수 있습니다.
