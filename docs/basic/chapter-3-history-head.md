@@ -1,16 +1,18 @@
-# Chapter 3. commit 기록과 HEAD
+# Chapter 3. commit 이력과 HEAD
 
-## 핵심 생각
+## commit의 연결
 
-commit은 Git의 저장 지점입니다. 여러 commit이 쌓이면 프로젝트의 기록이 됩니다.
+각 commit은 바로 이전 commit을 가리킵니다. 여러 commit이 연결되면 파일의 변경 이력이 됩니다.
 
 ```text
-첫 commit -> 두 번째 commit -> 세 번째 commit
+A 첫 기록 -> B 내용 수정 -> C 문장 추가
 ```
 
-## commit 기록 보기
+가장 처음 만들어진 commit을 **root commit**이라고 합니다.
 
-간단한 기록은 다음 명령으로 볼 수 있습니다.
+## commit 이력 보기
+
+`git log`는 commit 이력을 보여줍니다.
 
 ```bash
 git log --oneline
@@ -19,63 +21,58 @@ git log --oneline
 예시:
 
 ```text
-9f23f22 Update profile
-3a2b1c4 Update intro
-ea10cb3 Initialize Git learning project
+9f23f22 Add a sentence
+3a2b1c4 Update notes
+ea10cb3 Create initial files
 ```
 
-위에 있을수록 최신 commit입니다.
+기본 출력에서는 최신 commit이 위에 표시됩니다. 왼쪽의 짧은 문자열은 commit ID의 일부이고, 오른쪽은 commit message입니다.
 
-## commit 하나가 담는 것
+## commit ID
 
-commit은 보통 다음 정보를 가집니다.
+모든 commit에는 서로 구분되는 ID가 있습니다.
 
 ```text
-commit id: 9f23f22
-message: Update profile
-changed files:
-  practice/profile.md
+9f23f22 Add a sentence
+^^^^^^^ commit ID의 짧은 형태
 ```
 
-처음에는 commit id를 외울 필요가 없습니다. "각 commit에는 고유한 이름표가 있다" 정도로 이해하면 됩니다.
+Git 명령에서는 전체 ID 대신 서로 구분되는 길이의 짧은 ID를 사용할 수 있습니다.
 
 ## HEAD
 
-`HEAD`는 지금 내가 보고 있는 최신 위치를 뜻합니다.
+`HEAD`는 현재 선택된 위치를 나타내는 특별한 이름입니다. 보통은 현재 branch가 가리키는 최신 commit을 따라갑니다.
 
 ```text
-ea10cb3 -> 3a2b1c4 -> 9f23f22
-                         ^
-                        HEAD
+A -> B -> C
+          ^
+          main
+          HEAD
 ```
 
-보통은 현재 브랜치의 가장 최신 commit을 가리킵니다.
-
-## branch와 함께 볼 때
-
-`main` 브랜치에서 최신 commit이 `9f23f22`라면 다음처럼 생각할 수 있습니다.
+새 commit `D`가 만들어지면 현재 branch와 HEAD도 새 commit으로 이동합니다.
 
 ```text
-main
-  |
-  v
-9f23f22 Update profile
+A -> B -> C -> D
+               ^
+               main
+               HEAD
 ```
 
-내가 `main`에 있고 최신 commit을 보고 있다면 `HEAD`도 같은 곳에 있습니다.
+## 이력과 현재 파일
+
+작업 폴더의 기준은 HEAD가 가리키는 commit입니다. 파일을 수정하면 Git은 HEAD의 파일 상태와 현재 파일 상태를 비교합니다.
 
 ```text
-main
-  |
-  v
-9f23f22
-  ^
- HEAD
+HEAD의 notes.txt:  안녕하세요.
+현재 notes.txt:    안녕하세요. 반갑습니다.
+
+Git이 인식한 변경: "반갑습니다." 추가
 ```
 
 ## 정리
 
-- commit은 Git의 저장 지점입니다.
-- commit이 쌓이면 프로젝트 기록이 됩니다.
-- `git log --oneline`으로 짧은 기록을 볼 수 있습니다.
-- `HEAD`는 현재 내가 보고 있는 위치입니다.
+- commit은 이전 commit과 연결되어 이력을 만듭니다.
+- commit ID는 각 commit을 구분하는 고유한 값입니다.
+- `git log --oneline`은 commit 이력을 간단히 보여줍니다.
+- HEAD는 현재 선택된 위치이며 보통 현재 branch의 최신 commit을 가리킵니다.
