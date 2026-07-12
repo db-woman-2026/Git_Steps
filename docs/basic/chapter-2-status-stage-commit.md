@@ -1,18 +1,17 @@
 # Chapter 2. status, stage, commit
 
-## 핵심 생각
+## 변경을 기록하는 흐름
 
-Git에서 파일을 저장한다는 말은 보통 commit을 만든다는 뜻입니다.
-
-하지만 commit 전에 한 단계가 더 있습니다. 바로 stage입니다.
+Git에서 변경을 기록하는 기본 흐름은 다음과 같습니다.
 
 ```text
-파일 수정 -> stage -> commit
+파일 수정 -> 변경 확인 -> 변경 선택 -> commit
+             status       stage
 ```
 
 ## status
 
-`status`는 지금 Git이 보는 상태를 확인하는 명령입니다.
+`git status`는 작업 폴더와 stage의 현재 상태를 보여줍니다.
 
 ```bash
 git status
@@ -22,92 +21,76 @@ git status
 
 ```text
 Changes not staged for commit:
-  modified:   practice/intro.md
+  modified:   notes.txt
 
 Untracked files:
-  practice/today.md
+  todo.txt
 ```
-
-이 예시는 두 가지를 보여줍니다.
 
 | 표시 | 의미 |
 | --- | --- |
-| `modified` | Git이 이미 알던 파일이 수정됨 |
-| `Untracked files` | Git이 아직 관리하지 않는 새 파일 |
+| `modified` | 이전에 기록한 파일의 내용이 바뀜 |
+| `Untracked files` | 아직 Git이 관리하지 않는 새 파일 |
+
+`status`는 파일 내용을 바꾸지 않습니다. 현재 상태를 확인만 합니다.
 
 ## stage
 
-stage는 "이번 commit에 넣을 변경을 고르는 공간"입니다.
+**stage**는 다음 commit에 포함할 변경을 모아 두는 영역입니다. **staging area** 또는 **index**라고도 부릅니다.
 
 ```bash
-git add practice/intro.md
+git add notes.txt
 ```
 
-여러 파일을 한 번에 stage할 수도 있습니다.
-
-```bash
-git add .
-```
-
-stage 후에는 상태가 이렇게 바뀝니다.
+`git add`는 지정한 파일의 현재 변경을 stage에 올립니다. stage에 올라간 변경은 다음처럼 표시됩니다.
 
 ```text
 Changes to be committed:
-  modified:   practice/intro.md
+  modified:   notes.txt
 ```
 
-VSCode에서는 파일이 Staged Changes 영역으로 이동합니다.
+stage가 있기 때문에 여러 변경 중 일부만 선택하여 하나의 commit으로 묶을 수 있습니다.
+
+```text
+notes.txt 수정 ─┐
+                ├─ stage -> 하나의 commit
+todo.txt 추가 ──┘
+profile.md 수정 ── stage에 올리지 않음
+```
 
 ## commit
 
-commit은 stage된 변경을 하나의 기록으로 저장합니다.
+**commit**은 stage에 모인 변경을 하나의 기록으로 저장한 것입니다.
 
 ```bash
-git commit -m "Update intro"
+git commit -m "Update notes"
 ```
 
-예상 출력:
+commit에는 다음 정보가 포함됩니다.
+
+- 저장된 파일 상태
+- 이전 commit과의 연결
+- 작성자와 작성 시각
+- 변경을 설명하는 commit message
+- commit을 구분하는 고유한 ID
+
+commit 후에도 stage에 올리지 않은 변경은 작업 폴더에 그대로 남습니다.
+
+## add와 commit의 차이
+
+| 명령 | 역할 |
+| --- | --- |
+| `git add` | 변경을 다음 기록의 후보로 선택 |
+| `git commit` | 선택된 변경을 실제 기록으로 저장 |
 
 ```text
-[main 3a2b1c4] Update intro
- 1 file changed, 1 insertion(+)
+작업 폴더        stage           Git 기록
+notes.txt  --add--> notes.txt --commit--> commit A
 ```
-
-commit 메시지는 "무엇을 바꿨는지" 짧게 적습니다.
-
-## 작은 예시
-
-수정 전:
-
-```md
-# Intro
-
-안녕하세요.
-```
-
-수정 후:
-
-```md
-# Intro
-
-안녕하세요.
-Git을 배우고 있습니다.
-```
-
-Git이 보는 변화:
-
-```diff
- # Intro
- 
- 안녕하세요.
-+Git을 배우고 있습니다.
-```
-
-`+`는 새로 추가된 줄입니다.
 
 ## 정리
 
-- `git status`는 현재 상태를 보여줍니다.
-- stage는 이번 commit에 넣을 변경을 고르는 단계입니다.
-- commit은 stage된 변경을 기록으로 저장합니다.
-- VSCode Source Control에서도 같은 흐름을 버튼과 영역으로 보여줍니다.
+- `git status`는 현재 파일과 stage의 상태를 보여줍니다.
+- stage는 다음 commit에 포함할 변경을 선택하는 영역입니다.
+- `git add`는 변경을 stage에 올립니다.
+- `git commit`은 stage의 변경을 하나의 기록으로 저장합니다.
