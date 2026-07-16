@@ -121,3 +121,9 @@ git merge-base --is-ancestor step-N step-(N+1)
 - 명령어 설명보다 VSCode Source Control에서 보이는 상태를 우선합니다.
 - 실습 파일은 Markdown만 사용해 안전하게 수정할 수 있게 합니다.
 - 이전 step을 고치면 가장 이른 step에서 수정하고 뒤 step으로 merge 전파합니다.
+
+강의 절차를 수정한 뒤에는 다음 명령으로 `step-0`부터 `step-14`까지의 로컬 실습을 확인합니다. 검증 과정은 임시 폴더와 로컬 bare 저장소만 사용하며 GitHub에는 접근하지 않습니다.
+
+```bash
+node scripts/verify-lecture.mjs
+```
