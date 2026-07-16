@@ -20,6 +20,8 @@ step 1을 끝낸 상태에서 시작합니다.
 
 명령어로 확인하려면 다음을 실행합니다.
 
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+
 ```bash
 git status
 git log --oneline -1
