@@ -12,6 +12,8 @@
 
 step 2를 끝낸 상태에서 시작합니다.
 
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+
 ```bash
 git status
 git branch --show-current
@@ -145,6 +147,12 @@ git switch main
 
 ```bash
 grep "브랜치 연습" practice/profile.md
+```
+
+PowerShell에서는 다음 명령을 사용합니다.
+
+```powershell
+Select-String -Path practice/profile.md -Pattern "브랜치 연습"
 ```
 
 아무 내용도 나오지 않으면 `main`에는 그 문장이 없는 상태입니다.
