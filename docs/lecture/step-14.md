@@ -1,14 +1,14 @@
 # Step 14. 최종 결과 GitHub에 push하기
 
-## 이번 스텝 Overview
+## 이번 단계에서 할 일
 
-이번 단계에서는 step 0에서 연결해 둔 GitHub 저장소에 최종 실습 결과를 다시 push합니다.
+step 0에서 연결해 둔 GitHub 저장소에 최종 실습 결과를 다시 push합니다.
 
 step 0에서 이미 첫 commit을 GitHub에 올렸습니다. 그 뒤 step 1부터 step 13까지 여러 commit이 로컬 `main`에 추가되었습니다. 이제 그 최종 결과를 GitHub의 `origin/main`에도 반영합니다.
 
 이번 단계에서도 수강생 개인 GitHub 저장소에 `main` 브랜치만 push합니다. `step-0`, `step-1`, `step-2` 같은 브랜치는 강사용 자료 브랜치이므로 수강생 실습 저장소에서는 push하지 않아도 됩니다.
 
-## 실습 시작 전 확인
+## 시작 전 확인
 
 step 13을 끝낸 상태에서 시작합니다.
 
@@ -25,7 +25,7 @@ git branch --show-current
 git diff
 ```
 
-`git diff` 결과가 아무것도 나오지 않아야 합니다. 이번 단계에서는 파일을 새로 수정하지 않고, 이미 commit된 기록을 원격 저장소에 올립니다.
+`git diff` 결과가 아무것도 나오지 않아야 합니다. 파일을 새로 수정하지 않고, 이미 commit된 기록을 원격 저장소에 올립니다.
 
 ## 작업 1. 현재 origin 확인하기
 
