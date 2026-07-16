@@ -1,14 +1,14 @@
 # Step 4. 충돌 없이 브랜치 합치기
 
-## 이번 스텝 Overview
+## 이번 단계에서 할 일
 
-이번 단계에서는 step 3에서 만든 `branch/profile-edit` 브랜치의 변경을 `main`에 합칩니다.
+step 3에서 만든 `branch/profile-edit` 브랜치의 변경을 `main`에 합칩니다.
 
 merge는 브랜치에 있던 변경을 다른 브랜치에 가져오는 작업입니다. 지금 상황에서는 `main`이 step 3 이후로 따로 바뀌지 않았기 때문에 Git은 아주 쉽게 합칠 수 있습니다. 이런 경우 화면에 "Fast-forward"라고 나올 수 있습니다.
 
-이번 단계가 끝나면 `main`의 `practice/profile.md`에도 브랜치에서 추가했던 문장이 들어 있어야 합니다.
+완료 후에는 `main`의 `practice/profile.md`에도 브랜치에서 추가했던 문장이 들어 있어야 합니다.
 
-## 실습 시작 전 확인
+## 시작 전 확인
 
 step 3을 끝낸 상태에서 시작합니다.
 
@@ -29,7 +29,7 @@ git diff main..branch/profile-edit -- practice/profile.md
 
 ## 작업 1. merge 전에 들어올 변경 확인하기
 
-### 무엇을 하는가
+### 실습 내용
 
 merge하기 전에 `main`으로 들어올 변경을 먼저 확인합니다.
 
