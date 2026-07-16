@@ -18,7 +18,7 @@ step 12를 끝낸 상태에서 시작합니다.
 
 확인 명령:
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
 ```bash
 git status
@@ -74,14 +74,19 @@ index dca01ac..bf399c8 100644
 
 ```bash
 git add practice/diary.md
+git diff --staged -- practice/diary.md
 git commit -m "Repeat branch practice with diary"
+git status --short
+git log --oneline -1
 ```
+
+stage 전과 같은 문장 추가를 확인합니다. commit 후 상태 출력은 없어야 하고 마지막 log에는 `Repeat branch practice with diary`가 보여야 합니다.
 
 ### 작업 4. main으로 돌아와 merge하기
 
 ```bash
 git switch main
-git merge branch/repeat-diary
+git merge --no-edit branch/repeat-diary
 ```
 
 ### 작업 5. 사용한 브랜치 삭제하기
@@ -132,14 +137,19 @@ index 9f3a9bf..6fd2f3d 100644
 
 ```bash
 git add practice/profile.md
+git diff --staged -- practice/profile.md
 git commit -m "Repeat branch practice with profile"
+git status --short
+git log --oneline -1
 ```
+
+stage 전과 같은 항목 추가를 확인합니다. commit 후 상태 출력은 없어야 하고 마지막 log에는 `Repeat branch practice with profile`이 보여야 합니다.
 
 ### 작업 4. main으로 돌아와 merge하기
 
 ```bash
 git switch main
-git merge branch/repeat-profile
+git merge --no-edit branch/repeat-profile
 ```
 
 ### 작업 5. 사용한 브랜치 삭제하기
