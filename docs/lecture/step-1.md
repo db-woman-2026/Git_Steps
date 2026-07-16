@@ -4,7 +4,7 @@
 
 `step-0`에서 만든 초기 commit 위에 첫 파일 수정 commit을 하나 더 만듭니다.
 
-commit은 파일 전체를 다시 저장하는 버튼이라기보다, "이 시점의 변경 내용을 하나의 기록으로 남기는 일"에 가깝습니다. 문서를 고친 뒤 그 변경을 Git에게 보여주고, stage 하고, commit 메시지를 붙여 저장합니다.
+commit은 stage한 변경을 한 시점의 기록으로 저장합니다. 문서를 고친 뒤 `git diff`로 변경을 확인하고, stage한 내용에 commit 메시지를 붙여 저장합니다.
 
 완료 후에는 `practice/intro.md`에 새 문장이 추가되고, 그 변경이 `Add my intro` commit으로 저장되어 있어야 합니다.
 
@@ -20,7 +20,7 @@ VSCode에서 다음을 확인합니다.
 
 명령어로 확인하고 싶다면 다음을 실행합니다.
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
 ```bash
 git status
@@ -34,7 +34,7 @@ git status
 
 `practice/intro.md` 파일에 문장을 한 줄 추가합니다.
 
-파일을 크게 바꾸지 않습니다. 변경이 작아야 Git이 보여주는 차이를 눈으로 이해하기 쉽습니다.
+파일을 크게 바꾸지 않습니다. 변경이 작으면 이전 내용과 현재 내용의 차이를 구분하기 쉽습니다.
 
 ### 입력할 내용
 
@@ -85,7 +85,7 @@ index 4f20b8b..3c1d4f4 100644
 
 ### 실습 내용
 
-Git은 파일을 수정하자마자 "이 파일이 바뀌었다"는 사실을 알고 있습니다. VSCode Source Control 화면은 그 상태를 눈으로 보여줍니다.
+파일을 저장하면 VSCode Source Control의 Changes 목록에 `practice/intro.md`가 나타납니다.
 
 ### 절차
 
@@ -195,4 +195,4 @@ git log --oneline -1
 - Source Control에 남은 변경 파일이 없습니다.
 - `git log --oneline -1`에서 `Add my intro` commit이 보입니다.
 
-다음 단계에서는 다른 파일을 수정하고, Git이 변경 전과 변경 후를 어떻게 비교해서 보여주는지 더 자세히 봅니다.
+다음 단계에서는 다른 파일을 수정하고, `git diff`의 변경 전 줄과 변경 후 줄을 구분합니다.
