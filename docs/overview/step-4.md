@@ -4,7 +4,7 @@
 
 브랜치에서 만든 변경을 `main`에 합치는 기본 merge를 연습합니다.
 
-## 실습 흐름
+## 실습 순서
 
 1. `main` 브랜치로 이동합니다.
 2. `branch/profile-edit` 브랜치를 merge 합니다.
