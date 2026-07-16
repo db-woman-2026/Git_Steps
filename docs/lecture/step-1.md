@@ -127,6 +127,14 @@ git status
 
 `practice/intro.md`가 commit될 변경으로 표시되면 정상입니다.
 
+다음 commit에 들어갈 실제 내용을 확인합니다.
+
+```bash
+git diff --staged -- practice/intro.md
+```
+
+처음 확인한 `git diff`와 같은 문장 추가가 보여야 합니다. 이때 `git diff`만 실행하면 결과가 비어 있습니다. 변경이 사라진 것이 아니라 working tree에서 stage로 이동했기 때문입니다.
+
 ## 작업 4. Commit 하기
 
 ### 실습 내용
@@ -149,6 +157,14 @@ Add my intro
 ```bash
 git commit -m "Add my intro"
 ```
+
+commit 후에는 상태도 확인합니다.
+
+```bash
+git status --short
+```
+
+출력이 없으면 working tree와 stage가 모두 비어 있습니다.
 
 ## 작업 5. 커밋 기록 확인하기
 
@@ -175,6 +191,7 @@ git log --oneline -1
 다음 조건을 만족하면 step 1이 완료된 것입니다.
 
 - `practice/intro.md`에 새 자기소개 문장이 추가되어 있습니다.
+- `git diff --staged`에서 commit할 변경을 확인했습니다.
 - Source Control에 남은 변경 파일이 없습니다.
 - `git log --oneline -1`에서 `Add my intro` commit이 보입니다.
 

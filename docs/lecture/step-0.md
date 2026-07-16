@@ -18,6 +18,26 @@
 
 수업에서 starter 파일을 zip으로 받았다면 압축을 풀고 그 폴더를 VSCode로 엽니다. GitHub에서 강사용 저장소를 clone한 상태라면 이미 `.git` 폴더가 있으므로 이 단계의 `git init` 실습과 다릅니다. 초급 실습에서는 starter 파일만 있는 일반 폴더에서 시작하는 것을 기준으로 합니다.
 
+### Git 사용자 정보
+
+commit에는 작성자 이름과 이메일이 들어갑니다. 첫 commit 전에 현재 값을 확인합니다.
+
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
+
+```bash
+git config --global --get user.name
+git config --global --get user.email
+```
+
+값이 없다면 본인 정보로 설정합니다.
+
+```bash
+git config --global user.name "Student Name"
+git config --global user.email "student@example.com"
+```
+
+공용 PC에서는 강사 지침에 따라 저장소 안에만 설정하거나 수업 뒤 전역 설정을 정리합니다. 설정 출처까지 확인하려면 `git config --list --show-origin`을 사용합니다.
+
 폴더 안에는 다음 파일들이 있어야 합니다.
 
 ```text
@@ -32,8 +52,6 @@ practice/team-note.md
 ```
 
 터미널에서 폴더 위치로 이동합니다.
-
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
 
 ```bash
 cd Git_Steps
@@ -183,6 +201,14 @@ Changes to be committed:
 
 VSCode에서는 Source Control의 Staged Changes 영역에 파일들이 들어가 있으면 됩니다.
 
+터미널에서는 stage된 파일과 변경량을 한 번 더 확인합니다.
+
+```bash
+git diff --staged --stat
+```
+
+파일 내용까지 확인하려면 `git diff --staged`를 사용합니다. `git diff`만 실행하면 아직 stage하지 않은 변경을 보여주므로 두 명령의 대상을 구분합니다.
+
 ## 작업 6. 첫 commit 만들기
 
 ### 명령어
@@ -259,6 +285,8 @@ origin  https://github.com/my-account/git-steps-practice.git (push)
 
 ## 작업 9. 최초 push 하기
 
+HTTPS 주소로 처음 push하면 Git Credential Manager가 브라우저 로그인을 열 수 있습니다. GitHub 비밀번호를 터미널에 직접 입력하지 않습니다. 브라우저에서 로그인할 계정과 저장소가 본인 것인지 확인합니다.
+
 ### 명령어
 
 ```bash
@@ -309,5 +337,7 @@ nothing to commit, working tree clean
 - `origin`이 내 GitHub 저장소 주소를 가리킵니다.
 - `git push -u origin main`으로 최초 push를 완료했습니다.
 - GitHub 웹사이트에서 starter 파일과 첫 commit이 보입니다.
+
+사용자 정보, 로그인, push에서 막히면 [Git 실습 문제 해결](../troubleshooting.md)을 확인합니다.
 
 다음 단계에서는 이미 GitHub에 올라간 이 저장소에서 `practice/intro.md`를 수정하고, 두 번째 commit을 만들어 봅니다.
