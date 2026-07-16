@@ -4,7 +4,7 @@
 
 `main`과 분리된 첫 브랜치를 만듭니다.
 
-브랜치는 원본 문서를 바로 고치지 않고, 따로 복사된 작업 공간에서 실험하는 것과 비슷합니다. 실제로 파일을 복사하는 것은 아니지만, Git은 "이 브랜치에서는 이런 변경이 있다"는 기록을 따로 관리합니다.
+브랜치를 만들면 현재 commit에서 별도의 변경 이력을 시작할 수 있습니다. 파일을 실제로 복사하지 않으며, 각 브랜치 이름이 서로 다른 commit을 가리킵니다.
 
 완료 후에는 `branch/profile-edit` 브랜치에는 `practice/profile.md`에 새 문장이 추가되어 있고, `main`에는 아직 그 문장이 없어야 합니다.
 
@@ -12,7 +12,7 @@
 
 step 2를 끝낸 상태에서 시작합니다.
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
 ```bash
 git status
@@ -121,8 +121,18 @@ Add branch profile note
 
 ```bash
 git add practice/profile.md
-git commit -m "Add branch profile note"
+git diff --staged -- practice/profile.md
 ```
+
+stage 전과 같은 한 줄 추가가 보이면 commit합니다.
+
+```bash
+git commit -m "Add branch profile note"
+git status --short
+git log --oneline -1
+```
+
+`git status --short`의 출력은 없어야 하고, 마지막 log에는 `Add branch profile note`가 보여야 합니다.
 
 ## 작업 4. main으로 돌아가서 차이 확인하기
 
