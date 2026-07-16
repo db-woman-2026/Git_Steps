@@ -4,7 +4,7 @@
 
 두 브랜치가 같은 파일을 수정해도 자동으로 합쳐질 수 있음을 확인합니다.
 
-단, "다른 줄"이라는 말만으로는 부족합니다. 서로 바로 붙어 있는 줄을 고치면 Git이 같은 수정 영역으로 판단해서 conflict가 날 수 있습니다. 일부러 멀리 떨어진 위치를 고칩니다.
+자동 병합 여부는 두 브랜치의 변경 영역이 겹치는지에 따라 달라집니다. 이 실습에서는 변경 영역을 분명히 나누기 위해 첫 항목과 파일 맨 아래를 수정합니다.
 
 완료 후에는 `practice/profile.md`에 이름 수정과 맨 아래 추가 문장이 모두 들어와야 합니다.
 
@@ -18,7 +18,7 @@ step 6을 끝낸 상태에서 시작합니다.
 
 확인 명령:
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
 ```bash
 git status
@@ -73,8 +73,13 @@ index 57c770c..f0616cb 100644
 
 ```bash
 git add practice/profile.md
+git diff --staged -- practice/profile.md
 git commit -m "Update profile name"
+git status --short
+git log --oneline -1
 ```
+
+stage 전과 같은 이름 교체를 확인합니다. commit 후 상태 출력은 없어야 하고 마지막 log에는 `Update profile name`이 보여야 합니다.
 
 ## 작업 3. main으로 돌아가기
 
@@ -122,18 +127,23 @@ index 57c770c..0cd6b3d 100644
 
 ```bash
 git add practice/profile.md
+git diff --staged -- practice/profile.md
 git commit -m "Add profile note"
+git status --short
+git log --oneline -1
 ```
+
+stage 전과 같은 한 줄 추가를 확인합니다. commit 후 상태 출력은 없어야 하고 마지막 log에는 `Add profile note`가 보여야 합니다.
 
 ## 작업 6. main으로 돌아와 두 브랜치 merge하기
 
 ```bash
 git switch main
-git merge branch/profile-name
-git merge branch/profile-note
+git merge --no-edit branch/profile-name
+git merge --no-edit branch/profile-note
 ```
 
-첫 번째 merge는 fast-forward일 수 있습니다. 두 번째 merge는 자동 merge commit이 될 수 있습니다.
+첫 번째 merge는 fast-forward일 수 있습니다. 두 번째 merge는 자동 merge commit이 될 수 있습니다. `--no-edit`은 자동으로 만들어진 merge commit 메시지를 그대로 사용합니다.
 
 중요한 것은 conflict가 나지 않고 두 변경이 모두 들어오는 것입니다.
 
@@ -142,6 +152,7 @@ git merge branch/profile-note
 ```bash
 cat practice/profile.md
 git status
+git log --oneline --graph --max-count=5
 ```
 
 PowerShell에서는 다음 명령을 사용합니다.
@@ -149,6 +160,7 @@ PowerShell에서는 다음 명령을 사용합니다.
 ```powershell
 Get-Content practice/profile.md -Encoding utf8
 git status
+git log --oneline --graph --max-count=5
 ```
 
 예상 파일 내용:
@@ -164,13 +176,11 @@ git status
 - 줄 위치 연습: 같은 파일에서도 떨어진 위치를 수정해 보기
 ```
 
-## 부가 설명: 왜 붙어 있는 줄은 위험할까
+## 부가 설명: 변경 영역이 겹치면 어떻게 되나요?
 
-Git은 줄 하나하나를 완전히 독립된 칸처럼 다루지 않습니다. 주변 줄을 함께 보고 "이 근처가 바뀌었다"고 판단합니다.
+자동 병합은 공통 시작 commit을 기준으로 두 브랜치가 바꾼 영역을 비교합니다. 변경 영역이 겹치지 않으면 같은 파일도 합칠 수 있습니다.
 
-그래서 이름 줄과 바로 아래 관심사 줄처럼 붙어 있는 줄을 서로 다른 브랜치에서 고치면, 실제로는 같은 파일의 다른 줄이어도 conflict가 날 수 있습니다.
-
-이름 줄과 파일 맨 아래처럼 떨어진 위치를 사용했기 때문에 Git이 자동으로 합치기 쉽습니다.
+서로 다른 줄을 수정했더라도 한쪽에서 주변 줄을 함께 삭제하거나 같은 위치에 내용을 넣으면 변경 영역이 겹칠 수 있습니다. 이름 줄과 파일 맨 아래를 사용하면 이번 실습의 두 변경 영역이 겹치지 않습니다.
 
 ## 완료 기준
 
