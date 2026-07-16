@@ -114,7 +114,7 @@ diff --git a/practice/intro.md b/practice/intro.md
 index 95b1c3f..23f08b3 100644
 --- a/practice/intro.md
 +++ b/practice/intro.md
-@@ -4,5 +4,6 @@
+@@ -3,5 +3,6 @@
  안녕하세요. 저는 Git을 처음 연습하는 학습자입니다.
  
  오늘은 Git 변경 기록을 보면서 main 브랜치의 문장을 수정합니다.
