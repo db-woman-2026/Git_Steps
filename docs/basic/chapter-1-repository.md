@@ -31,6 +31,8 @@ fatal: not a git repository (or any of the parent directories): .git
 
 `git init`은 현재 폴더에 Git 저장소를 만듭니다.
 
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
+
 ```bash
 git init -b main
 ```

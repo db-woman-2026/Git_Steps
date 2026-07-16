@@ -13,6 +13,8 @@ Git에서 변경을 기록하는 기본 흐름은 다음과 같습니다.
 
 `git status`는 작업 폴더와 stage의 현재 상태를 보여줍니다.
 
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
+
 ```bash
 git status
 ```
@@ -34,6 +36,16 @@ Untracked files:
 
 `status`는 파일 내용을 바꾸지 않습니다. 현재 상태를 확인만 합니다.
 
+## diff
+
+`git diff`는 작업 폴더에서 바뀌었지만 아직 stage하지 않은 내용을 보여줍니다.
+
+```bash
+git diff -- notes.txt
+```
+
+`git add`를 실행한 뒤에는 같은 `git diff` 결과에서 해당 변경이 사라집니다. 변경이 없어졌다는 뜻이 아니라 stage로 이동했다는 뜻입니다.
+
 ## stage
 
 **stage**는 다음 commit에 포함할 변경을 모아 두는 영역입니다. **staging area** 또는 **index**라고도 부릅니다.
@@ -48,6 +60,14 @@ git add notes.txt
 Changes to be committed:
   modified:   notes.txt
 ```
+
+다음 commit에 들어갈 실제 내용은 별도로 확인합니다.
+
+```bash
+git diff --staged -- notes.txt
+```
+
+`git diff`와 `git diff --staged`를 함께 사용하면 작업 폴더에 남은 변경과 commit할 변경을 구분할 수 있습니다.
 
 stage가 있기 때문에 여러 변경 중 일부만 선택하여 하나의 commit으로 묶을 수 있습니다.
 
@@ -91,6 +111,8 @@ notes.txt  --add--> notes.txt --commit--> commit A
 ## 정리
 
 - `git status`는 현재 파일과 stage의 상태를 보여줍니다.
+- `git diff`는 아직 stage하지 않은 변경을 보여줍니다.
+- `git diff --staged`는 다음 commit에 들어갈 변경을 보여줍니다.
 - stage는 다음 commit에 포함할 변경을 선택하는 영역입니다.
 - `git add`는 변경을 stage에 올립니다.
 - `git commit`은 stage의 변경을 하나의 기록으로 저장합니다.
