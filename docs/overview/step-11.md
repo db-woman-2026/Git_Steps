@@ -4,7 +4,7 @@
 
 한 브랜치에서는 파일을 수정하고, 다른 브랜치에서는 같은 파일을 삭제한 상황을 경험합니다.
 
-## 실습 흐름
+## 실습 순서
 
 1. `branch/edit-memo`에서 `practice/memo.md` 내용을 수정하고 commit 합니다.
 2. `main`으로 돌아와 `practice/memo.md`를 삭제하고 commit 합니다.

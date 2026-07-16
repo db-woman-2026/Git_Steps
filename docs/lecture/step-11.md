@@ -1,14 +1,14 @@
 # Step 11. 한쪽은 수정하고 한쪽은 삭제한 파일 합치기
 
-## 이번 스텝 Overview
+## 이번 단계에서 할 일
 
-이번 단계에서는 modify/delete conflict를 다룹니다.
+modify/delete conflict를 다룹니다.
 
 한 브랜치에서는 `practice/memo.md`를 수정합니다. 그런데 `main`에서는 같은 파일을 삭제합니다. merge하면 Git은 "수정한 파일을 살릴까요, 아니면 삭제 상태를 유지할까요?"라고 묻습니다.
 
 이번 실습에서는 최종적으로 파일을 살리는 선택을 합니다.
 
-## 실습 시작 전 확인
+## 시작 전 확인
 
 step 10을 끝낸 상태에서 시작합니다.
 
@@ -31,7 +31,7 @@ git switch -c branch/edit-memo
 
 ## 작업 2. 브랜치에서 memo 수정하기
 
-### 직접 타이핑할 내용
+### 입력할 내용
 
 `practice/memo.md` 내용을 다음처럼 바꿉니다.
 
