@@ -13,6 +13,8 @@ Git에서 변경을 기록하는 기본 흐름은 다음과 같습니다.
 
 `git status`는 작업 폴더와 stage의 현재 상태를 보여줍니다.
 
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+
 ```bash
 git status
 ```
