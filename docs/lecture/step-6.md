@@ -18,6 +18,8 @@ step 5를 끝낸 상태에서 시작합니다.
 
 확인 명령:
 
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+
 ```bash
 git status
 git branch --show-current
@@ -149,6 +151,14 @@ Merge made by the 'ort' strategy.
 ```bash
 cat practice/profile.md
 cat practice/goal.md
+git status
+```
+
+PowerShell에서는 다음 명령을 사용합니다.
+
+```powershell
+Get-Content practice/profile.md -Encoding utf8
+Get-Content practice/goal.md -Encoding utf8
 git status
 ```
 
