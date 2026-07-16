@@ -4,7 +4,7 @@
 
 step 8에서 만든 conflict를 해결합니다.
 
-VSCode는 conflict가 난 파일 위에 몇 가지 버튼을 보여줍니다. 이 버튼들은 Git이 고르지 못한 두 내용을 사람이 선택하기 쉽게 만든 도구입니다.
+VSCode는 conflict가 난 파일에 inline action이나 3-way Merge Editor를 표시합니다. 두 화면에서 Current와 Incoming을 구분한 뒤 최종 결과를 선택합니다.
 
 버튼의 의미를 확인한 뒤, 최종적으로 두 문장을 모두 남기는 방식으로 해결합니다.
 
@@ -18,7 +18,7 @@ step 8 직후 상태에서 시작합니다.
 
 확인 명령:
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
 ```bash
 git status
@@ -49,11 +49,13 @@ VSCode에서는 보통 다음 버튼을 보여줍니다.
 - `Accept Both Changes`
 - `Compare Changes`
 
-## 작업 2. 버튼을 눌러 의미 확인하기
+## 작업 2. 해결 동작의 의미 확인하기
+
+inline action이 보이면 먼저 `Compare Changes`를 눌러 두 내용을 나란히 확인합니다. Current나 Incoming을 시험 삼아 적용한 뒤 실행 취소하지 않습니다. 최종 선택을 정한 뒤 한 번만 적용합니다.
 
 ### Current 확인
 
-`Accept Current Change`를 누르면 현재 브랜치인 `main`의 문장이 남습니다.
+`Accept Current Change`는 현재 브랜치인 `main`의 문장만 남깁니다.
 
 남는 문장:
 
@@ -61,11 +63,9 @@ VSCode에서는 보통 다음 버튼을 보여줍니다.
 오늘은 Git 변경 기록을 보면서 main 브랜치의 문장을 수정합니다.
 ```
 
-확인만 했다면 `Ctrl+Z`로 되돌립니다.
-
 ### Incoming 확인
 
-`Accept Incoming Change`를 누르면 들어오는 브랜치인 `branch/intro-other`의 문장이 남습니다.
+`Accept Incoming Change`는 들어오는 브랜치인 `branch/intro-other`의 문장만 남깁니다.
 
 남는 문장:
 
@@ -73,13 +73,13 @@ VSCode에서는 보통 다음 버튼을 보여줍니다.
 오늘은 다른 브랜치에서 같은 문장을 다르게 수정합니다.
 ```
 
-확인만 했다면 다시 `Ctrl+Z`로 되돌립니다.
-
 ### Both 확인
 
 `Accept Both Changes`를 누르면 두 문장이 모두 남습니다.
 
 이번 실습에서는 최종 선택으로 `Accept Both Changes`를 사용합니다.
+
+`Resolve in Merge Editor`가 보이면 Incoming은 왼쪽, Current는 오른쪽, Result는 아래에 표시됩니다. 두 변경을 모두 선택하고 Result에 두 문장이 있는지 확인한 뒤 `Complete Merge`를 누릅니다. 자세한 화면 구성은 [VSCode의 merge conflict 안내](https://code.visualstudio.com/docs/sourcecontrol/merge-conflicts)에서 확인할 수 있습니다.
 
 ## 작업 3. 최종 파일 내용 확인하기
 
@@ -98,15 +98,16 @@ VSCode에서는 보통 다음 버튼을 보여줍니다.
 
 conflict marker인 `<<<<<<<`, `=======`, `>>>>>>>`가 남아 있으면 아직 해결된 것이 아닙니다.
 
-## 작업 4. 해결 후 diff 확인하기
+## 작업 4. 해결 파일을 stage하고 diff 확인하기
 
-저장한 뒤 아직 stage하지 않은 상태에서 diff를 확인합니다.
+inline action을 사용했다면 파일을 저장합니다. conflict marker가 모두 없어졌는지 확인한 뒤 stage합니다. Merge Editor에서 `Complete Merge`를 눌렀다면 이미 stage된 상태이므로 같은 명령을 다시 실행해도 됩니다.
 
 ```bash
-git diff -- practice/intro.md
+git add practice/intro.md
+git diff --staged -- practice/intro.md
 ```
 
-예상 diff:
+예상 staged diff:
 
 ```diff
 diff --git a/practice/intro.md b/practice/intro.md
@@ -122,14 +123,14 @@ index 95b1c3f..23f08b3 100644
  저는 Git으로 문서 변경을 저장하는 연습을 합니다.
 ```
 
-main에는 이미 첫 번째 문장이 있었습니다. conflict를 해결하면서 두 번째 문장을 추가로 남겼기 때문에 diff에는 두 번째 문장이 `+`로 보입니다.
+`main`에는 이미 첫 번째 문장이 있었습니다. conflict를 해결하면서 두 번째 문장을 추가로 남겼기 때문에 staged diff에는 두 번째 문장이 `+`로 보입니다.
 
 ## 작업 5. conflict 해결 commit 만들기
 
 ### VSCode 절차
 
-1. `practice/intro.md`를 저장합니다.
-2. Source Control에서 파일을 stage 합니다.
+1. `practice/intro.md`가 Staged Changes에 있는지 확인합니다.
+2. 아직 Merge Changes에 있다면 파일을 stage 합니다.
 3. commit 메시지를 입력합니다.
 
 ```text
@@ -141,9 +142,11 @@ Resolve intro conflict
 ### 명령어로 한다면
 
 ```bash
-git add practice/intro.md
+git status --short
 git commit -m "Resolve intro conflict"
 ```
+
+commit 전에는 `M  practice/intro.md`가 보여야 합니다. `M`이 오른쪽 칸에 있거나 `UU`가 남아 있으면 아직 해결이 끝나지 않은 상태입니다.
 
 ## 작업 6. 완료 상태 확인하기
 
