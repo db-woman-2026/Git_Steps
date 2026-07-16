@@ -14,7 +14,7 @@ A 첫 기록 -> B 내용 수정 -> C 문장 추가
 
 `git log`는 commit 이력을 보여줍니다.
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
 
 ```bash
 git log --oneline
