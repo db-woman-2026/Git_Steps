@@ -33,8 +33,16 @@ practice/team-note.md
 
 터미널에서 폴더 위치로 이동합니다.
 
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+
 ```bash
 cd Git_Steps
+```
+
+PowerShell에서는 다음 명령을 사용합니다.
+
+```powershell
+Set-Location C:\workspace\Git_Steps
 ```
 
 폴더 이름은 다를 수 있습니다. 중요한 것은 `README.md`와 `practice` 폴더가 있는 위치에서 명령을 실행하는 것입니다.
