@@ -4,7 +4,7 @@
 
 step 3에서 만든 `branch/profile-edit` 브랜치의 변경을 `main`에 합칩니다.
 
-merge는 브랜치에 있던 변경을 다른 브랜치에 가져오는 작업입니다. 지금 상황에서는 `main`이 step 3 이후로 따로 바뀌지 않았기 때문에 Git은 아주 쉽게 합칠 수 있습니다. 이런 경우 화면에 "Fast-forward"라고 나올 수 있습니다.
+merge는 한 브랜치의 변경 이력을 다른 브랜치에 합치는 작업입니다. 지금은 `branch/profile-edit`을 만든 뒤 `main`에 새 commit이 없으므로 fast-forward merge가 됩니다.
 
 완료 후에는 `main`의 `practice/profile.md`에도 브랜치에서 추가했던 문장이 들어 있어야 합니다.
 
@@ -21,7 +21,7 @@ step 3을 끝낸 상태에서 시작합니다.
 
 확인 명령은 다음과 같습니다.
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
 ```bash
 git branch --show-current
@@ -81,7 +81,7 @@ Fast-forward
  practice/profile.md | 1 +
 ```
 
-`Fast-forward`는 이상한 상태가 아닙니다. `main`이 따로 앞으로 나아간 일이 없어서, Git이 브랜치의 commit 위치로 그대로 이동했다는 뜻입니다.
+`Fast-forward`는 별도의 merge commit 없이 `main`이 `branch/profile-edit`의 commit 위치로 이동했다는 뜻입니다.
 
 ## 작업 3. merge 후 파일 확인하기
 
@@ -112,9 +112,10 @@ Get-Content practice/profile.md -Encoding utf8
 
 ```bash
 git status
+git log --oneline -1
 ```
 
-merge가 끝났고 남은 변경이 없다면 작업 폴더가 깨끗해야 합니다.
+merge가 끝났고 남은 변경이 없다면 작업 폴더가 깨끗해야 합니다. 마지막 log에는 `Add branch profile note`가 보여야 합니다.
 
 ## 작업 4. merge 후 diff가 비는 이유 이해하기
 
