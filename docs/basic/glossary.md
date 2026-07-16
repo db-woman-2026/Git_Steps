@@ -32,6 +32,8 @@ modified: notes.txt
 
 다음 commit에 포함할 변경을 모아 두는 영역입니다. **staging area**, **index**라고도 합니다.
 
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+
 ```bash
 git add notes.txt
 ```
