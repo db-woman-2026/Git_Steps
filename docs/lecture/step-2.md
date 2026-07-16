@@ -2,7 +2,7 @@
 
 ## 이번 단계에서 할 일
 
-Git이 파일의 변경 전과 변경 후를 어떻게 보여주는지 확인합니다.
+`git diff`에서 파일의 변경 전 줄과 변경 후 줄을 구분합니다.
 
 step 1에서는 문장을 새로 추가했습니다. step 2에서는 기존 문장 두 줄을 다른 문장으로 바꿉니다. 새 줄 추가보다 "교체"가 들어가면 diff에 `-` 줄과 `+` 줄이 함께 나타납니다.
 
@@ -20,7 +20,7 @@ step 1을 끝낸 상태에서 시작합니다.
 
 명령어로 확인하려면 다음을 실행합니다.
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
 ```bash
 git status
@@ -68,7 +68,7 @@ git log --oneline -1
 
 ### 실습 내용
 
-commit하기 전에 Git이 어떤 차이를 보고 있는지 확인합니다.
+commit하기 전에 working tree와 마지막 commit의 차이를 확인합니다.
 
 ### 명령어
 
@@ -132,6 +132,12 @@ Update profile practice
 
 ```bash
 git add practice/profile.md
+git diff --staged -- practice/profile.md
+```
+
+stage 전 `git diff`에서 본 두 문장 교체가 그대로 보여야 합니다. 확인한 뒤 commit합니다.
+
+```bash
 git commit -m "Update profile practice"
 ```
 

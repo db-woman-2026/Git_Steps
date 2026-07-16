@@ -4,7 +4,7 @@
 
 브랜치에서 새 파일을 만든 뒤 `main`에 합칩니다.
 
-파일 수정과 파일 추가는 Git에서 조금 다르게 보입니다. 수정은 기존 파일의 일부 줄이 바뀐 것이고, 추가는 Git이 처음 보는 파일이 생긴 것입니다. diff에서는 `new file mode` 같은 표시가 보입니다.
+파일 수정은 추적 중인 파일의 일부가 바뀐 상태입니다. 파일 추가는 아직 추적하지 않는 파일에서 시작하며, stage한 diff에는 `new file mode`가 표시됩니다.
 
 완료 후에는 `main` 브랜치에 `practice/diary.md` 파일이 생겨야 합니다.
 
@@ -21,7 +21,7 @@ step 4를 끝낸 상태에서 시작합니다.
 
 확인 명령:
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
 ```bash
 git status
@@ -71,15 +71,28 @@ git switch -c branch/add-diary
 오늘은 Git에서 새 파일을 추가하는 연습을 했습니다.
 ```
 
-## 작업 3. 새 파일 diff 확인하기
+## 작업 3. 새 파일을 stage하고 diff 확인하기
 
-### 명령어
+새 파일은 아직 추적되지 않으므로 `git diff -- practice/diary.md`에 나타나지 않습니다. 먼저 상태에서 `??`를 확인합니다.
 
 ```bash
-git diff -- practice/diary.md
+git status --short -- practice/diary.md
 ```
 
-### 예상 git diff
+예상 출력:
+
+```text
+?? practice/diary.md
+```
+
+파일을 stage한 뒤 첫 commit과 비교되는 내용을 확인합니다.
+
+```bash
+git add practice/diary.md
+git diff --staged -- practice/diary.md
+```
+
+### 예상 staged diff
 
 ```diff
 diff --git a/practice/diary.md b/practice/diary.md
@@ -93,7 +106,7 @@ index 0000000..dca01ac
 +오늘은 Git에서 새 파일을 추가하는 연습을 했습니다.
 ```
 
-`/dev/null`은 "이전에는 파일이 없었다"는 뜻으로 이해하면 됩니다. Git이 새 파일을 비교할 때 사용하는 표시입니다.
+`/dev/null`은 이전 commit에 해당 파일이 없었다는 표시입니다.
 
 `@@ -0,0 +1,3 @@`는 이전 파일에는 0줄이었고, 새 파일에는 3줄이 생겼다는 뜻입니다.
 
@@ -101,8 +114,8 @@ index 0000000..dca01ac
 
 ### VSCode 절차
 
-1. Source Control에서 `practice/diary.md`가 추가된 파일로 보이는지 확인합니다.
-2. 파일을 stage 합니다.
+1. Source Control의 Staged Changes에 `practice/diary.md`가 있는지 확인합니다.
+2. 파일을 눌러 새 파일 전체가 추가되는 diff를 확인합니다.
 3. commit 메시지를 입력합니다.
 
 ```text
@@ -114,9 +127,12 @@ Add diary practice
 ### 명령어로 한다면
 
 ```bash
-git add practice/diary.md
 git commit -m "Add diary practice"
+git status --short
+git log --oneline -1
 ```
+
+상태 출력은 없어야 하고, 마지막 log에는 `Add diary practice`가 보여야 합니다.
 
 ## 작업 5. main으로 돌아와 merge하기
 
@@ -148,6 +164,7 @@ Fast-forward
 ```bash
 git status
 cat practice/diary.md
+git log --oneline -1
 ```
 
 PowerShell에서는 다음 명령을 사용합니다.
@@ -155,9 +172,10 @@ PowerShell에서는 다음 명령을 사용합니다.
 ```powershell
 git status
 Get-Content practice/diary.md -Encoding utf8
+git log --oneline -1
 ```
 
-예상 파일 내용:
+작업 폴더가 깨끗해야 하며 마지막 log에는 `Add diary practice`가 보여야 합니다. 예상 파일 내용은 다음과 같습니다.
 
 ```md
 # Diary
