@@ -4,7 +4,7 @@
 
 여러 줄로 된 문단에서 conflict를 만듭니다.
 
-한 줄 conflict는 비교적 단순합니다. 여러 줄 conflict는 어느 문장을 남길지 더 천천히 읽어야 합니다. 이때 버튼으로 한쪽을 고르는 것보다, 두 내용을 읽고 새 문단으로 정리하는 방식이 더 자연스럽습니다.
+여러 줄 conflict에서는 두 문단의 문장 순서와 빈 줄까지 비교해야 합니다. 두 내용을 읽고 최종 문단을 직접 작성합니다.
 
 완료 후에는 `practice/team-note.md`의 문단이 직접 정리한 최종 문단으로 바뀌어 있어야 합니다.
 
@@ -18,7 +18,7 @@ step 11을 끝낸 상태에서 시작합니다.
 
 확인 명령:
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
 ```bash
 git status
@@ -80,8 +80,13 @@ index 9803f0b..efa1673 100644
 
 ```bash
 git add practice/team-note.md
+git diff --staged -- practice/team-note.md
 git commit -m "Edit team note on main"
+git status --short
+git log --oneline -1
 ```
+
+stage 전과 같은 두 문장 교체를 확인합니다. commit 후 상태 출력은 없어야 하고 마지막 log에는 `Edit team note on main`이 보여야 합니다.
 
 ## 작업 3. 다른 브랜치에서 같은 문단 수정하기
 
@@ -97,6 +102,12 @@ git switch branch/team-note-other
 우리 팀은 충돌 연습 브랜치에서 문서 변경 내용을 함께 검토합니다.
 
 여러 줄을 고친 뒤 필요한 문장만 남기는 연습을 합니다.
+```
+
+diff를 확인합니다.
+
+```bash
+git diff -- practice/team-note.md
 ```
 
 예상 diff:
@@ -120,8 +131,13 @@ commit합니다.
 
 ```bash
 git add practice/team-note.md
+git diff --staged -- practice/team-note.md
 git commit -m "Edit team note on branch"
+git status --short
+git log --oneline -1
 ```
+
+stage 전과 같은 두 문장 교체를 확인합니다. commit 후 상태 출력은 없어야 하고 마지막 log에는 `Edit team note on branch`가 보여야 합니다.
 
 ## 작업 4. main에서 merge해서 여러 줄 conflict 만들기
 
@@ -137,6 +153,8 @@ Auto-merging practice/team-note.md
 CONFLICT (content): Merge conflict in practice/team-note.md
 Automatic merge failed; fix conflicts and then commit the result.
 ```
+
+`git status --short`에서 `UU practice/team-note.md`가 보이는지 확인합니다.
 
 ## 작업 5. conflict 영역 읽기
 
@@ -172,13 +190,14 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 `<<<<<<<`, `=======`, `>>>>>>>` 표시는 모두 삭제해야 합니다.
 
-## 작업 7. 해결 후 diff 확인하기
+## 작업 7. 해결 파일을 stage하고 diff 확인하기
 
 ```bash
-git diff -- practice/team-note.md
+git add practice/team-note.md
+git diff --staged -- practice/team-note.md
 ```
 
-예상 diff:
+예상 staged diff:
 
 ```diff
 diff --git a/practice/team-note.md b/practice/team-note.md
@@ -195,12 +214,18 @@ index efa1673..cf1351b 100644
 +여러 줄을 비교하고 필요한 문장만 남겨 자연스러운 최종 문단으로 정리합니다.
 ```
 
+stage 전의 unmerged 파일에 `git diff`를 실행하면 두 부모를 함께 표시하는 combined diff가 나옵니다. 위 예시는 stage한 최종 문단과 현재 `main`의 차이입니다.
+
 ## 작업 8. 해결 commit 만들기
 
 ```bash
-git add practice/team-note.md
+git status --short
 git commit -m "Resolve team note conflict"
+git status --short
+git log --oneline -1
 ```
+
+commit 전에는 `M  practice/team-note.md`가 보여야 합니다. commit 후 상태 출력은 없어야 하고 마지막 log에는 `Resolve team note conflict`가 보여야 합니다.
 
 ## 완료 기준
 
