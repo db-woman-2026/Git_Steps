@@ -16,7 +16,9 @@
 
 이 단계는 Git을 아직 시작하지 않은 상태에서 출발합니다.
 
-수업에서 starter 파일을 zip으로 받았다면 압축을 풀고 그 폴더를 VSCode로 엽니다. GitHub에서 강사용 저장소를 clone한 상태라면 이미 `.git` 폴더가 있으므로 이 단계의 `git init` 실습과 다릅니다. 초급 실습에서는 starter 파일만 있는 일반 폴더에서 시작하는 것을 기준으로 합니다.
+수업에서 starter ZIP 파일을 받았다면 압축을 풀고 그 폴더를 VSCode로 엽니다. starter 파일이 없다면 [강사용 저장소의 `main` 브랜치 ZIP 파일](https://github.com/db-woman-2026/Git_Steps/archive/refs/heads/main.zip)을 내려받아 압축을 풉니다. GitHub의 ZIP 파일에는 `.git` 폴더가 없으므로 `git init`부터 실습할 수 있습니다.
+
+강사용 저장소를 `git clone`한 폴더에는 이미 `.git` 폴더가 있습니다. clone한 폴더에서 `git init`을 다시 실행하지 않습니다.
 
 ### Git 사용자 정보
 
@@ -29,16 +31,23 @@ git config --global --get user.name
 git config --global --get user.email
 ```
 
-값이 없다면 본인 정보로 설정합니다.
+개인 PC에서 값이 없다면 본인 정보로 설정합니다.
 
 ```bash
 git config --global user.name "Student Name"
 git config --global user.email "student@example.com"
 ```
 
-공용 PC에서는 강사 지침에 따라 저장소 안에만 설정하거나 수업 뒤 전역 설정을 정리합니다. 설정 출처까지 확인하려면 `git config --list --show-origin`을 사용합니다.
+공용 PC에서는 위 전역 설정 명령을 실행하지 않습니다. 작업 2의 `git init`을 마친 뒤 다음 명령으로 이 실습 저장소에만 사용자 정보를 설정합니다.
 
-폴더 안에는 다음 파일들이 있어야 합니다.
+```bash
+git config user.name "Student Name"
+git config user.email "student@example.com"
+```
+
+설정 출처까지 확인하려면 `git config --list --show-origin`을 사용합니다.
+
+폴더 안에는 적어도 다음 파일들이 있어야 합니다.
 
 ```text
 README.md
@@ -50,6 +59,8 @@ practice/goal.md
 practice/memo.md
 practice/team-note.md
 ```
+
+`main` 브랜치 ZIP 파일에는 기초 문서와 검증 스크립트도 들어 있습니다. 아래 `git status` 예시는 핵심 경로만 줄여서 보여 주므로 파일 수가 더 많아도 정상입니다.
 
 터미널에서 폴더 위치로 이동합니다.
 
@@ -103,13 +114,13 @@ git init -b main
 Initialized empty Git repository in .../Git_Steps/.git/
 ```
 
-`.git` 폴더는 Git이 기록을 저장하는 숨김 폴더입니다. 수업 중에는 이 폴더를 직접 수정하지 않습니다.
+`.git`은 commit과 branch 기록이 저장되는 숨김 폴더입니다. 수업 중에는 이 폴더를 직접 수정하지 않습니다.
 
 ### VSCode에서 볼 것
 
 VSCode Source Control 화면에 여러 파일이 변경 파일로 보입니다.
 
-처음 Git을 시작했기 때문에 Git 입장에서는 폴더 안의 모든 파일이 "새 파일"입니다.
+첫 commit이 아직 없으므로 폴더 안의 파일이 모두 추적되지 않은 새 파일로 표시됩니다.
 
 ## 작업 3. 현재 상태 확인하기
 
@@ -119,20 +130,21 @@ VSCode Source Control 화면에 여러 파일이 변경 파일로 보입니다.
 git status --short
 ```
 
-예상 출력:
+예상 출력의 일부:
 
 ```text
 ?? .gitignore
 ?? README.md
 ?? docs/
 ?? practice/
+?? scripts/
 ```
 
-`??`는 Git이 아직 추적하지 않는 파일이라는 뜻입니다.
+`??`는 아직 추적 대상에 추가하지 않은 파일이라는 뜻입니다.
 
 첫 단계에서는 diff를 자세히 읽지 않습니다. 아직 이전 commit이 없어서 "이전 단계와 무엇이 달라졌는지"를 비교하는 흐름이 아니기 때문입니다.
 
-지금은 `??` 표시가 "Git이 아직 모르는 파일"이라는 것만 이해하면 충분합니다.
+지금은 `??`가 첫 commit에 아직 포함되지 않은 파일을 나타낸다는 점만 확인합니다.
 
 ## 작업 4. 첫 commit에 넣을 파일 stage 하기
 
@@ -152,7 +164,7 @@ stage 후 상태를 확인합니다.
 git status --short
 ```
 
-예상 출력:
+제공받은 최소 starter의 예상 출력:
 
 ```text
 A  .gitignore
@@ -164,6 +176,8 @@ A  practice/memo.md
 A  practice/profile.md
 A  practice/team-note.md
 ```
+
+`main` 브랜치 ZIP 파일로 시작했다면 `docs/basic/`, `docs/course-plan.md`, `scripts/` 같은 경로도 `A`로 표시됩니다. 내려받은 파일을 모두 첫 commit에 넣는 것이므로 그대로 진행합니다.
 
 `A`는 added, 즉 첫 commit에 새로 추가될 파일이라는 뜻입니다.
 
@@ -230,9 +244,10 @@ commit 후 상태를 확인합니다.
 
 ```bash
 git status
+git log --oneline -1
 ```
 
-변경 목록이 비어 있어야 합니다.
+변경 목록이 비어 있어야 합니다. 마지막 log에는 `Initialize Git learning project`가 보여야 하며, 앞의 commit hash는 환경마다 달라집니다.
 
 ## 작업 7. GitHub에 빈 저장소 만들기
 
