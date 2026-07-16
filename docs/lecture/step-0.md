@@ -1,18 +1,18 @@
 # Step 0. Git 저장소 초기화와 GitHub 최초 push
 
-## 이번 스텝 Overview
+## 이번 단계에서 할 일
 
-이번 단계에서는 아직 Git 저장소가 아닌 일반 폴더를 Git 저장소로 만듭니다.
+아직 Git 저장소가 아닌 일반 폴더를 Git 저장소로 만듭니다.
 
-수강생 입장에서는 다음 흐름을 처음부터 끝까지 직접 경험합니다.
+다음 순서로 진행합니다.
 
 ```text
 실습 폴더 준비 -> git init -> 첫 commit -> GitHub 빈 저장소 생성 -> remote 연결 -> 최초 push
 ```
 
-이 단계가 끝나면 내 컴퓨터의 `main` 브랜치와 GitHub의 `origin/main` 브랜치가 연결되어 있어야 합니다.
+완료 후에는 내 컴퓨터의 `main` 브랜치와 GitHub의 `origin/main` 브랜치가 연결되어 있어야 합니다.
 
-## 실습 시작 전 확인
+## 시작 전 확인
 
 이 단계는 Git을 아직 시작하지 않은 상태에서 출발합니다.
 
@@ -41,7 +41,7 @@ cd Git_Steps
 
 ## 작업 1. 아직 Git 저장소가 아닌지 확인하기
 
-### 무엇을 하는가
+### 실습 내용
 
 `git init`을 하기 전에 현재 폴더가 Git 저장소인지 확인합니다.
 
@@ -61,7 +61,7 @@ fatal: not a git repository (or any of the parent directories): .git
 
 ## 작업 2. Git 저장소 초기화하기
 
-### 무엇을 하는가
+### 실습 내용
 
 현재 폴더를 Git 저장소로 만듭니다.
 
@@ -110,7 +110,7 @@ git status --short
 
 ## 작업 4. 첫 commit에 넣을 파일 stage 하기
 
-### 무엇을 하는가
+### 실습 내용
 
 첫 commit에 현재 starter 파일들을 모두 포함합니다.
 
@@ -143,7 +143,7 @@ A  practice/team-note.md
 
 ## 작업 5. 첫 commit에 들어갈 파일 목록 확인하기
 
-### 무엇을 하는가
+### 실습 내용
 
 첫 commit 전에는 "어떤 파일들이 commit에 들어갈 예정인지"만 확인합니다.
 

@@ -4,7 +4,7 @@
 
 두 브랜치가 서로 다른 파일을 수정하면 Git이 쉽게 합칠 수 있음을 확인합니다.
 
-## 실습 흐름
+## 실습 순서
 
 1. `branch/edit-profile` 브랜치를 만들고 `practice/profile.md`를 수정한 뒤 commit 합니다.
 2. `main`으로 돌아옵니다.
