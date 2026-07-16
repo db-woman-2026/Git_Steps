@@ -2,9 +2,7 @@
 
 ## 이번 단계에서 할 일
 
-Git conflict를 일부러 만듭니다.
-
-conflict는 Git이 게을러서 생기는 문제가 아닙니다. 같은 부분을 두 브랜치가 서로 다르게 고쳤기 때문에, Git이 "어느 쪽을 남겨야 하죠?"라고 사람에게 묻는 상황입니다.
+Git conflict를 일부러 만듭니다. 두 브랜치가 같은 줄을 서로 다른 내용으로 바꾸면 자동 병합이 중단되고 해당 파일이 unmerged 상태로 표시됩니다.
 
 이번 단계의 목표는 conflict를 해결하는 것이 아닙니다. `practice/intro.md`가 conflict 상태로 표시되는 것까지가 목표입니다. 해결은 step 9에서 합니다.
 
@@ -18,7 +16,7 @@ step 7을 끝낸 상태에서 시작합니다.
 
 확인 명령:
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
 ```bash
 git status
@@ -38,7 +36,7 @@ Get-Content practice/intro.md -Encoding utf8
 
 conflict를 만들려면 두 브랜치가 같은 시작점에서 갈라져야 합니다.
 
-먼저 브랜치를 만들고, 그 다음 `main`과 새 브랜치에서 같은 줄을 다르게 고쳐야 Git이 두 변경 사이에서 판단하지 못합니다.
+먼저 브랜치를 만들고, 그다음 `main`과 새 브랜치에서 같은 줄을 다르게 고쳐야 두 변경의 공통 시작점이 유지됩니다.
 
 ### 명령어
 
@@ -93,8 +91,13 @@ index 3c1d4f4..95b1c3f 100644
 
 ```bash
 git add practice/intro.md
+git diff --staged -- practice/intro.md
 git commit -m "Edit intro on main"
+git status --short
+git log --oneline -1
 ```
+
+stage 전과 같은 문장 교체를 확인합니다. commit 후 상태 출력은 없어야 하고 마지막 log에는 `Edit intro on main`이 보여야 합니다.
 
 ## 작업 3. 다른 브랜치에서 같은 줄을 다르게 수정하기
 
@@ -139,8 +142,13 @@ index 3c1d4f4..69aa926 100644
 
 ```bash
 git add practice/intro.md
+git diff --staged -- practice/intro.md
 git commit -m "Edit intro on other branch"
+git status --short
+git log --oneline -1
 ```
+
+stage 전과 같은 문장 교체를 확인합니다. commit 후 상태 출력은 없어야 하고 마지막 log에는 `Edit intro on other branch`가 보여야 합니다.
 
 ## 작업 4. main에서 merge해서 conflict 만들기
 
@@ -160,6 +168,22 @@ Automatic merge failed; fix conflicts and then commit the result.
 ```
 
 이 메시지가 나오면 실습이 실패한 것이 아니라 성공한 것입니다. 이번 단계의 목표가 conflict를 만드는 것이기 때문입니다.
+
+상태를 바로 확인합니다.
+
+```bash
+git status --short
+git diff --name-only --diff-filter=U
+```
+
+예상 출력:
+
+```text
+UU practice/intro.md
+practice/intro.md
+```
+
+`U`는 unmerged를 뜻합니다. 이 상태에서는 다른 브랜치로 이동하거나 새 작업을 시작하지 않습니다.
 
 ## 작업 5. conflict 파일 확인하기
 

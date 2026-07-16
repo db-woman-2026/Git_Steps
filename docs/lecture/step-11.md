@@ -4,7 +4,7 @@
 
 modify/delete conflict를 다룹니다.
 
-한 브랜치에서는 `practice/memo.md`를 수정합니다. 그런데 `main`에서는 같은 파일을 삭제합니다. merge하면 Git은 "수정한 파일을 살릴까요, 아니면 삭제 상태를 유지할까요?"라고 묻습니다.
+한 브랜치에서는 `practice/memo.md`를 수정하고 `main`에서는 같은 파일을 삭제합니다. merge하면 modify/delete conflict가 발생하며 파일을 남길지 삭제할지 직접 정해야 합니다.
 
 이번 실습에서는 최종적으로 파일을 살리는 선택을 합니다.
 
@@ -18,7 +18,7 @@ step 10을 끝낸 상태에서 시작합니다.
 
 확인 명령:
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
 ```bash
 git status
@@ -72,8 +72,13 @@ index ecdb6bc..32b6157 100644
 
 ```bash
 git add practice/memo.md
+git diff --staged -- practice/memo.md
 git commit -m "Edit memo on branch"
+git status --short
+git log --oneline -1
 ```
+
+stage 전과 같은 문장 교체를 확인합니다. commit 후 상태 출력은 없어야 하고 마지막 log에는 `Edit memo on branch`가 보여야 합니다.
 
 ## 작업 3. main으로 돌아와 같은 파일 삭제하기
 
@@ -119,8 +124,13 @@ index ecdb6bc..0000000
 
 ```bash
 git add practice/memo.md
+git diff --staged -- practice/memo.md
 git commit -m "Delete memo on main"
+git status --short
+git log --oneline -1
 ```
+
+staged diff에도 `deleted file mode`가 보여야 합니다. commit 후 상태 출력은 없어야 하고 마지막 log에는 `Delete memo on main`이 보여야 합니다.
 
 ## 작업 4. 수정 브랜치를 merge해서 conflict 만들기
 
@@ -135,7 +145,21 @@ CONFLICT (modify/delete): practice/memo.md deleted in HEAD and modified in branc
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-이번 conflict는 같은 줄을 다르게 고친 conflict와 다릅니다. 파일 안에 `<<<<<<<` 표시가 생기지 않을 수 있습니다. 대신 Git은 수정된 파일을 작업 폴더에 남겨 두고, 이 파일을 살릴지 삭제할지 선택하게 합니다.
+상태를 확인합니다.
+
+```bash
+git status --short
+```
+
+예상 출력:
+
+```text
+DU practice/memo.md
+```
+
+`DU`는 현재 브랜치에서 삭제했고 들어오는 브랜치에서 수정한 unmerged 파일이라는 뜻입니다.
+
+이번 conflict는 같은 줄을 다르게 고친 conflict와 다릅니다. 파일 안에 `<<<<<<<` 표시가 생기지 않을 수 있으며 수정된 파일이 작업 폴더에 남습니다.
 
 ## 작업 5. 파일을 살리는 선택하기
 
@@ -153,21 +177,30 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 ```bash
 git add practice/memo.md
+git status --short
+git diff --staged -- practice/memo.md
 ```
 
-만약 삭제를 선택하고 싶다면 파일을 삭제한 상태를 stage해야 합니다. 하지만 이번 실습에서는 삭제하지 않습니다.
+`A  practice/memo.md`가 보이고 staged diff에는 브랜치에서 수정한 파일 전체가 추가된 것으로 나와야 합니다. 현재 `HEAD`에서는 이 파일이 삭제되어 있기 때문입니다.
+
+삭제를 선택한다면 `git rm practice/memo.md`로 삭제 상태를 stage합니다. 이번 실습에서는 실행하지 않습니다.
 
 ## 작업 6. 해결 commit 만들기
 
 ```bash
 git commit -m "Keep edited memo after conflict"
+git status --short
+git log --oneline -1
 ```
+
+상태 출력은 없어야 하고 마지막 log에는 `Keep edited memo after conflict`가 보여야 합니다.
 
 ## 작업 7. 상태 확인하기
 
 ```bash
 git status
 cat practice/memo.md
+git log --oneline -1
 ```
 
 PowerShell에서는 다음 명령을 사용합니다.
@@ -175,6 +208,7 @@ PowerShell에서는 다음 명령을 사용합니다.
 ```powershell
 git status
 Get-Content practice/memo.md -Encoding utf8
+git log --oneline -1
 ```
 
 작업 폴더가 깨끗하고 `practice/memo.md`가 남아 있으면 정상입니다.
