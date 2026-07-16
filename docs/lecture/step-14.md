@@ -19,7 +19,7 @@ step 13을 끝낸 상태에서 시작합니다.
 
 확인 명령:
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. `git`, `node`, `npm` 명령은 PowerShell에서도 같습니다. `npm.ps1` 오류가 나면 `npm.cmd`를 사용합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
 ```bash
 git status
@@ -28,6 +28,16 @@ git diff
 ```
 
 `git diff` 결과가 아무것도 나오지 않아야 합니다. 파일을 새로 수정하지 않고, 이미 commit된 기록을 원격 저장소에 올립니다.
+
+원격 상태를 갱신한 뒤 push할 commit을 확인합니다.
+
+```bash
+git fetch origin
+git status --short --branch
+git log --oneline origin/main..main
+```
+
+`git log`에는 step 1부터 만든 commit이 표시됩니다. 아무것도 나오지 않으면 이미 push했는지 `git status`와 GitHub commit 목록을 확인합니다.
 
 ## 작업 1. 현재 origin 확인하기
 
@@ -89,6 +99,9 @@ commit 목록을 열어 보면 지금까지 만든 기록이 시간순으로 보
 
 ```bash
 git status
+git log --oneline -1
+git rev-parse --short main
+git rev-parse --short origin/main
 ```
 
 정상이라면 다음과 비슷한 메시지가 나옵니다.
@@ -99,7 +112,7 @@ Your branch is up to date with 'origin/main'.
 nothing to commit, working tree clean
 ```
 
-이 상태는 로컬 `main`과 GitHub의 `origin/main`이 같은 commit을 가리키고 있다는 뜻입니다.
+마지막 log에는 `Repeat branch practice with profile`이 보여야 합니다. 두 `rev-parse` 명령의 hash가 같으면 로컬 `main`과 `origin/main`이 같은 commit을 가리킵니다. hash 값 자체는 환경마다 다릅니다.
 
 ## 자주 헷갈리는 점
 
