@@ -42,3 +42,14 @@
 - 위의 상투 표현이 새로 들어오지 않았는지 `/docs` 전체에서 검색합니다.
 - 설명을 줄인 뒤에도 실행 순서, 예상 결과, 오류 조건이 남아 있는지 확인합니다.
 - 코드 블록과 diff가 원본 코드와 같은지 확인합니다.
+
+## Windows 11 병기
+
+- 강의의 Windows 기준 터미널은 Windows Terminal의 PowerShell입니다. WSL이나 Git Bash만 제시하지 않습니다.
+- PowerShell에서도 같은 `git` 명령은 문서 앞에서 한 번만 안내합니다.
+- `cp`, `rm`, `cat`, `ls`, `grep`, `test`, `which`, `pwd`, `curl`처럼 문법이 다른 명령에는 바로 이어지는 `powershell` 코드 블록을 둡니다.
+- PowerShell에서는 `Copy-Item`, `Remove-Item`, `Get-Content`, `Get-ChildItem`, `Select-String`, `Test-Path`, `Get-Command`, `Get-Location`, `Invoke-RestMethod`를 사용합니다.
+- 설치 안내는 Git과 VS Code의 공식 문서 링크를 사용합니다. 특정 설치 프로그램 화면이나 최신 버전 번호를 고정해 쓰지 않습니다.
+- 경로 예시는 `C:\workspace\...`를 사용하고, 공백 경로의 따옴표, UTF-8, CRLF/LF 차이를 확인합니다.
+- `core.autocrlf` 같은 전역 설정은 의미와 기존 값을 확인하지 않고 변경하도록 지시하지 않습니다.
+- 새 셸 블록을 추가한 뒤 `/docs` 전체에서 운영체제 의존 명령을 다시 검색합니다.
