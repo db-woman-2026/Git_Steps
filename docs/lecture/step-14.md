@@ -129,4 +129,4 @@ step 0에서는 starter 파일만 올라갔습니다. 이후 step 1부터 step 1
 - GitHub 웹사이트에서 파일과 commit 기록을 확인했습니다.
 - `git status`에서 로컬 `main`이 `origin/main`과 최신 상태라고 나옵니다.
 
-이 단계까지 끝나면 Git의 가장 기본 흐름인 수정, diff 확인, stage, commit, branch, merge, conflict 해결, push를 한 번씩 직접 경험한 것입니다.
+수정, diff 확인, stage, commit, branch, merge, conflict 해결, push까지 한 번씩 실행했습니다.
