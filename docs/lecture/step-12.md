@@ -22,7 +22,7 @@ step 11을 끝낸 상태에서 시작합니다.
 
 ```powershell
 git status
-cat practice/team-note.md
+Get-Content -LiteralPath 'practice/team-note.md' -Encoding utf8
 ```
 
 PowerShell에서는 다음 명령을 사용합니다.
