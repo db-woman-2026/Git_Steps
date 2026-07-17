@@ -41,7 +41,7 @@ git init -> 첫 commit -> GitHub 최초 push -> 파일 수정 commit -> branch -
 
 브랜치 체인은 다음 조건을 유지해야 합니다.
 
-```bash
+```powershell
 git merge-base --is-ancestor step-N step-(N+1)
 ```
 
@@ -124,6 +124,6 @@ git merge-base --is-ancestor step-N step-(N+1)
 
 강의 저장소 관리자는 절차를 수정한 뒤 다음 명령으로 `step-0`부터 `step-14`까지의 로컬 실습을 확인합니다. 검증 과정은 임시 폴더와 로컬 bare 저장소만 사용하며 GitHub에는 접근하지 않습니다. 수강생용 `main` ZIP 파일에서는 실행하지 않습니다.
 
-```bash
+```powershell
 node scripts/verify-lecture.mjs
 ```
