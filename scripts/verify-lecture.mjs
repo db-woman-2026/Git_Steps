@@ -29,6 +29,30 @@ function runGit(cwd, ...args) {
   return run("git", args, cwd);
 }
 
+function hasGitRef(cwd, ref) {
+  return spawnSync('git', ['rev-parse', '--verify', '--quiet', ref], {
+    cwd,
+    encoding: 'utf8',
+    env: commandEnvironment,
+    stdio: 'ignore',
+  }).status === 0;
+}
+
+function getCourseRef(step) {
+  const localRef = `step-${step}`;
+  const remoteRef = `origin/${localRef}`;
+
+  if (hasGitRef(repositoryRoot, localRef)) {
+    return localRef;
+  }
+
+  if (hasGitRef(repositoryRoot, remoteRef)) {
+    return remoteRef;
+  }
+
+  throw new Error(`Missing course branch: ${localRef}`);
+}
+
 function runExpectedFailure(cwd, ...args) {
   const result = spawnSync("git", args, {
     cwd,
@@ -93,7 +117,7 @@ function getDocumentedDiff(step, index) {
     const document = runGit(
       repositoryRoot,
       "show",
-      `step-${step}:docs/lecture/step-${step}.md`,
+      `${getCourseRef(step)}:docs/lecture/step-${step}.md`,
     );
     const blocks = [];
     const blockPattern = /(?:```|~~~)diff\r?\n([\s\S]*?)\r?\n(?:```|~~~)/g;
