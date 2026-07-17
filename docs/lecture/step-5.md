@@ -163,7 +163,7 @@ Fast-forward
 
 ```powershell
 git status
-cat practice/diary.md
+Get-Content -LiteralPath 'practice/diary.md' -Encoding utf8
 git log --oneline -1
 ```
 

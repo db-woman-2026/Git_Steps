@@ -22,7 +22,7 @@ step 6을 끝낸 상태에서 시작합니다.
 
 ```powershell
 git status
-cat practice/profile.md
+Get-Content -LiteralPath 'practice/profile.md' -Encoding utf8
 ```
 
 PowerShell에서는 다음 명령을 사용합니다.
@@ -150,7 +150,7 @@ git merge --no-edit branch/profile-note
 ## 작업 7. 결과 확인하기
 
 ```powershell
-cat practice/profile.md
+Get-Content -LiteralPath 'practice/profile.md' -Encoding utf8
 git status
 git log --oneline --graph --max-count=5
 ```

@@ -161,8 +161,8 @@ Merge made by the 'ort' strategy.
 ## 작업 7. merge 결과 확인하기
 
 ```powershell
-cat practice/profile.md
-cat practice/goal.md
+Get-Content -LiteralPath 'practice/profile.md' -Encoding utf8
+Get-Content -LiteralPath 'practice/goal.md' -Encoding utf8
 git status
 git log --oneline --graph --max-count=5
 ```
