@@ -22,7 +22,7 @@ step 10을 끝낸 상태에서 시작합니다.
 
 ```powershell
 git status
-cat practice/memo.md
+Get-Content -LiteralPath 'practice/memo.md' -Encoding utf8
 ```
 
 PowerShell에서는 다음 명령을 사용합니다.
@@ -91,7 +91,7 @@ VSCode Explorer에서 `practice/memo.md`를 삭제합니다.
 명령어로 한다면 다음과 같습니다.
 
 ```powershell
-rm practice/memo.md
+Remove-Item -LiteralPath 'practice/memo.md'
 ```
 
 PowerShell에서는 다음 명령을 사용합니다.
@@ -199,7 +199,7 @@ git log --oneline -1
 
 ```powershell
 git status
-cat practice/memo.md
+Get-Content -LiteralPath 'practice/memo.md' -Encoding utf8
 git log --oneline -1
 ```
 
