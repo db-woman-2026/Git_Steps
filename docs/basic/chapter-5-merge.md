@@ -18,7 +18,7 @@ merge는 현재 branch를 기준으로 동작합니다.
 
 > Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
 
-```bash
+```powershell
 git switch main
 git merge topic
 ```

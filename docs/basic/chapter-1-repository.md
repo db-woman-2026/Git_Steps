@@ -33,13 +33,13 @@ fatal: not a git repository (or any of the parent directories): .git
 
 > Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
 
-```bash
+```powershell
 git init -b main
 ```
 
 저장소가 만들어지면 Git은 폴더 안 파일의 상태를 구분할 수 있습니다.
 
-```bash
+```powershell
 git status
 ```
 
