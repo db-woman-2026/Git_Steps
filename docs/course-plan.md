@@ -8,7 +8,7 @@
 - Windows Terminal의 PowerShell을 열고 현재 폴더를 확인할 수 있습니다.
 - GitHub 계정을 사용할 수 있습니다.
 
-Git을 처음 배우는 학습자를 기준으로 합니다. 명령줄 사용 경험이 적다면 [Windows 11 환경 준비](./windows-11.md)를 먼저 진행합니다.
+Git을 처음 배우는 학습자를 기준으로 합니다. 첫 수업 전에는 [Windows 11 환경 준비](./windows-11.md)와 [Git·GitHub·SSH 초기 설정](./lecture/requirements.md)을 진행합니다.
 
 ## 권장 시간
 

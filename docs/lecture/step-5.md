@@ -23,7 +23,7 @@ step 4를 끝낸 상태에서 시작합니다.
 
 > Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
-```bash
+```powershell
 git status
 test -f practice/diary.md && echo "exists" || echo "not yet"
 ```
@@ -51,7 +51,7 @@ branch/add-diary
 
 ### 명령어로 한다면
 
-```bash
+```powershell
 git switch -c branch/add-diary
 ```
 
@@ -75,7 +75,7 @@ git switch -c branch/add-diary
 
 새 파일은 아직 추적되지 않으므로 `git diff -- practice/diary.md`에 나타나지 않습니다. 먼저 상태에서 `??`를 확인합니다.
 
-```bash
+```powershell
 git status --short -- practice/diary.md
 ```
 
@@ -87,7 +87,7 @@ git status --short -- practice/diary.md
 
 파일을 stage한 뒤 첫 commit과 비교되는 내용을 확인합니다.
 
-```bash
+```powershell
 git add practice/diary.md
 git diff --staged -- practice/diary.md
 ```
@@ -126,7 +126,7 @@ Add diary practice
 
 ### 명령어로 한다면
 
-```bash
+```powershell
 git commit -m "Add diary practice"
 git status --short
 git log --oneline -1
@@ -144,7 +144,7 @@ git log --oneline -1
 
 ### 명령어로 한다면
 
-```bash
+```powershell
 git switch main
 git merge branch/add-diary
 ```
@@ -161,7 +161,7 @@ Fast-forward
 
 ## 작업 6. merge 후 확인하기
 
-```bash
+```powershell
 git status
 cat practice/diary.md
 git log --oneline -1
