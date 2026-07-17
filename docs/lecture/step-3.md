@@ -14,7 +14,7 @@ step 2를 끝낸 상태에서 시작합니다.
 
 > Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
-```bash
+```powershell
 git status
 git branch --show-current
 ```
@@ -49,13 +49,13 @@ branch/profile-edit
 
 ### 명령어로 한다면
 
-```bash
+```powershell
 git switch -c branch/profile-edit
 ```
 
 이전 Git 버전을 쓰는 환경이라면 다음 명령도 같은 역할을 합니다.
 
-```bash
+```powershell
 git checkout -b branch/profile-edit
 ```
 
@@ -86,7 +86,7 @@ git checkout -b branch/profile-edit
 
 ### 예상 git diff
 
-```bash
+```powershell
 git diff -- practice/profile.md
 ```
 
@@ -119,14 +119,14 @@ Add branch profile note
 
 ### 명령어로 한다면
 
-```bash
+```powershell
 git add practice/profile.md
 git diff --staged -- practice/profile.md
 ```
 
 stage 전과 같은 한 줄 추가가 보이면 commit합니다.
 
-```bash
+```powershell
 git commit -m "Add branch profile note"
 git status --short
 git log --oneline -1
@@ -149,13 +149,13 @@ git log --oneline -1
 
 ### 명령어로 한다면
 
-```bash
+```powershell
 git switch main
 ```
 
 그리고 다음 명령으로 문장이 없는지 확인할 수 있습니다.
 
-```bash
+```powershell
 grep "브랜치 연습" practice/profile.md
 ```
 
@@ -175,7 +175,7 @@ Select-String -Path practice/profile.md -Pattern "브랜치 연습"
 
 ### 명령어
 
-```bash
+```powershell
 git diff main..branch/profile-edit -- practice/profile.md
 ```
 
