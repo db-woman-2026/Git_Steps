@@ -6,6 +6,7 @@
 
 ## 강의 목록
 
+- [수업 전 초기 설정](./requirements.md): Windows에 Git과 GitHub CLI를 설치하고, GitHub 로그인과 SSH 키 등록을 마칩니다.
 - [과정 계획](../course-plan.md): 권장 시간, 선수 지식, 단계 묶음, 평가 기준
 - [문제 해결](../troubleshooting.md): 사용자 정보, branch 이동, merge, push 오류 복구
 

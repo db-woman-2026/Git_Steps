@@ -16,6 +16,8 @@
 
 이 단계는 Git을 아직 시작하지 않은 상태에서 출발합니다.
 
+Windows에서 Git, GitHub CLI, GitHub 로그인, SSH 키 등록을 아직 마치지 않았다면 먼저 [수업 전 초기 설정](./requirements.md)을 진행합니다. `git --version`, `gh auth status --hostname github.com`, `ssh -T git@github.com`이 모두 정상이어야 합니다.
+
 수업에서 starter ZIP 파일을 받았다면 압축을 풀고 그 폴더를 VSCode로 엽니다. starter 파일이 없다면 [강사용 저장소의 `main` 브랜치 ZIP 파일](https://github.com/db-woman-2026/Git_Steps/archive/refs/heads/main.zip)을 내려받아 압축을 풉니다. GitHub의 ZIP 파일에는 `.git` 폴더가 없으므로 `git init`부터 실습할 수 있습니다.
 
 강사용 저장소를 `git clone`한 폴더에는 이미 `.git` 폴더가 있습니다. clone한 폴더에서 `git init`을 다시 실행하지 않습니다.
@@ -24,7 +26,7 @@
 
 commit에는 작성자 이름과 이메일이 들어갑니다. 첫 commit 전에 현재 값을 확인합니다.
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
+> Windows 11의 터미널과 편집기 사용법은 [환경 준비](../windows-11.md)를 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
 
 ```bash
 git config --global --get user.name
@@ -274,13 +276,13 @@ GitHub에서 만든 저장소 주소를 복사합니다.
 예시 주소:
 
 ```text
-https://github.com/my-account/git-steps-practice.git
+git@github.com:my-account/git-steps-practice.git
 ```
 
 아래 명령에서 주소는 반드시 본인 저장소 주소로 바꿉니다.
 
 ```bash
-git remote add origin https://github.com/my-account/git-steps-practice.git
+git remote add origin git@github.com:my-account/git-steps-practice.git
 ```
 
 연결 상태를 확인합니다.
@@ -292,15 +294,15 @@ git remote -v
 예상 출력:
 
 ```text
-origin  https://github.com/my-account/git-steps-practice.git (fetch)
-origin  https://github.com/my-account/git-steps-practice.git (push)
+origin  git@github.com:my-account/git-steps-practice.git (fetch)
+origin  git@github.com:my-account/git-steps-practice.git (push)
 ```
 
 `origin`은 원격 저장소의 별명입니다. 보통 첫 번째 원격 저장소 이름으로 `origin`을 사용합니다.
 
 ## 작업 9. 최초 push 하기
 
-HTTPS 주소로 처음 push하면 Git Credential Manager가 브라우저 로그인을 열 수 있습니다. GitHub 비밀번호를 터미널에 직접 입력하지 않습니다. 브라우저에서 로그인할 계정과 저장소가 본인 것인지 확인합니다.
+[수업 전 초기 설정](./requirements.md)에서 SSH 연결 테스트를 마쳤다면 별도의 GitHub 비밀번호를 입력하지 않습니다. SSH 키 암호 문구를 설정했다면 그 암호 문구를 입력할 수 있습니다.
 
 ### 명령어
 
@@ -311,7 +313,7 @@ git push -u origin main
 예상 출력:
 
 ```text
-To https://github.com/my-account/git-steps-practice.git
+To github.com:my-account/git-steps-practice.git
  * [new branch]      main -> main
 branch 'main' set up to track 'origin/main'.
 ```

@@ -59,15 +59,28 @@ git merge --abort
 git status
 ```
 
-## push할 때 로그인이 필요합니다
+## push할 때 SSH 인증이 실패합니다
 
-HTTPS 원격 저장소의 첫 push에서는 브라우저 로그인이 열릴 수 있습니다. GitHub 계정 비밀번호를 터미널의 password 입력란에 넣지 않습니다. Windows에서는 Git Credential Manager가 브라우저 인증과 자격 증명 저장을 처리할 수 있습니다.
+먼저 원격 저장소가 SSH 주소인지 확인합니다.
 
 ```bash
 git remote -v
 ```
 
-로그인 전에 주소가 본인 저장소인지 확인합니다.
+SSH 주소는 `git@github.com:계정명/저장소명.git` 형식입니다. HTTPS 주소가 등록돼 있다면 본인 저장소의 SSH 주소로 바꿉니다.
+
+```bash
+git remote set-url origin git@github.com:my-account/git-steps-practice.git
+```
+
+GitHub CLI 로그인과 SSH 연결을 따로 확인합니다.
+
+```powershell
+gh auth status --hostname github.com
+ssh -T git@github.com
+```
+
+`Permission denied (publickey)`가 나오면 공개 키가 현재 로그인한 GitHub 계정에 등록됐는지 확인합니다. 설치부터 다시 진행하지 말고 [수업 전 초기 설정](./lecture/requirements.md)의 기존 키 확인, 공개 키 등록, SSH 연결 테스트를 차례로 다시 확인합니다.
 
 ## push가 rejected 됩니다
 
