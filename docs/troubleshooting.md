@@ -4,7 +4,7 @@
 
 > Windows 11에서는 [환경 준비](./windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
 
-```bash
+```powershell
 git branch --show-current
 git status
 git remote -v
@@ -17,14 +17,14 @@ PowerShell에서도 같은 명령을 사용합니다.
 
 `Author identity unknown` 또는 `Please tell me who you are`가 나오면 사용자 정보를 확인합니다.
 
-```bash
+```powershell
 git config --global --get user.name
 git config --global --get user.email
 ```
 
 값이 없다면 본인 정보로 설정합니다. 공식 Git 문서도 첫 commit 전에 이 설정을 확인하도록 안내합니다.
 
-```bash
+```powershell
 git config --global user.name "Student Name"
 git config --global user.email "student@example.com"
 ```
@@ -35,7 +35,7 @@ git config --global user.email "student@example.com"
 
 `Your local changes ... would be overwritten`가 나오면 현재 변경을 먼저 확인합니다.
 
-```bash
+```powershell
 git status --short
 git diff
 ```
@@ -46,7 +46,7 @@ git diff
 
 `git status`에서 `both modified`, `deleted by us`, `deleted by them`을 확인합니다. 파일을 수정하거나 삭제 여부를 결정한 뒤 stage합니다.
 
-```bash
+```powershell
 git add practice/파일명.md
 git status
 git commit
@@ -54,26 +54,34 @@ git commit
 
 이번 merge 자체를 취소하고 시작 전 상태로 돌아가려면 conflict 파일을 임의로 지우기 전에 다음 명령을 사용합니다.
 
-```bash
+```powershell
 git merge --abort
 git status
 ```
 
-## push할 때 로그인이 필요합니다
+## push할 때 SSH 인증이 실패합니다
 
-HTTPS 원격 저장소의 첫 push에서는 브라우저 로그인이 열릴 수 있습니다. GitHub 계정 비밀번호를 터미널의 password 입력란에 넣지 않습니다. Windows에서는 Git Credential Manager가 브라우저 인증과 자격 증명 저장을 처리할 수 있습니다.
+먼저 원격 저장소가 SSH 주소인지 확인합니다.
 
-```bash
+```powershell
 git remote -v
 ```
 
-로그인 전에 주소가 본인 저장소인지 확인합니다.
+SSH 주소는 `git@github.com:계정명/저장소명.git` 형식입니다. HTTPS 주소가 등록돼 있다면 본인 저장소의 SSH 주소로 바꿉니다.
+
+```powershell
+git remote set-url origin git@github.com:my-account/git-steps-practice.git
+gh auth status --hostname github.com
+ssh -T git@github.com
+```
+
+`Permission denied (publickey)`가 나오면 공개 키가 현재 로그인한 GitHub 계정에 등록됐는지 확인합니다. 설치부터 다시 진행하지 말고 [수업 전 초기 설정](./lecture/requirements.md)의 기존 키 확인, 공개 키 등록, SSH 연결 테스트를 차례로 다시 확인합니다.
 
 ## push가 rejected 됩니다
 
 `non-fast-forward` 또는 `fetch first`가 나오면 원격에 로컬에 없는 commit이 있다는 뜻입니다. 바로 강제 push하지 않습니다.
 
-```bash
+```powershell
 git fetch origin
 git log --oneline --left-right main...origin/main
 ```
@@ -84,7 +92,7 @@ git log --oneline --left-right main...origin/main
 
 문제를 해결한 뒤에는 다음 세 가지를 다시 확인합니다.
 
-```bash
+```powershell
 git status
 git branch --show-current
 git log --oneline --decorate -3
