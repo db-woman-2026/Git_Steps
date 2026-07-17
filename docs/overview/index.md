@@ -2,7 +2,7 @@
 
 Git 기초 실습의 단계별 개요입니다.
 
-Windows 11에서는 [Windows 11 환경 준비](../windows-11.md)를 마친 뒤 시작합니다.
+Windows 11에서는 [Windows 11 환경 준비](../windows-11.md)와 [Git·GitHub·SSH 초기 설정](../lecture/requirements.md)을 마친 뒤 시작합니다.
 
 - [과정 계획](../course-plan.md): 권장 시간, 선수 지식, 단계 묶음, 평가 기준
 - [문제 해결](../troubleshooting.md): 사용자 정보, branch 이동, merge, push 오류 복구

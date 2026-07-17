@@ -1,18 +1,28 @@
 # Windows 11 환경 준비
 
-Windows 11에서는 Windows Terminal의 PowerShell로 실습합니다. Git Bash나 WSL을 따로 설치하지 않아도 됩니다.
+Windows 11에서는 Windows Terminal의 PowerShell로 실습합니다. Git Bash나 WSL을 따로 설치하지 않아도 됩니다. 설치와 GitHub SSH 연결은 [수업 전 초기 설정](./lecture/requirements.md)을 먼저 진행합니다.
+
+Windows Terminal은 터미널 앱이고 PowerShell은 명령을 실행하는 셸입니다. 강의 명령은 Windows PowerShell 5.1과 PowerShell 7에서 함께 쓸 수 있는 문법을 사용합니다.
+
+```powershell
+$PSVersionTable.PSVersion
+$PSVersionTable.PSEdition
+(Get-Process -Id $PID).Path
+```
 
 ## 1. 프로그램 설치
 
 다음 공식 안내에 따라 설치합니다.
 
 - [Git for Windows](https://git-scm.com/install/windows.html)
+- [GitHub CLI for Windows](https://github.com/cli/cli/blob/trunk/docs/install_windows.md)
 - [Visual Studio Code](https://code.visualstudio.com/docs/setup/windows)
 
 `winget`을 쓴다면 다음 명령으로 설치합니다.
 
 ```powershell
 winget install --id Git.Git -e --source winget
+winget install --id GitHub.cli -e --source winget
 winget install --id Microsoft.VisualStudioCode -e --source winget
 ```
 
@@ -20,6 +30,7 @@ winget install --id Microsoft.VisualStudioCode -e --source winget
 
 ```powershell
 git --version
+gh --version
 code --version
 Get-Command git
 ```
@@ -28,10 +39,10 @@ Get-Command git
 
 ## 2. 저장소 열기
 
-OneDrive 동기화 폴더보다 `C:\workspace`처럼 짧은 작업 경로를 권장합니다.
+수업 프로젝트는 현재 사용자 홈의 `dongbu` 폴더에 둡니다. PowerShell에서는 `$HOME` 또는 `$env:USERPROFILE`을 사용합니다. `%USERPROFILE%`은 명령 프롬프트 문법입니다.
 
 ```powershell
-Set-Location C:\workspace\Git_Steps
+Set-Location "$HOME\dongbu\Git_Steps"
 git status
 git branch --show-current
 code .
@@ -59,11 +70,16 @@ git config --list --show-origin
 
 이름과 이메일은 commit 기록에 들어갑니다. 공용 PC라면 수업 뒤 전역 설정과 Windows 자격 증명 관리자에 남은 계정을 정리합니다.
 
-## 4. GitHub 로그인
+## 4. GitHub 로그인과 SSH
 
-GitHub HTTPS 주소로 처음 push하면 Git Credential Manager가 브라우저 로그인을 열 수 있습니다. GitHub 비밀번호를 터미널에 직접 입력하지 않습니다. 브라우저에서 로그인한 뒤 요청한 저장소가 본인 저장소인지 확인합니다.
+GitHub CLI 로그인, SSH 키 생성과 등록은 [수업 전 초기 설정](./lecture/requirements.md)을 순서대로 진행합니다. 완료 후 본인 GitHub 계정과 SSH 인증 성공 문장을 확인합니다.
 
-로그인 창이 열리지 않거나 다른 계정이 선택된다면 [GitHub의 Windows 자격 증명 안내](https://docs.github.com/en/get-started/git-basics/caching-your-github-credentials-in-git?platform=windows)를 확인합니다.
+```powershell
+gh auth status --hostname github.com
+ssh -T git@github.com
+```
+
+공개 키인 `id_ed25519.pub`만 GitHub에 등록합니다. 개인 키인 `id_ed25519`은 공유하지 않습니다.
 
 ## 5. PowerShell 명령 대응
 

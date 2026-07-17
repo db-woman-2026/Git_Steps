@@ -23,7 +23,7 @@ step 3을 끝낸 상태에서 시작합니다.
 
 > Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
-```bash
+```powershell
 git branch --show-current
 git branch --list
 git diff main..branch/profile-edit -- practice/profile.md
@@ -37,7 +37,7 @@ merge하기 전에 `main`으로 들어올 변경을 먼저 확인합니다.
 
 ### 명령어
 
-```bash
+```powershell
 git diff main..branch/profile-edit -- practice/profile.md
 ```
 
@@ -68,7 +68,7 @@ index 767a26c..da9d4de 100644
 
 ### 명령어로 한다면
 
-```bash
+```powershell
 git switch main
 git merge branch/profile-edit
 ```
@@ -87,7 +87,7 @@ Fast-forward
 
 ### 명령어
 
-```bash
+```powershell
 cat practice/profile.md
 ```
 
@@ -110,7 +110,7 @@ Get-Content practice/profile.md -Encoding utf8
 
 ### 상태 확인
 
-```bash
+```powershell
 git status
 git log --oneline -1
 ```
@@ -123,7 +123,7 @@ merge 전에는 `main`과 `branch/profile-edit` 사이에 차이가 있었습니
 
 merge 후에는 `main`이 그 변경을 받아들였기 때문에 두 브랜치의 파일 내용이 같아집니다.
 
-```bash
+```powershell
 git diff main..branch/profile-edit -- practice/profile.md
 ```
 

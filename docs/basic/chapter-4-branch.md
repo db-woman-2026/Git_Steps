@@ -41,19 +41,19 @@ A -> B
 
 > Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
 
-```bash
+```powershell
 git switch -c topic
 ```
 
 기존 branch로 이동할 때는 branch 이름만 지정합니다.
 
-```bash
+```powershell
 git switch main
 ```
 
 현재 branch 목록은 다음 명령으로 확인할 수 있습니다.
 
-```bash
+```powershell
 git branch
 ```
 
