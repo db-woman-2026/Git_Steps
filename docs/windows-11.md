@@ -1,45 +1,10 @@
-# Windows 11 환경 준비
+# Windows 11 x64 실습 안내
 
-Windows 11에서는 Windows Terminal의 PowerShell로 실습합니다. Git Bash나 WSL을 따로 설치하지 않아도 됩니다. 설치와 GitHub SSH 연결은 [수업 전 초기 설정](./lecture/requirements.md)을 먼저 진행합니다.
+이 강의는 Windows 11 x64와 Windows Terminal의 `Windows PowerShell` 프로필만 사용합니다. 프로그램 설치부터 GitHub SSH 연결까지 [수업 전 초기 설정](./lecture/requirements.md)을 먼저 완료합니다.
 
-Windows Terminal은 터미널 앱이고 PowerShell은 명령을 실행하는 셸입니다. 강의 명령은 Windows PowerShell 5.1과 PowerShell 7에서 함께 쓸 수 있는 문법을 사용합니다.
+## 저장소 열기
 
-```powershell
-$PSVersionTable.PSVersion
-$PSVersionTable.PSEdition
-(Get-Process -Id $PID).Path
-```
-
-## 1. 프로그램 설치
-
-다음 공식 안내에 따라 설치합니다.
-
-- [Git for Windows](https://git-scm.com/install/windows.html)
-- [GitHub CLI for Windows](https://github.com/cli/cli/blob/trunk/docs/install_windows.md)
-- [Visual Studio Code](https://code.visualstudio.com/docs/setup/windows)
-
-`winget`을 쓴다면 다음 명령으로 설치합니다.
-
-```powershell
-winget install --id Git.Git -e --source winget
-winget install --id GitHub.cli -e --source winget
-winget install --id Microsoft.VisualStudioCode -e --source winget
-```
-
-설치 후 터미널을 새로 열고 확인합니다.
-
-```powershell
-git --version
-gh --version
-code --version
-Get-Command git
-```
-
-`code`를 찾지 못하면 VS Code 설치 후 터미널을 다시 엽니다.
-
-## 2. 저장소 열기
-
-수업 프로젝트는 현재 사용자 홈의 `dongbu` 폴더에 둡니다. PowerShell에서는 `$HOME` 또는 `$env:USERPROFILE`을 사용합니다. `%USERPROFILE%`은 명령 프롬프트 문법입니다.
+강의 저장소의 고정 위치는 `$HOME\dongbu\Git_Steps`입니다.
 
 ```powershell
 Set-Location "$HOME\dongbu\Git_Steps"
@@ -48,53 +13,44 @@ git branch --show-current
 code .
 ```
 
-경로에 공백이 있다면 `Set-Location 'C:\Users\student\My Projects\Git_Steps'`처럼 따옴표로 묶습니다.
+다른 위치에서 명령을 실행했다면 먼저 `Get-Location`으로 현재 경로를 확인합니다. 공백이 있는 경로는 전체를 큰따옴표로 묶습니다.
 
-## 3. 이름과 이메일 확인
-
-커밋 전에 현재 설정을 확인합니다.
+## PowerShell에서 사용하는 파일 명령
 
 ```powershell
-git config --global --get user.name
-git config --global --get user.email
+Get-Location
+Get-ChildItem
+Get-Content .\README.md -Encoding utf8
+Select-String -Path .\README.md -Pattern 'Git'
+Test-Path .\practice\intro.md
+Copy-Item .\practice\intro.md .\practice\intro-copy.md
+Remove-Item .\practice\intro-copy.md
+```
+
+`git status`, `git add`, `git commit`, `git switch`, `git merge`는 그대로 실행합니다. 모든 셸 코드 블록은 Windows Terminal의 PowerShell에 입력합니다.
+
+## 줄바꿈과 인코딩
+
+VS Code 오른쪽 아래에서 파일 인코딩이 `UTF-8`인지 확인합니다. 저장소의 `.gitattributes`가 강의 파일의 줄바꿈을 관리하므로 수업 중 `core.autocrlf` 전역 값을 임의로 변경하지 않습니다.
+
+```powershell
 git config --global --get core.autocrlf
+git check-attr text eol -- README.md
+git diff --check
 ```
 
-이름과 이메일이 없다면 수업에서 사용할 값을 설정합니다. `core.autocrlf`는 기존 프로젝트의 줄바꿈에 영향을 주므로 실습 중 임의로 바꾸지 않습니다. 이 저장소의 `.gitattributes`가 강의 파일의 줄바꿈을 LF로 맞춥니다.
+줄바꿈만 바뀐 파일이 많이 보이면 commit하지 말고 현재 branch, `.gitattributes`, VS Code 줄바꿈 표시를 먼저 확인합니다.
+
+## 설치와 인증 확인
 
 ```powershell
-git config --global user.name "Student Name"
-git config --global user.email "student@example.com"
-git config --list --show-origin
-```
-
-이름과 이메일은 commit 기록에 들어갑니다. 공용 PC라면 수업 뒤 전역 설정과 Windows 자격 증명 관리자에 남은 계정을 정리합니다.
-
-## 4. GitHub 로그인과 SSH
-
-GitHub CLI 로그인, SSH 키 생성과 등록은 [수업 전 초기 설정](./lecture/requirements.md)을 순서대로 진행합니다. 완료 후 본인 GitHub 계정과 SSH 인증 성공 문장을 확인합니다.
-
-```powershell
+node --version
+npm.cmd --version
+git --version
+gh --version
+code --version
 gh auth status --hostname github.com
 ssh -T git@github.com
 ```
 
-공개 키인 `id_ed25519.pub`만 GitHub에 등록합니다. 개인 키인 `id_ed25519`은 공유하지 않습니다.
-
-## 5. PowerShell 명령 대응
-
-| macOS·Linux 예제 | PowerShell |
-| --- | --- |
-| `pwd` | `Get-Location` |
-| `ls` | `Get-ChildItem` |
-| `cat FILE` | `Get-Content FILE -Encoding utf8` |
-| `grep "WORD" FILE` | `Select-String -Path FILE -Pattern "WORD"` |
-| `cp A B` | `Copy-Item A B` |
-| `rm FILE` | `Remove-Item FILE` |
-| `test -f FILE` | `Test-Path FILE` |
-
-`git status`, `git add`, `git commit`, `git switch`, `git merge`는 PowerShell에서도 그대로 실행합니다.
-
-## 6. 편집과 줄바꿈
-
-VS Code 오른쪽 아래에서 파일 인코딩이 UTF-8인지 확인합니다. 충돌 표시를 수정한 뒤에는 파일 끝의 줄바꿈도 남깁니다. PowerShell에서 파일 내용을 확인할 때는 `Get-Content FILE -Encoding utf8`을 사용합니다.
+명령을 찾지 못하면 Windows Terminal 창을 모두 닫고 새로 엽니다. 자세한 설치 및 복구 절차는 [수업 전 초기 설정](./lecture/requirements.md)과 [문제 해결](./troubleshooting.md)을 따릅니다.
