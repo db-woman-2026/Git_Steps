@@ -15,7 +15,7 @@ Git에서 변경을 기록하는 기본 흐름은 다음과 같습니다.
 
 > Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
 
-```bash
+```powershell
 git status
 ```
 
@@ -40,7 +40,7 @@ Untracked files:
 
 `git diff`는 작업 폴더에서 바뀌었지만 아직 stage하지 않은 내용을 보여줍니다.
 
-```bash
+```powershell
 git diff -- notes.txt
 ```
 
@@ -50,7 +50,7 @@ git diff -- notes.txt
 
 **stage**는 다음 commit에 포함할 변경을 모아 두는 영역입니다. **staging area** 또는 **index**라고도 부릅니다.
 
-```bash
+```powershell
 git add notes.txt
 ```
 
@@ -63,7 +63,7 @@ Changes to be committed:
 
 다음 commit에 들어갈 실제 내용은 별도로 확인합니다.
 
-```bash
+```powershell
 git diff --staged -- notes.txt
 ```
 
@@ -82,7 +82,7 @@ profile.md 수정 ── stage에 올리지 않음
 
 **commit**은 stage에 모인 변경을 하나의 기록으로 저장한 것입니다.
 
-```bash
+```powershell
 git commit -m "Update notes"
 ```
 

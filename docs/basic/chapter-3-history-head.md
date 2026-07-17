@@ -16,7 +16,7 @@ A 첫 기록 -> B 내용 수정 -> C 문장 추가
 
 > Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
 
-```bash
+```powershell
 git log --oneline
 ```
 

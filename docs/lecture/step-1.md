@@ -22,7 +22,7 @@ VSCode에서 다음을 확인합니다.
 
 > Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
 
-```bash
+```powershell
 git status
 ```
 
@@ -60,7 +60,7 @@ git status
 
 아직 commit하지 않은 상태에서 다음 명령을 실행하면 변경 내용을 볼 수 있습니다.
 
-```bash
+```powershell
 git diff -- practice/intro.md
 ```
 
@@ -115,13 +115,13 @@ stage는 "이번 commit에 이 변경을 포함하겠다"고 고르는 과정입
 
 ### 명령어로 한다면
 
-```bash
+```powershell
 git add practice/intro.md
 ```
 
 stage 후에는 다음 명령으로 상태를 확인할 수 있습니다.
 
-```bash
+```powershell
 git status
 ```
 
@@ -129,7 +129,7 @@ git status
 
 다음 commit에 들어갈 실제 내용을 확인합니다.
 
-```bash
+```powershell
 git diff --staged -- practice/intro.md
 ```
 
@@ -154,13 +154,13 @@ Add my intro
 
 ### 명령어로 한다면
 
-```bash
+```powershell
 git commit -m "Add my intro"
 ```
 
 commit 후에는 상태도 확인합니다.
 
-```bash
+```powershell
 git status --short
 ```
 
@@ -174,7 +174,7 @@ git status --short
 
 ### 명령어 확인
 
-```bash
+```powershell
 git log --oneline -1
 ```
 
