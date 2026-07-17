@@ -43,16 +43,15 @@
 - 설명을 줄인 뒤에도 실행 순서, 예상 결과, 오류 조건이 남아 있는지 확인합니다.
 - 코드 블록과 diff가 원본 코드와 같은지 확인합니다.
 
-## Windows 11 병기
+## Windows 11 전용 문서
 
-- 강의의 Windows 기준 터미널은 Windows Terminal의 PowerShell입니다. WSL이나 Git Bash만 제시하지 않습니다.
-- PowerShell에서도 같은 `git` 명령은 문서 앞에서 한 번만 안내합니다.
-- `cp`, `rm`, `cat`, `ls`, `grep`, `test`, `which`, `pwd`, `curl`처럼 문법이 다른 명령에는 바로 이어지는 `powershell` 코드 블록을 둡니다.
-- PowerShell에서는 `Copy-Item`, `Remove-Item`, `Get-Content`, `Get-ChildItem`, `Select-String`, `Test-Path`, `Get-Command`, `Get-Location`, `Invoke-RestMethod`를 사용합니다.
-- 설치 안내는 Git과 VS Code의 공식 문서 링크를 사용합니다. 특정 설치 프로그램 화면이나 최신 버전 번호를 고정해 쓰지 않습니다.
-- 경로 예시는 `C:\workspace\...`를 사용하고, 공백 경로의 따옴표, UTF-8, CRLF/LF 차이를 확인합니다.
+- 모든 설치와 실습은 Windows 11 x64, Windows Terminal의 PowerShell을 기준으로 설명합니다.
+- 다른 운영체제나 다른 셸의 설치법과 명령 비교표를 넣지 않습니다.
+- `git`처럼 PowerShell에서 바로 실행하는 명령과 `Copy-Item`, `Remove-Item`, `Get-Content` 같은 PowerShell 명령만 제시합니다.
+- 신규 PC를 기준으로 Windows Terminal, Git for Windows, GitHub CLI, VS Code, Node.js LTS 설치 명령과 공식 링크를 빠뜨리지 않습니다.
+- 경로 예시는 `$HOME\dongbu\Git_Steps`를 사용하고 공백 경로, UTF-8, 줄바꿈 상태를 확인합니다.
 - `core.autocrlf` 같은 전역 설정은 의미와 기존 값을 확인하지 않고 변경하도록 지시하지 않습니다.
-- 새 셸 블록을 추가한 뒤 `/docs` 전체에서 운영체제 의존 명령을 다시 검색합니다.
+- 새 명령 블록은 `powershell`로 표시하고 `/docs` 전체에서 Windows와 맞지 않는 명령을 다시 검색합니다.
 
 ## 강의 품질 기준
 
