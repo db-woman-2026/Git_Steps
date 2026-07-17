@@ -88,7 +88,7 @@ Fast-forward
 ### 명령어
 
 ```powershell
-cat practice/profile.md
+Get-Content -LiteralPath 'practice/profile.md' -Encoding utf8
 ```
 
 PowerShell에서는 다음 명령을 사용합니다.

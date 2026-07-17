@@ -156,7 +156,7 @@ git switch main
 그리고 다음 명령으로 문장이 없는지 확인할 수 있습니다.
 
 ```powershell
-grep "브랜치 연습" practice/profile.md
+Select-String -LiteralPath 'practice/profile.md' -Pattern '브랜치 연습'
 ```
 
 PowerShell에서는 다음 명령을 사용합니다.
