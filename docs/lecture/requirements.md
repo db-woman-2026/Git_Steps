@@ -1,79 +1,87 @@
-# 수업 전 초기 설정: Windows, Git, GitHub CLI, SSH
+# 수업 전 초기 설정: Windows 11 x64, Git, GitHub
 
-Windows Terminal에서 PowerShell 프로필을 열고 Git과 GitHub 연결을 준비합니다. 이 설정을 마치면 GitHub 비밀번호를 터미널에 입력하지 않고 SSH로 저장소를 사용할 수 있습니다.
+수업 PC를 처음 받은 상태에서 시작합니다. 기존에 프로그램이 보이더라도 아래 `winget install` 명령을 모두 실행해 설치 상태와 최신 안정판 여부를 확인합니다.
 
-## 1. PowerShell과 작업 경로 확인
+Windows Terminal은 터미널 앱이고 PowerShell은 그 안에서 명령을 실행하는 셸입니다. Windows Terminal을 설치한 뒤 모든 수업 명령을 `Windows PowerShell` 프로필에서 실행합니다.
 
-Windows Terminal은 PowerShell을 실행하는 터미널 앱입니다. `Windows PowerShell` 프로필은 보통 Windows PowerShell 5.1을 실행하고, `PowerShell` 프로필은 별도로 설치한 PowerShell 7을 실행할 수 있습니다.
+## 1. Windows Terminal 설치
+
+시작 메뉴에서 `Windows PowerShell`을 한 번 열고 다음 명령을 실행합니다.
+
+```powershell
+winget --version
+winget install --id Microsoft.WindowsTerminal -e --source winget --accept-source-agreements --accept-package-agreements
+```
+
+`winget`을 찾지 못하면 [App Installer 공식 안내](https://learn.microsoft.com/windows/msix/app-installer/install-update-app-installer)를 따라 App Installer를 설치하거나 업데이트합니다. Windows Terminal 설치가 끝나면 처음 열었던 창을 닫습니다.
+
+시작 메뉴에서 `Windows Terminal`을 열고 탭 오른쪽의 화살표에서 `Windows PowerShell`을 선택합니다. 이후 명령은 이 탭에서 실행합니다.
 
 ```powershell
 $PSVersionTable.PSVersion
 $PSVersionTable.PSEdition
-(Get-Process -Id $PID).Path
+(Get-CimInstance Win32_OperatingSystem) | Select-Object Caption, Version, BuildNumber, OSArchitecture
+[System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture
 ```
 
-강의 명령은 Windows PowerShell 5.1과 PowerShell 7에서 함께 쓸 수 있는 문법을 사용합니다. 작업 루트는 현재 Windows 사용자의 홈 폴더 아래 `dongbu`입니다.
+대상 환경에서는 Windows 11과 `X64`가 표시되어야 합니다. 강의 명령은 Windows PowerShell 5.1에서 실행할 수 있는 문법만 사용합니다.
+
+## 2. 개발 프로그램 새로 설치
+
+다음 명령을 위에서부터 한 줄씩 실행합니다. 깨끗한 PC에서는 새로 설치되고, 이미 설치된 PC에서는 winget이 현재 상태나 업데이트 가능 여부를 알려 줍니다.
 
 ```powershell
-Set-Location "$HOME\dongbu"
-# 같은 경로를 명시적으로 쓰는 방법
-Set-Location "$env:USERPROFILE\dongbu"
+winget install --id OpenJS.NodeJS.LTS -e --source winget --architecture x64 --accept-source-agreements --accept-package-agreements
+winget install --id Git.Git -e --source winget --architecture x64 --accept-source-agreements --accept-package-agreements
+winget install --id GitHub.cli -e --source winget --architecture x64 --accept-source-agreements --accept-package-agreements
+winget install --id Microsoft.VisualStudioCode -e --source winget --architecture x64 --accept-source-agreements --accept-package-agreements
 ```
 
-`%USERPROFILE%\dongbu`는 명령 프롬프트(`cmd.exe`) 문법이므로 PowerShell 명령에 사용하지 않습니다. 현재 위치를 확인합니다.
+설치가 끝나면 Windows Terminal 창을 모두 닫고 새 창을 엽니다. 기존 창에는 새 `PATH`가 반영되지 않을 수 있습니다.
 
 ```powershell
-Get-Location
-Test-Path "$HOME\dongbu"
-```
-
-## 2. 설치 여부 확인
-
-이미 설치된 프로그램은 다시 설치하지 않습니다.
-
-```powershell
-Get-Command winget -ErrorAction SilentlyContinue
-Get-Command git -ErrorAction SilentlyContinue
-Get-Command gh -ErrorAction SilentlyContinue
-Get-Command ssh -ErrorAction SilentlyContinue
-Get-Command code -ErrorAction SilentlyContinue
-```
-
-## 3. Git, GitHub CLI, VS Code 설치
-
-`winget`을 사용할 수 있다면 다음 명령으로 설치합니다.
-
-```powershell
-winget install --id Git.Git -e --source winget
-winget install --id GitHub.cli -e --source winget
-winget install --id Microsoft.VisualStudioCode -e --source winget
-```
-
-`winget`이 없다면 공식 페이지의 Windows 설치 파일을 사용합니다.
-
-- [Git for Windows](https://git-scm.com/install/windows)
-- [GitHub CLI for Windows](https://github.com/cli/cli/blob/trunk/docs/install_windows.md)
-- [Visual Studio Code for Windows](https://code.visualstudio.com/docs/setup/windows)
-
-공식 페이지에서 받은 설치 파일은 실행 전에 디지털 서명을 확인할 수 있습니다. 파일명은 내려받은 실제 파일에 맞게 바꿉니다.
-
-```powershell
-Get-AuthenticodeSignature "$HOME\Downloads\Git-버전-64-bit.exe"
-Get-AuthenticodeSignature "$HOME\Downloads\gh_버전_windows_amd64.msi"
-```
-
-`Status`가 `Valid`인지 확인합니다. 설치가 끝나면 Windows Terminal 창을 모두 닫고 새 창을 엽니다. 새 탭만 열면 변경된 `PATH`가 반영되지 않을 수 있습니다.
-
-```powershell
+node --version
+npm.cmd --version
 git --version
 gh --version
-ssh -V
 code --version
+ssh -V
 ```
+
+명령을 찾지 못하면 설치 직후 열려 있던 창인지 확인한 뒤 다음 명령으로 실행 파일 위치를 확인합니다.
+
+```powershell
+(Get-Command node).Source
+(Get-Command git).Source
+(Get-Command gh).Source
+(Get-Command code).Source
+```
+
+> !@#windows11 test: [Windows 11 x64 초기화 PC에서 Windows Terminal, Node.js LTS x64, Git for Windows x64, GitHub CLI x64, VS Code x64를 위 winget 명령으로 신규 설치하고 버전 확인을 다시 수행합니다.]@#
+
+## 3. 강의 작업 폴더 준비
+
+모든 강의 저장소는 현재 사용자 프로필의 `dongbu` 폴더 아래에 둡니다. PowerShell의 `$HOME`과 `$env:USERPROFILE`은 보통 `C:\Users\사용자이름`을 가리킵니다.
+
+```powershell
+New-Item -ItemType Directory -Path "$HOME\dongbu" -Force | Out-Null
+Set-Location "$HOME\dongbu"
+Get-Location
+```
+
+저장소를 아직 받지 않았다면 HTTPS로 clone합니다.
+
+```powershell
+git clone https://github.com/db-woman-2026/Git_Steps.git
+Set-Location "$HOME\dongbu\Git_Steps"
+git status
+```
+
+이미 `$HOME\dongbu\Git_Steps` 폴더를 받았다면 `git clone`은 생략하고 `Set-Location`부터 실행합니다. OneDrive가 관리하는 바탕 화면이나 문서 폴더는 파일 잠금과 동기화 충돌이 생길 수 있으므로 사용하지 않습니다.
 
 ## 4. commit 작성자 설정
 
-GitHub 로그인과 commit 작성자 설정은 서로 다릅니다. 예시를 본인 이름과 GitHub 계정에 등록한 이메일로 바꿉니다.
+GitHub 로그인과 commit 작성자 정보는 서로 다릅니다. 아래 예시를 본인의 이름과 GitHub 계정에 등록한 이메일로 바꿉니다.
 
 ```powershell
 git config --global user.name "Student Name"
@@ -83,11 +91,11 @@ git config --global --get user.email
 git config --global --get core.autocrlf
 ```
 
-`core.autocrlf`는 기존 값을 확인만 하고 수업 중 임의로 바꾸지 않습니다. GitHub에서 이메일을 숨기고 싶다면 GitHub가 제공하는 `noreply` 이메일을 사용합니다.
+`core.autocrlf`는 현재 값을 확인만 합니다. 수업 중 전역 값을 임의로 바꾸지 않습니다.
 
-## 5. 기존 SSH 키 확인
+## 5. SSH 키 확인과 생성
 
-새 키를 만들기 전에 기존 파일을 확인합니다.
+기존 키를 먼저 확인합니다.
 
 ```powershell
 $sshDirectory = Join-Path $HOME '.ssh'
@@ -98,110 +106,60 @@ if (Test-Path $sshDirectory) {
 }
 ```
 
-`id_ed25519`와 `id_ed25519.pub`가 이미 있다면 덮어쓰지 않습니다. 기존 키를 사용할지 새 이름의 키를 만들지는 강사 또는 PC 관리자와 먼저 확인합니다.
-
-## 6. ED25519 SSH 키 생성
-
-이메일을 본인 값으로 바꿉니다.
+`id_ed25519`와 `id_ed25519.pub`가 없다면 새 키를 만듭니다. 이메일을 본인 값으로 바꾸고 저장 위치 질문에는 Enter를 눌러 기본 경로를 사용합니다.
 
 ```powershell
 ssh-keygen -t ed25519 -C "student@example.com"
 ```
 
-저장 위치 질문에는 Enter를 눌러 기본 경로를 사용합니다. 기존 파일을 덮어쓸지 묻는다면 `n`을 입력하고 중단합니다.
+기존 키를 덮어쓸지 묻는다면 `n`을 입력하고 중단합니다. `id_ed25519`은 개인 키이므로 공유하거나 Git에 올리지 않습니다. GitHub에는 `id_ed25519.pub` 공개 키만 등록합니다.
 
-개인 키가 유출됐을 때 바로 사용되지 않도록 SSH 키 암호 문구를 설정하는 편이 안전합니다. 암호 문구 없이 쓰려면 두 번 Enter를 누르지만, 공용 PC에서는 암호 문구 없는 개인 키를 만들지 않습니다.
-
-- `id_ed25519`: 개인 키입니다. 다른 사람에게 보내거나 GitHub에 올리지 않습니다.
-- `id_ed25519.pub`: 공개 키입니다. 이 파일만 GitHub에 등록합니다.
-
-```powershell
-ssh-keygen -lf "$HOME\.ssh\id_ed25519.pub"
-Get-Content "$HOME\.ssh\id_ed25519.pub" -Encoding utf8
-```
-
-암호 문구를 나중에 추가하거나 바꾸려면 다음 명령을 사용합니다.
-
-```powershell
-ssh-keygen -p -f "$HOME\.ssh\id_ed25519"
-```
-
-## 7. GitHub CLI 로그인
-
-Git 작업 프로토콜을 SSH로 선택하고 공개 키 등록 권한을 함께 요청합니다.
+## 6. GitHub CLI 로그인과 공개 키 등록
 
 ```powershell
 gh auth login --hostname github.com --git-protocol ssh --web --skip-ssh-key --scopes admin:public_key
-```
-
-브라우저에서 사용할 GitHub 계정과 일회용 코드를 확인한 뒤 권한 요청을 승인합니다. 비밀번호나 인증 토큰을 PowerShell 명령에 직접 적지 않습니다.
-
-```powershell
 gh auth status --hostname github.com
 ```
 
-`Logged in to github.com account` 뒤에 본인 GitHub 사용자명이 보여야 합니다. `--show-token` 옵션은 인증 토큰을 화면에 표시하므로 사용하지 않습니다.
+브라우저에서 본인의 GitHub 계정으로 승인합니다. 인증 토큰과 SSH 암호 문구를 명령이나 문서에 적지 않습니다.
 
-## 8. 공개 키 등록
-
-키 제목에는 컴퓨터 이름과 날짜를 넣습니다.
+공개 키가 아직 등록되지 않았다면 다음 명령을 실행합니다.
 
 ```powershell
 $sshKeyTitle = "$env:COMPUTERNAME-$(Get-Date -Format yyyy-MM-dd)"
 gh ssh-key add "$HOME\.ssh\id_ed25519.pub" --title $sshKeyTitle
-```
-
-`Public key added to your account`가 표시되면 등록됐습니다. 권한 오류가 나오면 추가 권한을 승인한 뒤 등록 명령을 다시 실행합니다.
-
-```powershell
-gh auth refresh --hostname github.com --scopes admin:public_key
 gh api user/keys --jq '.[].title'
 ```
 
-## 9. SSH 연결 테스트
+## 7. SSH 연결과 저장소 확인
 
 ```powershell
 ssh -T git@github.com
+Set-Location "$HOME\dongbu\Git_Steps"
+git status
+git branch --show-current
+code .
 ```
 
-처음 연결할 때는 [GitHub가 공개한 SSH 키 지문](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints)과 화면의 지문을 비교합니다. 일치하면 `yes`를 입력합니다.
+처음 연결할 때는 [GitHub SSH 키 지문](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints)과 화면의 지문을 비교한 뒤 승인합니다. 성공 메시지에 GitHub가 셸 접근을 제공하지 않는다는 문장이 함께 나오는 것은 정상입니다.
 
-```text
-Hi USERNAME! You've successfully authenticated, but GitHub does not provide shell access.
-```
+## 8. 수업용 검증 명령
 
-위 문장이 나오면 성공입니다. GitHub는 일반 SSH 셸을 제공하지 않으므로 종료 코드가 `1`이어도 정상입니다. `USERNAME`이 본인 계정인지 확인합니다.
-
-## 10. 수업 시작 전 확인
+저장소 관리자가 전체 강의 절차를 점검할 때 다음 명령을 실행합니다. fresh clone에는 로컬 `step-N` 브랜치가 없어도 `origin/step-N`을 자동으로 사용합니다.
 
 ```powershell
 Set-Location "$HOME\dongbu\Git_Steps"
-git --version
-gh --version
-git config --global --get user.name
-git config --global --get user.email
-gh auth status --hostname github.com
-ssh -T git@github.com
-git status
+node scripts/verify-lecture.mjs
 ```
 
-설치 명령을 찾지 못하면 Windows Terminal 창을 모두 닫고 새로 엽니다. SSH 인증이 실패하면 [문제 해결](../troubleshooting.md)을 확인합니다.
-
-## 공용 PC 정리
-
-공용 PC에서는 수업 뒤 로그인과 작성자 정보를 정리합니다.
-
-```powershell
-gh auth logout --hostname github.com
-git config --global --unset user.name
-git config --global --unset user.email
-```
-
-GitHub 웹사이트의 `Settings > SSH and GPG keys`에서 해당 PC의 공개 키도 삭제합니다. 개인 키 파일은 다른 저장소나 서비스에서 사용하는지 확인한 뒤 강사 또는 PC 관리자 지침에 따라 삭제합니다.
+`Git lecture smoke test passed` 문장이 나오면 `step-0`부터 `step-14`까지의 실습 시나리오와 문서 diff 검사가 통과한 것입니다.
 
 ## 공식 안내
 
-- [GitHub CLI 로그인](https://cli.github.com/manual/gh_auth_login)
-- [GitHub CLI SSH 키 등록](https://cli.github.com/manual/gh_ssh-key_add)
+- [Windows Terminal 설치](https://learn.microsoft.com/windows/terminal/install)
+- [winget install 명령](https://learn.microsoft.com/windows/package-manager/winget/install)
+- [Node.js 다운로드](https://nodejs.org/en/download)
+- [Git for Windows](https://git-scm.com/install/windows)
+- [GitHub CLI 설치](https://github.com/cli/cli/blob/trunk/docs/install_windows.md)
+- [VS Code Windows 설치](https://code.visualstudio.com/docs/setup/windows)
 - [GitHub SSH 키 생성](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-- [GitHub SSH 연결 테스트](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
