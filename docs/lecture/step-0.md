@@ -16,15 +16,15 @@
 
 Git 저장소가 아직 초기화되지 않은 상태에서 출발합니다.
 
-[초기 설정](./requirements.md)을 먼저 마칩니다. `git --version`, `gh auth status --hostname github.com`, `ssh -T git@github.com`에서 설치와 본인 계정을 확인합니다.
+[초기 설정](./requirements.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Windows 11 x64, Git, GitHub 초기 설정」 · 절 「1. Windows Terminal 설치」)</span>을 먼저 마칩니다. `git --version`, `gh auth status --hostname github.com`, `ssh -T git@github.com`에서 설치와 본인 계정을 확인합니다.
 
-[초기 설정](./requirements.md)에서 직접 만든 `$HOME\dongbu\git-practice` 폴더를 VS Code로 엽니다. 이 저장소를 clone하거나 ZIP으로 내려받지 않습니다.
+[초기 설정](./requirements.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Windows 11 x64, Git, GitHub 초기 설정」 · 절 「1. Windows Terminal 설치」)</span>에서 직접 만든 `$HOME\dongbu\git-practice` 폴더를 VS Code로 엽니다. 이 저장소를 clone하거나 ZIP으로 내려받지 않습니다.
 
 ### Git 사용자 정보
 
 commit에는 작성자 이름과 이메일이 들어갑니다. 첫 commit 전에 현재 값을 확인합니다.
 
-> Windows 11의 터미널과 편집기 사용법은 [환경 준비](../windows-11.md)를 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
+> Windows 11의 터미널과 편집기 사용법은 [환경 준비](../windows-11.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Windows 11 x64 실습 안내」 · 절 「개인 실습 저장소 열기」)</span>를 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
 
 ```powershell
 git config --global --get user.name
@@ -155,7 +155,7 @@ stage 후 상태를 확인합니다.
 git status --short
 ```
 
-제공받은 최소 starter의 예상 출력:
+[초기 설정](./requirements.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Windows 11 x64, Git, GitHub 초기 설정」 · 절 「1. Windows Terminal 설치」)</span>에서 직접 만든 파일을 stage한 뒤의 예상 출력:
 
 ```text
 A  .gitignore
@@ -289,7 +289,7 @@ origin  git@github.com:my-account/git-steps-practice.git (push)
 
 ## 작업 9. 최초 push 하기
 
-[초기 설정](./requirements.md)에서 SSH 연결 테스트를 마쳤다면 GitHub 비밀번호를 입력하지 않습니다. SSH 키 암호 문구를 설정했다면 그 암호 문구를 입력합니다.
+[초기 설정](./requirements.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Windows 11 x64, Git, GitHub 초기 설정」 · 절 「1. Windows Terminal 설치」)</span>에서 SSH 연결 테스트를 마쳤다면 GitHub 비밀번호를 입력하지 않습니다. SSH 키 암호 문구를 설정했다면 그 암호 문구를 입력합니다.
 
 ### 명령어
 
@@ -342,4 +342,4 @@ nothing to commit, working tree clean
 - `git push -u origin main`으로 최초 push를 완료했습니다.
 - GitHub 웹사이트에서 직접 만든 연습 파일과 첫 commit이 보입니다.
 
-사용자 정보, 로그인, push에서 막히면 [Git 실습 문제 해결](../troubleshooting.md)을 확인합니다.
+사용자 정보, 로그인, push에서 막히면 [Git 실습 문제 해결](../troubleshooting.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Git 실습 문제 해결」 · 절 「commit에서 이름과 이메일을 요구합니다」)</span>을 확인합니다.
