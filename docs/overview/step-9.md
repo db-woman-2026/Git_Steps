@@ -1,24 +1,16 @@
-# Step 9. VSCode 버튼으로 충돌 해결하기
+# Step 9. 충돌을 해결하고 코드 실습 준비하기
 
-## 목표
-
-VSCode conflict 화면의 기본 버튼 의미를 익힙니다.
+Step 8에서 중단한 merge를 다시 실행해 conflict를 해결합니다. 이어서 작은 JavaScript 프로그램의 세 모듈을 직접 입력합니다.
 
 ## 실습 순서
 
-1. 충돌이 난 파일을 엽니다.
-2. `Accept Current Change`를 눌렀을 때 어떤 문장이 남는지 확인합니다.
-3. `Ctrl+Z`로 되돌린 뒤 `Accept Incoming Change`를 눌렀을 때 어떤 문장이 남는지 확인합니다.
-4. 필요하면 `Accept Both Changes`도 확인합니다.
-5. 최종으로 남길 문장을 선택하고 저장합니다.
-6. conflict 해결 commit을 만듭니다.
-
-## VSCode에서 볼 것
-
-- Current는 현재 브랜치의 내용입니다.
-- Incoming은 합치려는 브랜치에서 들어오는 내용입니다.
-- Both는 두 내용을 모두 남깁니다.
+1. `branch/intro-other`를 `main`에 다시 merge합니다.
+2. Current와 Incoming 내용을 읽고 최종 문장을 직접 입력합니다.
+3. 해결 commit을 만들고 push합니다.
+4. `practice/task-app` 폴더를 만듭니다.
+5. `tasks.mjs`, `format.mjs`, `index.mjs`를 직접 입력합니다.
+6. Node.js로 실행한 뒤 코드 commit을 push합니다.
 
 ## 완료 기준
 
-충돌 표시가 사라지고 merge 완료 commit이 만들어지면 완료입니다.
+conflict marker가 사라지고 할 일 세 줄이 출력되며 두 commit이 원격 저장소에 있으면 완료입니다.
