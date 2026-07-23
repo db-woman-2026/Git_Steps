@@ -1,13 +1,13 @@
 # Windows 11 x64 실습 안내
 
-이 강의는 Windows 11 x64와 Windows Terminal의 `Windows PowerShell` 프로필만 사용합니다. 프로그램 설치부터 GitHub SSH 연결까지 [수업 전 초기 설정](./lecture/requirements.md)을 먼저 완료합니다.
+아래 명령은 Windows 11 x64와 Windows Terminal의 `Windows PowerShell` 프로필에서 실행합니다. 프로그램 설치부터 GitHub SSH 연결까지 [초기 설정](./lecture/requirements.md)을 먼저 완료합니다.
 
-## 저장소 열기
+## 개인 실습 저장소 열기
 
-강의 저장소의 고정 위치는 `$HOME\dongbu\Git_Steps`입니다.
+환경 준비에서 직접 만든 저장소의 고정 위치는 `$HOME\dongbu\git-practice`입니다.
 
 ```powershell
-Set-Location "$HOME\dongbu\Git_Steps"
+Set-Location "$HOME\dongbu\git-practice"
 git status
 git branch --show-current
 code .
@@ -31,7 +31,7 @@ Remove-Item .\practice\intro-copy.md
 
 ## 줄바꿈과 인코딩
 
-VS Code 오른쪽 아래에서 파일 인코딩이 `UTF-8`인지 확인합니다. 저장소의 `.gitattributes`가 강의 파일의 줄바꿈을 관리하므로 수업 중 `core.autocrlf` 전역 값을 임의로 변경하지 않습니다.
+VS Code 오른쪽 아래에서 파일 인코딩이 `UTF-8`인지 확인합니다. 저장소의 `.gitattributes`가 파일의 줄바꿈을 관리하므로 `core.autocrlf` 전역 값을 임의로 변경하지 않습니다.
 
 ```powershell
 git config --global --get core.autocrlf
@@ -53,4 +53,4 @@ gh auth status --hostname github.com
 ssh -T git@github.com
 ```
 
-명령을 찾지 못하면 Windows Terminal 창을 모두 닫고 새로 엽니다. 자세한 설치 및 복구 절차는 [수업 전 초기 설정](./lecture/requirements.md)과 [문제 해결](./troubleshooting.md)을 따릅니다.
+명령을 찾지 못하면 Windows Terminal 창을 모두 닫고 새로 엽니다. 자세한 설치 및 복구 절차는 [초기 설정](./lecture/requirements.md)과 [문제 해결](./troubleshooting.md)을 따릅니다.

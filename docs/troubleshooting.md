@@ -29,7 +29,7 @@ git config --global user.name "Student Name"
 git config --global user.email "student@example.com"
 ```
 
-공용 PC에서는 저장소 안에만 설정하고 수업 뒤 전역 설정이 남아 있는지 확인합니다.
+공용 PC에서는 저장소 안에만 설정하고 작업을 마친 뒤 전역 설정이 남아 있는지 확인합니다.
 
 ## branch를 이동할 수 없습니다
 
@@ -75,7 +75,7 @@ gh auth status --hostname github.com
 ssh -T git@github.com
 ```
 
-`Permission denied (publickey)`가 나오면 공개 키가 현재 로그인한 GitHub 계정에 등록됐는지 확인합니다. 설치부터 다시 진행하지 말고 [수업 전 초기 설정](./lecture/requirements.md)의 기존 키 확인, 공개 키 등록, SSH 연결 테스트를 차례로 다시 확인합니다.
+`Permission denied (publickey)`가 나오면 공개 키가 현재 로그인한 GitHub 계정에 등록됐는지 확인합니다. 설치부터 다시 진행하지 말고 [초기 설정](./lecture/requirements.md)의 기존 키 확인, 공개 키 등록, SSH 연결 테스트를 차례로 다시 확인합니다.
 
 ## push가 rejected 됩니다
 
@@ -98,4 +98,4 @@ git branch --show-current
 git log --oneline --decorate -3
 ```
 
-현재 branch, 남은 변경, 마지막 commit을 설명할 수 있으면 다음 단계로 이동합니다.
+현재 branch, 남은 변경, 마지막 commit을 설명할 수 있으면 작업을 계속합니다.

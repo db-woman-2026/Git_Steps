@@ -1,6 +1,6 @@
 # Step 0. Git 저장소 초기화와 GitHub 최초 push
 
-## 이번 단계에서 할 일
+## 변경 내용
 
 아직 Git 저장소가 아닌 일반 폴더를 Git 저장소로 만듭니다.
 
@@ -10,17 +10,15 @@
 실습 폴더 준비 -> git init -> 첫 commit -> GitHub 빈 저장소 생성 -> remote 연결 -> 최초 push
 ```
 
-완료 후에는 내 컴퓨터의 `main` 브랜치와 GitHub의 `origin/main` 브랜치가 연결되어 있어야 합니다.
+내 컴퓨터의 `main` 브랜치와 GitHub의 `origin/main` 브랜치가 연결된 상태를 확인합니다.
 
 ## 시작 전 확인
 
-이 단계는 Git을 아직 시작하지 않은 상태에서 출발합니다.
+Git 저장소가 아직 초기화되지 않은 상태에서 출발합니다.
 
-[수업 전 초기 설정](./requirements.md)을 먼저 마칩니다. `git --version`, `gh auth status --hostname github.com`, `ssh -T git@github.com`에서 설치와 본인 계정을 확인합니다.
+[초기 설정](./requirements.md)을 먼저 마칩니다. `git --version`, `gh auth status --hostname github.com`, `ssh -T git@github.com`에서 설치와 본인 계정을 확인합니다.
 
-수업에서 starter ZIP 파일을 받았다면 압축을 풀고 그 폴더를 VS Code로 엽니다. starter 파일이 없다면 [`main` ZIP 파일](https://github.com/db-woman-2026/Git_Steps/archive/refs/heads/main.zip)을 내려받아 압축을 풉니다. GitHub의 ZIP 파일에는 `.git` 폴더가 없으므로 `git init`부터 실습할 수 있습니다.
-
-`git clone`으로 받은 폴더에는 이미 `.git` 폴더가 있습니다. 이 실습에서는 clone한 폴더를 사용하지 않습니다.
+[초기 설정](./requirements.md)에서 직접 만든 `$HOME\dongbu\git-practice` 폴더를 VS Code로 엽니다. 이 저장소를 clone하거나 ZIP으로 내려받지 않습니다.
 
 ### Git 사용자 정보
 
@@ -54,7 +52,7 @@ git config user.email "student@example.com"
 ```text
 README.md
 .gitignore
-docs/overview/index.md
+.gitattributes
 practice/intro.md
 practice/profile.md
 practice/goal.md
@@ -62,15 +60,13 @@ practice/memo.md
 practice/team-note.md
 ```
 
-`main` 브랜치 ZIP 파일에는 기초 문서와 검증 스크립트도 들어 있습니다. 아래 `git status` 예시는 핵심 경로만 줄여서 보여 주므로 파일 수가 더 많아도 정상입니다.
-
 PowerShell에서 실습 폴더로 이동합니다.
 
 ```powershell
-Set-Location "$HOME\dongbu\Git_Steps"
+Set-Location "$HOME\dongbu\git-practice"
 ```
 
-폴더 이름은 다를 수 있습니다. 중요한 것은 `README.md`와 `practice` 폴더가 있는 위치에서 명령을 실행하는 것입니다.
+폴더 이름이 달라도 `README.md`와 `practice` 폴더가 있는 위치에서 명령을 실행합니다.
 
 ## 작업 1. 아직 Git 저장소가 아닌지 확인하기
 
@@ -107,10 +103,10 @@ git init -b main
 예상 출력:
 
 ```text
-Initialized empty Git repository in .../Git_Steps/.git/
+Initialized empty Git repository in .../git-practice/.git/
 ```
 
-`.git`은 commit과 branch 기록이 저장되는 숨김 폴더입니다. 수업 중에는 이 폴더를 직접 수정하지 않습니다.
+`.git`은 commit과 branch 기록이 저장되는 숨김 폴더입니다. 이 폴더를 직접 수정하지 않습니다.
 
 ### VSCode에서 볼 것
 
@@ -130,15 +126,14 @@ git status --short
 
 ```text
 ?? .gitignore
+?? .gitattributes
 ?? README.md
-?? docs/
 ?? practice/
-?? scripts/
 ```
 
 `??`는 아직 추적 대상에 추가하지 않은 파일이라는 뜻입니다.
 
-첫 단계에서는 diff를 자세히 읽지 않습니다. 아직 이전 commit이 없어서 "이전 단계와 무엇이 달라졌는지"를 비교하는 흐름이 아니기 때문입니다.
+첫 commit 전에는 비교 기준이 없으므로 diff를 자세히 읽지 않습니다.
 
 지금은 `??`가 첫 commit에 아직 포함되지 않은 파일을 나타낸다는 점만 확인합니다.
 
@@ -146,7 +141,7 @@ git status --short
 
 ### 실습 내용
 
-첫 commit에 현재 starter 파일들을 모두 포함합니다.
+첫 commit에 직접 만든 연습 파일들을 모두 포함합니다.
 
 ### 명령어
 
@@ -164,16 +159,14 @@ git status --short
 
 ```text
 A  .gitignore
+A  .gitattributes
 A  README.md
-A  docs/overview/index.md
 A  practice/goal.md
 A  practice/intro.md
 A  practice/memo.md
 A  practice/profile.md
 A  practice/team-note.md
 ```
-
-`main` 브랜치 ZIP 파일로 시작했다면 `docs/basic/`, `docs/course-plan.md`, `scripts/` 같은 경로도 `A`로 표시됩니다. 내려받은 파일을 모두 첫 commit에 넣는 것이므로 그대로 진행합니다.
 
 `A`는 added, 즉 첫 commit에 새로 추가될 파일이라는 뜻입니다.
 
@@ -198,8 +191,8 @@ No commits yet
 
 Changes to be committed:
   new file:   .gitignore
+  new file:   .gitattributes
   new file:   README.md
-  new file:   docs/overview/index.md
   new file:   practice/goal.md
   new file:   practice/intro.md
   new file:   practice/memo.md
@@ -296,7 +289,7 @@ origin  git@github.com:my-account/git-steps-practice.git (push)
 
 ## 작업 9. 최초 push 하기
 
-[수업 전 초기 설정](./requirements.md)에서 SSH 연결 테스트를 마쳤다면 GitHub 비밀번호를 입력하지 않습니다. SSH 키 암호 문구를 설정했다면 그 암호 문구를 입력합니다.
+[초기 설정](./requirements.md)에서 SSH 연결 테스트를 마쳤다면 GitHub 비밀번호를 입력하지 않습니다. SSH 키 암호 문구를 설정했다면 그 암호 문구를 입력합니다.
 
 ### 명령어
 
@@ -322,7 +315,7 @@ GitHub 저장소 페이지를 새로고침합니다.
 
 - `README.md`
 - `practice` 폴더
-- `docs` 폴더
+- `.gitattributes`
 - `Initialize Git learning project` commit
 
 로컬에서도 확인합니다.
@@ -347,8 +340,6 @@ nothing to commit, working tree clean
 - `Initialize Git learning project` 첫 commit을 만들었습니다.
 - `origin`이 내 GitHub 저장소 주소를 가리킵니다.
 - `git push -u origin main`으로 최초 push를 완료했습니다.
-- GitHub 웹사이트에서 starter 파일과 첫 commit이 보입니다.
+- GitHub 웹사이트에서 직접 만든 연습 파일과 첫 commit이 보입니다.
 
 사용자 정보, 로그인, push에서 막히면 [Git 실습 문제 해결](../troubleshooting.md)을 확인합니다.
-
-다음 단계에서는 이미 GitHub에 올라간 이 저장소에서 `practice/intro.md`를 수정하고, 두 번째 commit을 만들어 봅니다.
