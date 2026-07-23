@@ -1,129 +1,43 @@
-# Git_Steps
+# Git 기초 실습
 
-`Git_Steps`는 Git을 처음 배우는 비개발자와 초급자를 위한 아주 작은 실습 프로젝트입니다.
+Windows 11의 VS Code와 PowerShell에서 Git 저장소를 직접 만들고 GitHub에 기록합니다. 문서 수정으로 기본 동작을 익힌 뒤 후반부에는 작은 JavaScript 프로젝트를 고치며 branch와 conflict를 연습합니다.
 
-이 저장소의 목표는 복잡한 개발 협업을 배우는 것이 아닙니다. 문서 파일을 조금씩 고치면서 Git이 변경 내용을 어떻게 보여주고, 어떻게 저장하고, 브랜치를 어떻게 합치고, conflict를 어떻게 해결하는지 VSCode 기준으로 익히는 것입니다.
+## 시작 순서
 
-## Project Purpose
+1. [수업 전 초기 설정](docs/lecture/requirements.md)을 끝냅니다.
+2. [Git 기본 읽기 자료](docs/basic/README.md)에서 저장소, stage, commit, branch를 확인합니다.
+3. [단계별 실습](docs/lecture/README.md)을 Step 0부터 순서대로 진행합니다.
+4. 모든 코드는 직접 입력합니다.
+5. 각 단계가 끝나면 commit을 확인하고 개인 GitHub 저장소에 push합니다.
 
-`Git_Steps`는 하나의 완성 앱이 아니라 단계별 Git 실습 커리큘럼입니다.
+Step은 수업 순서를 나타내는 장 번호입니다. 실제 작업은 자신이 만든 저장소의 `main`에서 이어갑니다. 실습 중 `branch/profile-edit`처럼 명시된 branch만 직접 만들고 합칩니다.
 
-수강생은 starter 파일이 있는 일반 폴더에서 시작해 다음 흐름을 직접 경험합니다.
+## 진행 순서
 
-```text
-git init -> 첫 commit -> GitHub 최초 push -> 파일 수정 commit -> branch -> merge -> conflict 해결 -> 최종 push
-```
+| 장 | 실습 |
+| --- | --- |
+| Step 0 | 저장소 초기화, 첫 commit, GitHub 최초 push |
+| Step 1~2 | 파일 수정, diff, stage, commit |
+| Step 3~7 | branch 생성, 비교, 충돌 없는 merge |
+| Step 8~10 | conflict 생성, 중단, 재현, 해결 |
+| Step 11~13 | 실제 JavaScript 파일의 수정·삭제 conflict와 기능 branch |
+| Step 14 | 실행 결과와 GitHub 기록 최종 확인 |
 
-수업에서는 명령어를 모두 외우는 것보다 VSCode Source Control 화면에서 변경 파일, stage, commit, branch, merge, conflict 상태를 눈으로 확인하는 데 집중합니다.
+## 실습 파일
 
-## main 브랜치의 역할
+- `docs/lecture/`: 수업 순서와 명령
+- `docs/basic/`: Git 구조와 용어
+- `docs/troubleshooting.md`: 오류 확인과 복구
+- `practice/`: 문서 및 JavaScript 실습 파일
 
-`main` 브랜치는 수업을 시작하는 starter 상태입니다.
-
-이 브랜치에는 다음 내용만 들어 있습니다.
-
-- 프로젝트 소개 README
-- 기초 Git 구조와 용어를 설명하는 `docs/basic` 폴더
-- 실습에 사용할 Markdown 파일
-- 단계별 개요 문서가 들어갈 `docs/overview` 폴더
-
-실제 단계 문서는 `step-0`, `step-1`, `step-2`처럼 별도 브랜치에 누적됩니다.
-
-## Branch Structure
-
-- `main`: Git 실습 프로젝트의 starter 파일
-- `step-0`: 로컬 Git 저장소 초기화, 첫 commit, GitHub remote 연결, `main` 최초 push
-- `step-1` to `step-14`: Git 기초 기능과 상황별 branch, merge, conflict 실습
-
-브랜치는 독립적인 예제 복사본이 아니라 부모-자식 관계를 가진 누적형 학습 이력입니다. 학습 흐름은 `main -> step-0 -> step-1 -> step-2 -> ... -> step-14` 순서이며, `step-1`은 `step-0` 위에 있고 `step-2`는 `step-1` 위에 있습니다.
-
-향후 작업할 때도 이 관계를 전제로 해야 합니다. 특정 단계에 속한 수정은 가장 이른 affected step에서 먼저 고치고, 뒤 step으로 순서대로 merge해서 전파합니다. 중간 step을 건너뛰어 별도 커밋을 만들면 교육용 브랜치의 부모-자식 관계가 깨질 수 있습니다.
-
-브랜치 체인은 다음 조건을 유지해야 합니다.
+## 매 단계 공통 확인
 
 ```powershell
-git merge-base --is-ancestor step-N step-(N+1)
+git branch --show-current
+git status --short
+git diff
+git diff --staged
+git log --oneline -3
 ```
 
-`step-0 -> step-1` 관계도 같은 방식으로 유지합니다.
-
-## Documentation Layout
-
-- `README.md`: 프로젝트 목적, 브랜치 구조, 문서 구조, 커리큘럼 운영 기준
-- `docs/basic/`: 실습 전에 읽는 Git 기본 구조, 용어, 명령어 형태 설명
-- `docs/overview/`: 짧은 단계별 개요 문서
-- `docs/lecture/README.md`: 현재 step 브랜치에서 볼 수 있는 강의 목록과 실습 방식
-- `docs/lecture/step-N.md`: 수강생이 그대로 따라 할 수 있는 상세 강의 자료
-- `practice/`: 실습에 사용할 간단한 Markdown 파일
-
-`docs/basic`은 Git 명령을 직접 수행하기 전에 눈으로 구조를 익히는 읽기 자료입니다. `docs/lecture`는 실제로 파일을 수정하고 commit, branch, merge, conflict를 경험하는 실습 자료입니다.
-
-각 step 브랜치는 해당 단계까지의 강의 자료만 포함합니다.
-
-예를 들어 `step-7`에는 `docs/lecture/README.md`와 `step-0`부터 `step-7`까지의 lecture 문서만 들어 있고, `step-8` 이후 문서는 들어 있지 않습니다.
-
-## Practice Files
-
-- `practice/intro.md`: 자기소개 문장 수정과 첫 conflict 실습
-- `practice/profile.md`: 프로필 수정, branch, merge 실습
-- `practice/goal.md`: 직접 문장 정리 conflict 실습
-- `practice/memo.md`: 수정/삭제 conflict 실습
-- `practice/team-note.md`: 여러 줄 conflict 실습
-
-## Curriculum Scope
-
-포함하는 내용:
-
-- Git 저장소 초기화
-- 작업 폴더, 저장소, stage, commit의 기본 의미
-- branch, merge, conflict의 기본 구조
-- GitHub remote 연결과 최초 push
-- 변경 파일 확인
-- stage와 commit
-- 간단한 commit 기록 확인
-- branch 생성
-- branch merge
-- conflict 생성과 해결
-- 최종 결과 push
-
-제외하는 내용:
-
-- stash
-- tag
-- revert
-- reset 세부 설명
-- rebase
-- 협업 workflow
-- pull conflict
-- Git 내부 구조
-
-## Steps
-
-- `step-0`: Git 초기화, 첫 commit, GitHub 연결, 최초 push
-- `step-1`: 첫 파일 수정 commit
-- `step-2`: 변경 내용 비교
-- `step-3`: 첫 branch 생성
-- `step-4`: conflict 없는 branch merge
-- `step-5`: 새 파일을 추가한 branch merge
-- `step-6`: 서로 다른 파일을 수정한 branch merge
-- `step-7`: 같은 파일의 떨어진 위치를 수정한 branch merge
-- `step-8`: 첫 conflict 만들기
-- `step-9`: VSCode 버튼으로 conflict 해결
-- `step-10`: 직접 문장을 고쳐 conflict 해결
-- `step-11`: 수정/삭제 conflict 해결
-- `step-12`: 여러 줄 conflict 해결
-- `step-13`: branch 생성과 merge 반복
-- `step-14`: 최종 실습 결과 GitHub push
-
-## Operational Notes
-
-- 초급자 기준을 유지합니다.
-- 명령어 설명보다 VSCode Source Control에서 보이는 상태를 우선합니다.
-- 실습 파일은 Markdown만 사용해 안전하게 수정할 수 있게 합니다.
-- 이전 step을 고치면 가장 이른 step에서 수정하고 뒤 step으로 merge 전파합니다.
-
-강의 저장소 관리자는 절차를 수정한 뒤 다음 명령으로 `step-0`부터 `step-14`까지의 로컬 실습을 확인합니다. 검증 과정은 임시 폴더와 로컬 bare 저장소만 사용하며 GitHub에는 접근하지 않습니다. 수강생용 `main` ZIP 파일에서는 실행하지 않습니다.
-
-```powershell
-node scripts/verify-lecture.mjs
-```
+명령을 실행하기 전에 현재 branch와 변경 파일을 확인합니다. commit 뒤에는 작업 파일 목록이 비어 있어야 하며, push 뒤에는 `main`과 `origin/main`이 같은 commit을 가리켜야 합니다.

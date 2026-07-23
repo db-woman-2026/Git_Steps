@@ -129,12 +129,49 @@ git diff main..branch/profile-edit -- practice/profile.md
 
 이제 아무 내용도 나오지 않는 것이 정상입니다.
 
+## 작업 5. merge 확인 기록 남기기
+
+fast-forward merge는 새 merge commit을 만들지 않습니다. 이번 단계에서 확인한 내용을 별도 파일로 기록해 단계별 이력을 남깁니다.
+
+VS Code에서 `practice/merge-log.md`를 만들고 다음 내용을 직접 입력합니다.
+
+```md
+# Merge Log
+
+- Step 4: branch/profile-edit을 main에 fast-forward로 합쳤습니다.
+```
+
+파일과 stage 내용을 차례로 확인한 뒤 commit합니다.
+
+```powershell
+git status --short
+git diff -- practice/merge-log.md
+git add practice/merge-log.md
+git diff --staged -- practice/merge-log.md
+git commit -m "Record fast-forward merge"
+```
+
+## 원격 저장소에 기록하기
+
+현재 단계의 commit이 개인 저장소의 `origin/main`에 올라갑니다.
+
+```powershell
+git branch --show-current
+git status --short
+git push origin main
+git status --short --branch
+```
+
+push가 끝나면 로컬 commit이 원격 저장소에도 보이는지 확인합니다.
+
 ## 완료 기준
 
 다음 조건을 만족하면 step 4가 완료된 것입니다.
 
 - 현재 브랜치가 `main`입니다.
 - `practice/profile.md`에 `- 브랜치 연습: 원본과 따로 수정해 보기` 줄이 있습니다.
+- `practice/merge-log.md`에 fast-forward 확인 기록이 있습니다.
+- 마지막 commit은 `Record fast-forward merge`입니다.
 - Source Control 변경 목록이 비어 있습니다.
 - merge 중 conflict가 발생하지 않았습니다.
 
