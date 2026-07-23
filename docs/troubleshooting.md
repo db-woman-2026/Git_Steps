@@ -29,7 +29,7 @@ git config --global user.name "Student Name"
 git config --global user.email "student@example.com"
 ```
 
-공용 PC에서는 강사 지침에 따라 저장소 안에만 설정하거나 수업 뒤 전역 설정을 정리합니다.
+공용 PC에서는 저장소 안에만 설정하고 수업 뒤 전역 설정이 남아 있는지 확인합니다.
 
 ## branch를 이동할 수 없습니다
 
@@ -40,7 +40,7 @@ git status --short
 git diff
 ```
 
-변경이 필요한 작업이면 commit합니다. 실수로 바꾼 파일이라면 파일별 복구 여부를 강사와 확인합니다. 내용을 확인하지 않고 `reset --hard`를 실행하지 않습니다.
+변경이 필요한 작업이면 commit합니다. 실수로 바꾼 파일이라면 `git diff`로 내용을 읽고 파일별로 복구합니다. 내용을 확인하지 않고 `reset --hard`를 실행하지 않습니다.
 
 ## merge가 끝나지 않습니다
 
@@ -86,7 +86,7 @@ git fetch origin
 git log --oneline --left-right main...origin/main
 ```
 
-수업 중 GitHub에서 README를 만들었는지, 다른 PC에서 push했는지 확인한 뒤 강사와 pull 또는 merge 방향을 결정합니다. `--force`는 이 과정의 복구 명령으로 사용하지 않습니다.
+GitHub에서 README를 만들었는지, 다른 PC에서 push했는지 확인합니다. 원격 commit을 보존한 채 pull 또는 merge 방향을 정하며 `--force`는 복구 명령으로 사용하지 않습니다.
 
 ## 복구 후 확인
 
