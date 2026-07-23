@@ -59,25 +59,21 @@ ssh -V
 
 > !@#windows11 test: [Windows 11 x64 초기화 PC에서 Windows Terminal, Node.js LTS x64, Git for Windows x64, GitHub CLI x64, VS Code x64를 위 winget 명령으로 신규 설치하고 버전 확인을 다시 수행합니다.]@#
 
-## 3. 강의 작업 폴더 준비
+## 3. 실습 폴더 준비
 
-모든 강의 저장소는 현재 사용자 프로필의 `dongbu` 폴더 아래에 둡니다. PowerShell의 `$HOME`과 `$env:USERPROFILE`은 보통 `C:\Users\사용자이름`을 가리킵니다.
+Step 0에서 `git init`부터 실행해야 하므로 clone이 아니라 `main` ZIP 파일을 사용합니다.
 
 ```powershell
 New-Item -ItemType Directory -Path "$HOME\dongbu" -Force | Out-Null
-Set-Location "$HOME\dongbu"
-Get-Location
+$zipPath = Join-Path $HOME 'Downloads\Git_Steps-main.zip'
+Invoke-WebRequest 'https://github.com/db-woman-2026/Git_Steps/archive/refs/heads/main.zip' -OutFile $zipPath
+Expand-Archive -LiteralPath $zipPath -DestinationPath "$HOME\dongbu" -Force
+Rename-Item -LiteralPath "$HOME\dongbu\Git_Steps-main" -NewName 'git-practice'
+Set-Location "$HOME\dongbu\git-practice"
+Test-Path -LiteralPath '.git'
 ```
 
-저장소를 아직 받지 않았다면 HTTPS로 clone합니다.
-
-```powershell
-git clone https://github.com/db-woman-2026/Git_Steps.git
-Set-Location "$HOME\dongbu\Git_Steps"
-git status
-```
-
-이미 `$HOME\dongbu\Git_Steps` 폴더를 받았다면 `git clone`은 생략하고 `Set-Location`부터 실행합니다. OneDrive가 관리하는 바탕 화면이나 문서 폴더는 파일 잠금과 동기화 충돌이 생길 수 있으므로 사용하지 않습니다.
+마지막 명령은 `False`를 출력해야 합니다. 같은 이름의 폴더가 이미 있다면 기존 작업을 덮어쓰지 말고 새 실습 폴더 이름을 사용합니다. OneDrive가 관리하는 폴더는 피합니다.
 
 ## 4. commit 작성자 설정
 
@@ -131,28 +127,29 @@ gh ssh-key add "$HOME\.ssh\id_ed25519.pub" --title $sshKeyTitle
 gh api user/keys --jq '.[].title'
 ```
 
-## 7. SSH 연결과 저장소 확인
+## 7. SSH 연결과 실습 폴더 확인
 
 ```powershell
 ssh -T git@github.com
-Set-Location "$HOME\dongbu\Git_Steps"
-git status
-git branch --show-current
+Set-Location "$HOME\dongbu\git-practice"
+Test-Path -LiteralPath '.git'
+Get-ChildItem
 code .
 ```
 
-처음 연결할 때는 [GitHub SSH 키 지문](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints)과 화면의 지문을 비교한 뒤 승인합니다. 성공 메시지에 GitHub가 셸 접근을 제공하지 않는다는 문장이 함께 나오는 것은 정상입니다.
+처음 연결할 때는 [GitHub SSH 키 지문](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints)과 화면의 지문을 비교한 뒤 승인합니다. `.git` 확인은 여전히 `False`여야 합니다.
 
-## 8. 수업용 검증 명령
-
-저장소 관리자가 전체 강의 절차를 점검할 때 다음 명령을 실행합니다. fresh clone에는 로컬 `step-N` 브랜치가 없어도 `origin/step-N`을 자동으로 사용합니다.
+## 8. 시작 전 점검
 
 ```powershell
-Set-Location "$HOME\dongbu\Git_Steps"
-node scripts/verify-lecture.mjs
+Set-Location "$HOME\dongbu\git-practice"
+git --version
+gh auth status --hostname github.com
+Test-Path -LiteralPath '.git'
+Get-ChildItem -LiteralPath '.\practice'
 ```
 
-`Git lecture smoke test passed` 문장이 나오면 `step-0`부터 `step-14`까지의 실습 시나리오와 문서 diff 검사가 통과한 것입니다.
+Git과 GitHub 로그인이 확인되고 `.git`이 아직 없으면 Step 0을 시작합니다.
 
 ## 공식 안내
 

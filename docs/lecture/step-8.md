@@ -167,7 +167,7 @@ CONFLICT (content): Merge conflict in practice/intro.md
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-이 메시지가 나오면 실습이 실패한 것이 아니라 성공한 것입니다. 이번 단계의 목표가 conflict를 만드는 것이기 때문입니다.
+이 메시지가 나오면 conflict 재현에 성공한 것입니다.
 
 상태를 바로 확인합니다.
 
@@ -183,7 +183,7 @@ UU practice/intro.md
 practice/intro.md
 ```
 
-`U`는 unmerged를 뜻합니다. 이 상태에서는 다른 브랜치로 이동하거나 새 작업을 시작하지 않습니다.
+`U`는 unmerged를 뜻합니다. 내용을 확인한 뒤 아래 순서로 merge를 중단해야 다른 작업을 시작할 수 있습니다.
 
 ## 작업 5. conflict 파일 확인하기
 
@@ -209,13 +209,28 @@ practice/intro.md
 
 이 표시를 conflict marker라고 부릅니다.
 
+## 원격 저장소에 기록하기
+
+충돌 표시를 확인한 뒤 merge를 중단해 작업 폴더를 깨끗하게 되돌립니다. 서로 다르게 commit한 `main`과 `branch/intro-other`를 모두 원격에 저장하고, 다음 단계에서 같은 merge를 다시 실행해 해결합니다.
+
+```powershell
+git branch --show-current
+git status --short
+git merge --abort
+git status --short
+git push origin main branch/intro-other
+git status --short --branch
+```
+
+push가 끝나면 로컬 commit이 원격 저장소에도 보이는지 확인합니다.
+
 ## 완료 기준
 
-다음 조건을 만족하면 step 8이 완료된 것입니다.
+다음 조건을 만족하면 Step 8이 완료된 것입니다.
 
 - 현재 브랜치는 `main`입니다.
-- `git status`에서 `practice/intro.md`가 conflict 상태로 보입니다.
-- VSCode에서 `practice/intro.md`에 conflict 표시가 보입니다.
-- 아직 conflict를 해결하지 않았습니다.
+- VS Code에서 `practice/intro.md`의 conflict 표시를 확인했습니다.
+- `git merge --abort` 후 작업 파일 목록이 비었습니다.
+- `main`과 `branch/intro-other`의 commit을 모두 push했습니다.
 
-다음 단계에서는 이 conflict를 VSCode 버튼으로 해결합니다.
+다음 단계에서는 같은 merge를 다시 실행하고 conflict를 해결합니다.

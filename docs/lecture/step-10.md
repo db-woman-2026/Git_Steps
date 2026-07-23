@@ -1,220 +1,106 @@
-# Step 10. 직접 문장을 고쳐 충돌 해결하기
+# Step 10. 함수 한 줄 conflict 해결하기
 
 ## 이번 단계에서 할 일
 
-conflict를 다시 만들고, 이번에는 버튼으로 한쪽을 고르지 않습니다.
-
-두 브랜치의 문장을 모두 읽은 뒤 최종 문장을 직접 작성합니다. 어느 한쪽도 그대로 남기지 않는 해결 방법을 연습합니다.
-
-완료 후에는 `practice/goal.md` conflict가 해결되고, 직접 작성한 최종 문장이 commit되어 있어야 합니다.
+`formatTask()`의 반환 형식을 두 branch에서 다르게 고쳐 conflict를 만듭니다. 두 요구를 합친 최종 코드를 직접 작성하고 실행합니다.
 
 ## 시작 전 확인
 
-step 9를 끝낸 상태에서 시작합니다.
-
-- 현재 브랜치: `main`
-- Source Control 변경 목록: 비어 있음
-- `practice/goal.md`는 step 6에서 수정한 문장을 가지고 있음
-
-확인 명령:
-
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
-
 ```powershell
-git status
-Get-Content -LiteralPath 'practice/goal.md' -Encoding utf8
+git branch --show-current
+git status --short
+node .\practice\task-app\index.mjs
 ```
 
-PowerShell에서는 다음 명령을 사용합니다.
+현재 branch는 `main`이고 작업 파일 목록은 비어 있어야 합니다.
+
+## 작업 1. formatter branch 만들기
 
 ```powershell
-git status
-Get-Content practice/goal.md -Encoding utf8
-```
-
-현재 목표 문장은 다음과 같아야 합니다.
-
-```md
-이번 수업의 목표는 Git에서 변경된 파일을 확인하고 브랜치 변경을 합쳐 보는 것입니다.
-```
-
-## 작업 1. conflict용 브랜치 먼저 만들기
-
-```powershell
-git switch -c branch/goal-other
+git switch -c branch/format-label
 git switch main
 ```
 
-브랜치를 먼저 만들고 다시 `main`으로 돌아오는 순서를 지켜야 합니다.
+## 작업 2. main에서 기호를 바꾸기
 
-## 작업 2. main에서 goal 문장 수정하기
+`practice/task-app/format.mjs`를 수정합니다.
 
-### 입력할 내용
-
-`practice/goal.md`의 목표 문장을 다음처럼 바꿉니다.
-
-```md
-이번 수업의 목표는 main에서 목표 문장을 다시 정리해 보는 것입니다.
+```js
+export function formatTask(task) {
+  return `${task.done ? "✅" : "⬜"} ${task.title}`;
+}
 ```
-
-### 예상 git diff
 
 ```powershell
-git diff -- practice/goal.md
+git diff -- .\practice\task-app\format.mjs
+git add .\practice\task-app\format.mjs
+git diff --staged -- .\practice\task-app\format.mjs
+git commit -m "Use icons in task formatter"
 ```
 
-```diff
-diff --git a/practice/goal.md b/practice/goal.md
-index 6931826..fd90ffd 100644
---- a/practice/goal.md
-+++ b/practice/goal.md
-@@ -1,3 +1,3 @@
- # Goal
- 
--이번 수업의 목표는 Git에서 변경된 파일을 확인하고 브랜치 변경을 합쳐 보는 것입니다.
-+이번 수업의 목표는 main에서 목표 문장을 다시 정리해 보는 것입니다.
-```
-
-### commit
+## 작업 3. 다른 branch에서 상태 단어 넣기
 
 ```powershell
-git add practice/goal.md
-git diff --staged -- practice/goal.md
-git commit -m "Edit goal on main"
-git status --short
-git log --oneline -1
+git switch branch/format-label
 ```
 
-stage 전과 같은 문장 교체를 확인합니다. commit 후 상태 출력은 없어야 하고 마지막 log에는 `Edit goal on main`이 보여야 합니다.
+같은 함수를 다음처럼 수정합니다.
 
-## 작업 3. 다른 브랜치에서 같은 문장 수정하기
+```js
+export function formatTask(task) {
+  return `${task.done ? "완료" : "대기"}: ${task.title}`;
+}
+```
 
 ```powershell
-git switch branch/goal-other
+git diff -- .\practice\task-app\format.mjs
+git add .\practice\task-app\format.mjs
+git diff --staged -- .\practice\task-app\format.mjs
+git commit -m "Use labels in task formatter"
 ```
 
-`practice/goal.md`의 같은 문장을 다음처럼 바꿉니다.
-
-```md
-이번 수업의 목표는 브랜치에서 목표 문장을 다르게 고쳐 보는 것입니다.
-```
-
-diff를 확인합니다.
-
-```powershell
-git diff -- practice/goal.md
-```
-
-예상 diff:
-
-```diff
-diff --git a/practice/goal.md b/practice/goal.md
-index 6931826..64285fe 100644
---- a/practice/goal.md
-+++ b/practice/goal.md
-@@ -1,3 +1,3 @@
- # Goal
- 
--이번 수업의 목표는 Git에서 변경된 파일을 확인하고 브랜치 변경을 합쳐 보는 것입니다.
-+이번 수업의 목표는 브랜치에서 목표 문장을 다르게 고쳐 보는 것입니다.
-```
-
-commit합니다.
-
-```powershell
-git add practice/goal.md
-git diff --staged -- practice/goal.md
-git commit -m "Edit goal on branch"
-git status --short
-git log --oneline -1
-```
-
-stage 전과 같은 문장 교체를 확인합니다. commit 후 상태 출력은 없어야 하고 마지막 log에는 `Edit goal on branch`가 보여야 합니다.
-
-## 작업 4. main에서 merge해 conflict 만들기
+## 작업 4. conflict 만들기
 
 ```powershell
 git switch main
-git merge branch/goal-other
+git merge branch/format-label
+git status --short
+```
+
+`UU practice/task-app/format.mjs`가 표시되어야 합니다.
+
+## 작업 5. 두 요구 합치기
+
+상태 단어와 기호를 모두 남깁니다.
+
+```js
+export function formatTask(task) {
+  const label = task.done ? "완료 [x]" : "대기 [ ]";
+  return `${label} ${task.title}`;
+}
+```
+
+```powershell
+git add .\practice\task-app\format.mjs
+git diff --staged -- .\practice\task-app\format.mjs
+git commit -m "Resolve task formatter conflict"
+node .\practice\task-app\index.mjs
+git branch -d branch/format-label
+git push origin main
+git status --short --branch
 ```
 
 예상 출력:
 
 ```text
-Auto-merging practice/goal.md
-CONFLICT (content): Merge conflict in practice/goal.md
-Automatic merge failed; fix conflicts and then commit the result.
+완료 [x] 환경 준비
+대기 [ ] branch 연습
+대기 [ ] push 확인
 ```
-
-`git status --short`에서 `UU practice/goal.md`가 보이는지 확인합니다.
-
-## 작업 5. conflict 내용을 읽고 새 문장 작성하기
-
-`practice/goal.md`를 열면 다음과 비슷한 내용이 보입니다.
-
-```md
-# Goal
-
-<<<<<<< HEAD
-이번 수업의 목표는 main에서 목표 문장을 다시 정리해 보는 것입니다.
-=======
-이번 수업의 목표는 브랜치에서 목표 문장을 다르게 고쳐 보는 것입니다.
->>>>>>> branch/goal-other
-```
-
-이번에는 Current나 Incoming 중 하나를 그대로 고르지 않습니다.
-
-두 문장의 의미를 합쳐 다음 최종 문장으로 바꿉니다.
-
-```md
-# Goal
-
-이번 수업의 목표는 main과 브랜치의 목표 문장을 읽고 하나의 자연스러운 문장으로 정리하는 것입니다.
-```
-
-conflict marker는 모두 삭제되어야 합니다.
-
-## 작업 6. 해결 파일을 stage하고 diff 확인하기
-
-```powershell
-git add practice/goal.md
-git diff --staged -- practice/goal.md
-```
-
-예상 staged diff:
-
-```diff
-diff --git a/practice/goal.md b/practice/goal.md
-index fd90ffd..a6ecab9 100644
---- a/practice/goal.md
-+++ b/practice/goal.md
-@@ -1,3 +1,3 @@
- # Goal
- 
--이번 수업의 목표는 main에서 목표 문장을 다시 정리해 보는 것입니다.
-+이번 수업의 목표는 main과 브랜치의 목표 문장을 읽고 하나의 자연스러운 문장으로 정리하는 것입니다.
-```
-
-staged diff에는 `main`의 문장에서 최종 문장으로 바뀐 내용이 보입니다. stage 전의 unmerged 파일에 `git diff`를 실행하면 두 부모를 함께 표시하는 combined diff가 나오므로 이 예시와 형식이 다릅니다.
-
-## 작업 7. 해결 commit 만들기
-
-```powershell
-git status --short
-git commit -m "Resolve goal conflict manually"
-git status --short
-git log --oneline -1
-```
-
-commit 전에는 `M  practice/goal.md`가 보여야 합니다. commit 후 상태 출력은 없어야 하고 마지막 log에는 `Resolve goal conflict manually`가 보여야 합니다.
 
 ## 완료 기준
 
-다음 조건을 만족하면 step 10이 완료된 것입니다.
-
-- `practice/goal.md`에 conflict marker가 없습니다.
-- 최종 문장이 직접 정리한 문장입니다.
-- `Resolve goal conflict manually` commit이 만들어졌습니다.
-- Source Control 변경 목록이 비어 있습니다.
-
-다음 단계에서는 한쪽 브랜치에서는 파일을 수정하고, 다른 쪽에서는 같은 파일을 삭제한 충돌을 다룹니다.
+- 실제 JavaScript 함수에서 conflict를 만들었습니다.
+- 두 요구를 설명할 수 있는 최종 반환값을 작성했습니다.
+- Node.js 실행이 성공했습니다.
+- 해결 commit을 `origin/main`에 push했습니다.
