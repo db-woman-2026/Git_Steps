@@ -182,6 +182,19 @@ git log --oneline --graph --max-count=5
 
 작업 폴더는 깨끗해야 합니다.
 
+## 원격 저장소에 기록하기
+
+현재 단계의 commit이 개인 저장소의 `origin/main`에 올라갑니다.
+
+```powershell
+git branch --show-current
+git status --short
+git push origin main
+git status --short --branch
+```
+
+push가 끝나면 로컬 commit이 원격 저장소에도 보이는지 확인합니다.
+
 ## 완료 기준
 
 다음 조건을 만족하면 step 6이 완료된 것입니다.

@@ -18,9 +18,9 @@
 
 [수업 전 초기 설정](./requirements.md)을 먼저 마칩니다. `git --version`, `gh auth status --hostname github.com`, `ssh -T git@github.com`에서 설치와 본인 계정을 확인합니다.
 
-수업에서 starter ZIP 파일을 받았다면 압축을 풀고 그 폴더를 VSCode로 엽니다. starter 파일이 없다면 [강사용 저장소의 `main` 브랜치 ZIP 파일](https://github.com/db-woman-2026/Git_Steps/archive/refs/heads/main.zip)을 내려받아 압축을 풉니다. GitHub의 ZIP 파일에는 `.git` 폴더가 없으므로 `git init`부터 실습할 수 있습니다.
+수업에서 starter ZIP 파일을 받았다면 압축을 풀고 그 폴더를 VS Code로 엽니다. starter 파일이 없다면 [`main` ZIP 파일](https://github.com/db-woman-2026/Git_Steps/archive/refs/heads/main.zip)을 내려받아 압축을 풉니다. GitHub의 ZIP 파일에는 `.git` 폴더가 없으므로 `git init`부터 실습할 수 있습니다.
 
-강사용 저장소를 `git clone`한 폴더에는 이미 `.git` 폴더가 있습니다. clone한 폴더에서 `git init`을 다시 실행하지 않습니다.
+`git clone`으로 받은 폴더에는 이미 `.git` 폴더가 있습니다. 이 실습에서는 clone한 폴더를 사용하지 않습니다.
 
 ### Git 사용자 정보
 
@@ -207,7 +207,7 @@ Changes to be committed:
   new file:   practice/team-note.md
 ```
 
-여기서는 파일 내용 비교보다 "첫 commit에 들어갈 파일이 모두 stage 되었는지"가 중요합니다.
+여기서는 파일 내용보다 첫 commit에 들어갈 파일이 모두 stage 되었는지 먼저 확인합니다.
 
 VSCode에서는 Source Control의 Staged Changes 영역에 파일들이 들어가 있으면 됩니다.
 
