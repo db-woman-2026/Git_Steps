@@ -45,7 +45,7 @@ git diff --check
 
 ```powershell
 node --version
-npm.cmd --version
+npm --version
 git --version
 gh --version
 code --version
