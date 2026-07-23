@@ -13,7 +13,7 @@ winget --version
 winget install --id Microsoft.WindowsTerminal -e --source winget --accept-source-agreements --accept-package-agreements
 ```
 
-`winget`을 찾지 못하면 [App Installer 공식 안내](https://learn.microsoft.com/windows/msix/app-installer/install-update-app-installer)를 따라 App Installer를 설치하거나 업데이트합니다. Windows Terminal 설치가 끝나면 처음 열었던 창을 닫습니다.
+`winget`을 찾지 못하면 [App Installer 공식 안내](https://learn.microsoft.com/windows/msix/app-installer/install-update-app-installer) <span class="print-url" data-print-url="true">(웹 주소: https://learn.microsoft.com/windows/msix/app-installer/install-update-app-installer)</span>를 따라 App Installer를 설치하거나 업데이트합니다. Windows Terminal 설치가 끝나면 처음 열었던 창을 닫습니다.
 
 시작 메뉴에서 `Windows Terminal`을 열고 탭 오른쪽의 화살표에서 `Windows PowerShell`을 선택합니다. 이후 명령은 이 탭에서 실행합니다.
 
@@ -41,7 +41,7 @@ winget install --id Microsoft.VisualStudioCode -e --source winget --architecture
 
 ```powershell
 node --version
-npm.cmd --version
+npm --version
 git --version
 gh --version
 code --version
@@ -229,7 +229,7 @@ Get-ChildItem
 code .
 ```
 
-처음 연결할 때는 [GitHub SSH 키 지문](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints)과 화면의 지문을 비교한 뒤 승인합니다. `.git` 확인은 여전히 `False`여야 합니다.
+처음 연결할 때는 [GitHub SSH 키 지문](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints) <span class="print-url" data-print-url="true">(웹 주소: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints)</span>과 화면의 지문을 비교한 뒤 승인합니다. `.git` 확인은 여전히 `False`여야 합니다.
 
 ## 8. 시작 전 점검
 
@@ -245,10 +245,10 @@ Git과 GitHub 로그인이 확인되고 `.git`이 아직 없으면 Step 0을 시
 
 ## 공식 안내
 
-- [Windows Terminal 설치](https://learn.microsoft.com/windows/terminal/install)
-- [winget install 명령](https://learn.microsoft.com/windows/package-manager/winget/install)
-- [Node.js 다운로드](https://nodejs.org/en/download)
-- [Git for Windows](https://git-scm.com/install/windows)
-- [GitHub CLI 설치](https://github.com/cli/cli/blob/trunk/docs/install_windows.md)
-- [VS Code Windows 설치](https://code.visualstudio.com/docs/setup/windows)
-- [GitHub SSH 키 생성](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+- [Windows Terminal 설치](https://learn.microsoft.com/windows/terminal/install) <span class="print-url" data-print-url="true">(웹 주소: https://learn.microsoft.com/windows/terminal/install)</span>
+- [winget install 명령](https://learn.microsoft.com/windows/package-manager/winget/install) <span class="print-url" data-print-url="true">(웹 주소: https://learn.microsoft.com/windows/package-manager/winget/install)</span>
+- [Node.js 다운로드](https://nodejs.org/en/download) <span class="print-url" data-print-url="true">(웹 주소: https://nodejs.org/en/download)</span>
+- [Git for Windows](https://git-scm.com/install/windows) <span class="print-url" data-print-url="true">(웹 주소: https://git-scm.com/install/windows)</span>
+- [GitHub CLI 설치](https://github.com/cli/cli/blob/trunk/docs/install_windows.md) <span class="print-url" data-print-url="true">(웹 주소: https://github.com/cli/cli/blob/trunk/docs/install_windows.md)</span>
+- [VS Code Windows 설치](https://code.visualstudio.com/docs/setup/windows) <span class="print-url" data-print-url="true">(웹 주소: https://code.visualstudio.com/docs/setup/windows)</span>
+- [GitHub SSH 키 생성](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) <span class="print-url" data-print-url="true">(웹 주소: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)</span>
