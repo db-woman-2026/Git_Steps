@@ -1,6 +1,6 @@
 # Git 단계별 실습
 
-먼저 [Windows 11 초기 설정](./requirements.md)을 끝내고 Step 0부터 순서대로 진행합니다. 각 장은 직전 장에서 만든 자신의 저장소 상태를 이어서 사용합니다.
+[Windows 11 초기 설정](./requirements.md)을 확인합니다. 각 장은 직전 장에서 만든 자신의 저장소 상태를 이어서 사용합니다.
 
 ## 실습 원칙
 
@@ -14,7 +14,7 @@
 
 문서 제목의 Step은 장 번호입니다. `branch/profile-edit`, `feature/pending-count`처럼 본문에서 만드는 이름만 실제 연습 branch입니다.
 
-## 강의 목록
+## 실습 목록
 
 | 장 | 문서 | 결과 |
 | --- | --- | --- |
@@ -34,4 +34,4 @@
 | Step 13 | [기능 branch 반복](./step-13.md) | 두 기능을 `main`에 merge |
 | Step 14 | [최종 확인과 push](./step-14.md) | 실행 결과와 원격 기록 확인 |
 
-[과정 계획](../course-plan.md)에는 권장 시간과 평가 기준이 있고, [문제 해결](../troubleshooting.md)에는 로그인·merge·push 오류 복구 순서가 있습니다.
+[실습 구성](../course-plan.md)에는 주제별 확인 결과가 있고, [문제 해결](../troubleshooting.md)에는 로그인·merge·push 오류 복구 순서가 있습니다.
