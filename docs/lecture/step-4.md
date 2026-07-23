@@ -1,12 +1,12 @@
 # Step 4. 충돌 없이 브랜치 합치기
 
-## 이번 단계에서 할 일
+## 변경 내용
 
 step 3에서 만든 `branch/profile-edit` 브랜치의 변경을 `main`에 합칩니다.
 
 merge는 한 브랜치의 변경 이력을 다른 브랜치에 합치는 작업입니다. 지금은 `branch/profile-edit`을 만든 뒤 `main`에 새 commit이 없으므로 fast-forward merge가 됩니다.
 
-완료 후에는 `main`의 `practice/profile.md`에도 브랜치에서 추가했던 문장이 들어 있어야 합니다.
+`main`의 `practice/profile.md`에 브랜치에서 추가했던 문장이 들어 있는지 확인합니다.
 
 ## 시작 전 확인
 
@@ -131,7 +131,7 @@ git diff main..branch/profile-edit -- practice/profile.md
 
 ## 작업 5. merge 확인 기록 남기기
 
-fast-forward merge는 새 merge commit을 만들지 않습니다. 이번 단계에서 확인한 내용을 별도 파일로 기록해 단계별 이력을 남깁니다.
+fast-forward merge는 새 merge commit을 만들지 않습니다. 확인 결과를 별도 파일로 기록해 merge 이력을 남깁니다.
 
 VS Code에서 `practice/merge-log.md`를 만들고 다음 내용을 직접 입력합니다.
 
@@ -174,5 +174,3 @@ push가 끝나면 로컬 commit이 원격 저장소에도 보이는지 확인합
 - 마지막 commit은 `Record fast-forward merge`입니다.
 - Source Control 변경 목록이 비어 있습니다.
 - merge 중 conflict가 발생하지 않았습니다.
-
-다음 단계에서는 브랜치에서 새 파일을 만든 뒤 `main`에 합칩니다.

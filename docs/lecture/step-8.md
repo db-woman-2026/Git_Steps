@@ -1,10 +1,10 @@
 # Step 8. 첫 충돌 만들기
 
-## 이번 단계에서 할 일
+## 변경 내용
 
 Git conflict를 일부러 만듭니다. 두 브랜치가 같은 줄을 서로 다른 내용으로 바꾸면 자동 병합이 중단되고 해당 파일이 unmerged 상태로 표시됩니다.
 
-이번 단계의 목표는 conflict를 해결하는 것이 아닙니다. `practice/intro.md`가 conflict 상태로 표시되는 것까지가 목표입니다. 해결은 step 9에서 합니다.
+여기서는 conflict를 해결하지 않고 `practice/intro.md`가 conflict 상태로 표시되는 것까지 확인합니다.
 
 ## 시작 전 확인
 
@@ -79,7 +79,7 @@ index 3c1d4f4..95b1c3f 100644
 +++ b/practice/intro.md
 @@ -2,6 +2,6 @@
  
- 안녕하세요. 저는 Git을 처음 연습하는 학습자입니다.
+ 안녕하세요. 저는 Git을 처음 연습합니다.
  
 -오늘은 문장을 조금씩 바꾸면서 Git 변경 기록을 확인합니다.
 +오늘은 Git 변경 기록을 보면서 main 브랜치의 문장을 수정합니다.
@@ -130,7 +130,7 @@ index 3c1d4f4..69aa926 100644
 +++ b/practice/intro.md
 @@ -2,6 +2,6 @@
  
- 안녕하세요. 저는 Git을 처음 연습하는 학습자입니다.
+ 안녕하세요. 저는 Git을 처음 연습합니다.
  
 -오늘은 문장을 조금씩 바꾸면서 Git 변경 기록을 확인합니다.
 +오늘은 다른 브랜치에서 같은 문장을 다르게 수정합니다.
@@ -192,7 +192,7 @@ practice/intro.md
 ```md
 # Intro
 
-안녕하세요. 저는 Git을 처음 연습하는 학습자입니다.
+안녕하세요. 저는 Git을 처음 연습합니다.
 
 <<<<<<< HEAD
 오늘은 Git 변경 기록을 보면서 main 브랜치의 문장을 수정합니다.
@@ -211,7 +211,7 @@ practice/intro.md
 
 ## 원격 저장소에 기록하기
 
-충돌 표시를 확인한 뒤 merge를 중단해 작업 폴더를 깨끗하게 되돌립니다. 서로 다르게 commit한 `main`과 `branch/intro-other`를 모두 원격에 저장하고, 다음 단계에서 같은 merge를 다시 실행해 해결합니다.
+충돌 표시를 확인한 뒤 merge를 중단해 작업 폴더를 깨끗하게 되돌립니다. 서로 다르게 commit한 `main`과 `branch/intro-other`를 모두 원격에 저장합니다.
 
 ```powershell
 git branch --show-current
@@ -232,5 +232,3 @@ push가 끝나면 로컬 commit이 원격 저장소에도 보이는지 확인합
 - VS Code에서 `practice/intro.md`의 conflict 표시를 확인했습니다.
 - `git merge --abort` 후 작업 파일 목록이 비었습니다.
 - `main`과 `branch/intro-other`의 commit을 모두 push했습니다.
-
-다음 단계에서는 같은 merge를 다시 실행하고 conflict를 해결합니다.
