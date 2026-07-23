@@ -1,6 +1,6 @@
 # Step 9. 충돌을 해결하고 JavaScript 실습 준비하기
 
-## 이번 단계에서 할 일
+## 변경 내용
 
 Step 8에서 확인한 conflict를 다시 만들고 VS Code에서 해결합니다. 해결 commit을 push한 뒤 후반부에 사용할 작은 할 일 프로그램을 직접 입력합니다.
 
