@@ -32,7 +32,7 @@ modified: notes.txt
 
 다음 commit에 포함할 변경을 모아 두는 영역입니다. **staging area**, **index**라고도 합니다.
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Windows 11 x64 실습 안내」 · 절 「개인 실습 저장소 열기」)</span>를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
 
 ```powershell
 git add notes.txt
