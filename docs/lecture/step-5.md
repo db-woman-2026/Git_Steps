@@ -21,14 +21,7 @@ step 4를 끝낸 상태에서 시작합니다.
 
 확인 명령:
 
-> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 같습니다.
-
-```powershell
-git status
-test -f practice/diary.md && echo "exists" || echo "not yet"
-```
-
-PowerShell에서는 다음 명령을 사용합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md)를 먼저 확인합니다. 아래 명령은 PowerShell에서 실행합니다.
 
 ```powershell
 git status
