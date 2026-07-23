@@ -1,6 +1,6 @@
 # Step 13. 기능 branch 두 번 반복하기
 
-## 이번 단계에서 할 일
+## 변경 내용
 
 작은 요구사항을 하나씩 별도 branch에서 구현합니다. 각 기능은 실행·commit한 뒤 `main`에 merge하고 push합니다.
 
