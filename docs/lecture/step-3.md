@@ -195,6 +195,19 @@ index 767a26c..da9d4de 100644
 
 이 diff는 "main에는 없고 branch/profile-edit에는 있는 변경"을 보여줍니다.
 
+## 원격 저장소에 기록하기
+
+아직 `main`에 합치지 않은 연습 브랜치이므로 `branch/profile-edit`을 먼저 올립니다. 다음 단계에서 merge한 뒤 `main`을 push합니다.
+
+```powershell
+git branch --show-current
+git status --short
+git push -u origin branch/profile-edit
+git status --short --branch
+```
+
+push가 끝나면 로컬 commit이 원격 저장소에도 보이는지 확인합니다.
+
 ## 완료 기준
 
 다음 조건을 만족하면 step 3이 완료된 것입니다.
