@@ -1,6 +1,6 @@
 # Step 14. 실행 결과와 GitHub 기록 최종 확인하기
 
-## 이번 단계에서 할 일
+## 변경 내용
 
 할 일 프로그램의 최종 동작을 확인하고 완료 기록을 commit합니다. 로컬 `main`과 GitHub의 `origin/main`이 같은 commit인지 비교합니다.
 
