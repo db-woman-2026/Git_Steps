@@ -1,12 +1,12 @@
 # Step 1. 첫 파일 수정 commit 만들기
 
-## 이번 단계에서 할 일
+## 변경 내용
 
 `step-0`에서 만든 초기 commit 위에 첫 파일 수정 commit을 하나 더 만듭니다.
 
 commit은 stage한 변경을 한 시점의 기록으로 저장합니다. 문서를 고친 뒤 `git diff`로 변경을 확인하고, stage한 내용에 commit 메시지를 붙여 저장합니다.
 
-완료 후에는 `practice/intro.md`에 새 문장이 추가되고, 그 변경이 `Add my intro` commit으로 저장되어 있어야 합니다.
+`practice/intro.md`에 새 문장이 추가되고 그 변경이 `Add my intro` commit으로 저장된 상태를 확인합니다.
 
 ## 시작 전 확인
 
@@ -49,7 +49,7 @@ git status
 ```md
 # Intro
 
-안녕하세요. 저는 Git을 처음 연습하는 학습자입니다.
+안녕하세요. 저는 Git을 처음 연습합니다.
 
 오늘은 문장을 조금씩 바꾸면서 Git 변경 기록을 확인합니다.
 
@@ -72,7 +72,7 @@ index 4f20b8b..3c1d4f4 100644
 --- a/practice/intro.md
 +++ b/practice/intro.md
 @@ -3,3 +3,5 @@
- 안녕하세요. 저는 Git을 처음 연습하는 학습자입니다.
+ 안녕하세요. 저는 Git을 처음 연습합니다.
  
  오늘은 문장을 조금씩 바꾸면서 Git 변경 기록을 확인합니다.
 +
@@ -184,7 +184,7 @@ git log --oneline -1
 304a8d1 Add my intro
 ```
 
-해시 값은 컴퓨터마다 다를 수 있습니다. 중요한 것은 `Add my intro` 메시지가 보이는 것입니다.
+해시 값은 컴퓨터마다 다를 수 있습니다. `Add my intro` 메시지가 보이는지 확인합니다.
 
 ## 원격 저장소에 기록하기
 
@@ -207,5 +207,3 @@ push가 끝나면 로컬 commit이 원격 저장소에도 보이는지 확인합
 - `git diff --staged`에서 commit할 변경을 확인했습니다.
 - Source Control에 남은 변경 파일이 없습니다.
 - `git log --oneline -1`에서 `Add my intro` commit이 보입니다.
-
-다음 단계에서는 다른 파일을 수정하고, `git diff`의 변경 전 줄과 변경 후 줄을 구분합니다.

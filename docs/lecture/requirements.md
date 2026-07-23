@@ -1,8 +1,8 @@
-# 수업 전 초기 설정: Windows 11 x64, Git, GitHub
+# Windows 11 x64, Git, GitHub 초기 설정
 
-수업 PC를 처음 받은 상태에서 시작합니다. 기존에 프로그램이 보이더라도 아래 `winget install` 명령을 모두 실행해 설치 상태와 최신 안정판 여부를 확인합니다.
+새 Windows 11 PC를 기준으로 합니다. 기존에 프로그램이 보이더라도 아래 `winget install` 명령으로 설치 상태와 최신 안정판 여부를 확인합니다.
 
-Windows Terminal은 터미널 앱이고 PowerShell은 그 안에서 명령을 실행하는 셸입니다. Windows Terminal을 설치한 뒤 모든 수업 명령을 `Windows PowerShell` 프로필에서 실행합니다.
+Windows Terminal은 터미널 앱이고 PowerShell은 그 안에서 명령을 실행하는 셸입니다. Windows Terminal을 설치한 뒤 아래 명령을 `Windows PowerShell` 프로필에서 실행합니다.
 
 ## 1. Windows Terminal 설치
 
@@ -24,7 +24,7 @@ $PSVersionTable.PSEdition
 [System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture
 ```
 
-대상 환경에서는 Windows 11과 `X64`가 표시되어야 합니다. 강의 명령은 Windows PowerShell 5.1에서 실행할 수 있는 문법만 사용합니다.
+대상 환경에서는 Windows 11과 `X64`가 표시되어야 합니다. 아래 명령은 Windows PowerShell 5.1에서 실행할 수 있는 문법만 사용합니다.
 
 ## 2. 개발 프로그램 새로 설치
 
@@ -59,21 +59,113 @@ ssh -V
 
 > !@#windows11 test: [Windows 11 x64 초기화 PC에서 Windows Terminal, Node.js LTS x64, Git for Windows x64, GitHub CLI x64, VS Code x64를 위 winget 명령으로 신규 설치하고 버전 확인을 다시 수행합니다.]@#
 
-## 3. 실습 폴더 준비
+## 3. 개인 실습 폴더 만들기
 
-Step 0에서 `git init`부터 실행해야 하므로 clone이 아니라 `main` ZIP 파일을 사용합니다.
+이 저장소를 clone하거나 ZIP으로 내려받지 않습니다. 빈 폴더와 연습 파일을 직접 만든 뒤 Step 0에서 `git init`을 실행합니다. 첫 commit부터 개인 저장소의 `main`을 계속 사용합니다.
 
 ```powershell
-New-Item -ItemType Directory -Path "$HOME\dongbu" -Force | Out-Null
-$zipPath = Join-Path $HOME 'Downloads\Git_Steps-main.zip'
-Invoke-WebRequest 'https://github.com/db-woman-2026/Git_Steps/archive/refs/heads/main.zip' -OutFile $zipPath
-Expand-Archive -LiteralPath $zipPath -DestinationPath "$HOME\dongbu" -Force
-Rename-Item -LiteralPath "$HOME\dongbu\Git_Steps-main" -NewName 'git-practice'
+New-Item -ItemType Directory -Path "$HOME\dongbu\git-practice\practice" -Force | Out-Null
 Set-Location "$HOME\dongbu\git-practice"
-Test-Path -LiteralPath '.git'
+New-Item -ItemType File -Path README.md, .gitignore, .gitattributes -Force | Out-Null
+New-Item -ItemType File -Path .\practice\intro.md, .\practice\profile.md, .\practice\goal.md, .\practice\memo.md, .\practice\team-note.md -Force | Out-Null
+code .
 ```
 
-마지막 명령은 `False`를 출력해야 합니다. 같은 이름의 폴더가 이미 있다면 기존 작업을 덮어쓰지 말고 새 실습 폴더 이름을 사용합니다. OneDrive가 관리하는 폴더는 피합니다.
+같은 이름의 폴더가 이미 있다면 기존 작업을 덮어쓰지 않습니다. OneDrive가 관리하는 바탕 화면이나 문서 폴더도 사용하지 않습니다.
+
+VS Code에서 아래 파일 경로를 확인하고 전체 내용을 입력합니다.
+
+### `README.md`
+
+```md
+# Git Practice
+
+Windows 11과 PowerShell에서 Git의 status, stage, commit, branch, merge를 연습합니다.
+```
+
+### `.gitignore`
+
+```text
+.DS_Store
+temp/
+notes.local.md
+```
+
+### `.gitattributes`
+
+```text
+* text=auto
+.gitattributes text eol=lf
+
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+```
+
+### `practice/intro.md`
+
+```md
+# Intro
+
+안녕하세요. 저는 Git을 처음 연습합니다.
+
+오늘은 문장을 조금씩 바꾸면서 Git 변경 기록을 확인합니다.
+```
+
+### `practice/profile.md`
+
+```md
+# Profile
+
+- 이름: Git Learner
+- 관심사: 문서 정리
+- 오늘의 연습: 변경 내용을 저장하기
+```
+
+### `practice/goal.md`
+
+```md
+# Goal
+
+이번 연습에서는 Git에서 변경된 파일을 확인하고 커밋합니다.
+```
+
+### `practice/memo.md`
+
+```md
+# Memo
+
+이 파일은 수정과 삭제가 동시에 일어나는 상황에 사용합니다.
+```
+
+### `practice/team-note.md`
+
+```md
+# Team Note
+
+우리 팀은 문서 변경 내용을 천천히 확인합니다.
+
+브랜치를 만들고 내용을 수정한 뒤 다시 합칩니다.
+```
+
+입력을 마친 뒤 아직 Git 저장소가 아닌지 확인합니다.
+
+```powershell
+Set-Location "$HOME\dongbu\git-practice"
+Test-Path -LiteralPath '.git'
+Get-ChildItem
+Get-ChildItem -LiteralPath '.\practice'
+```
+
+`Test-Path`는 `False`를 출력해야 합니다. 루트 파일 3개와 `practice` 안의 파일 5개가 보여야 합니다.
 
 ## 4. commit 작성자 설정
 
@@ -87,7 +179,7 @@ git config --global --get user.email
 git config --global --get core.autocrlf
 ```
 
-`core.autocrlf`는 현재 값을 확인만 합니다. 수업 중 전역 값을 임의로 바꾸지 않습니다.
+`core.autocrlf`는 현재 값을 확인만 합니다. 전역 값을 임의로 바꾸지 않습니다.
 
 ## 5. SSH 키 확인과 생성
 
