@@ -2,7 +2,7 @@
 
 오류가 나면 먼저 다음 네 줄을 실행하고 결과를 보관합니다.
 
-> Windows 11에서는 [환경 준비](./windows-11.md)를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
+> Windows 11에서는 [환경 준비](./windows-11.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Windows 11 x64 실습 안내」 · 절 「개인 실습 저장소 열기」)</span>를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
 
 ```powershell
 git branch --show-current
@@ -75,7 +75,7 @@ gh auth status --hostname github.com
 ssh -T git@github.com
 ```
 
-`Permission denied (publickey)`가 나오면 공개 키가 현재 로그인한 GitHub 계정에 등록됐는지 확인합니다. 설치부터 다시 진행하지 말고 [초기 설정](./lecture/requirements.md)의 기존 키 확인, 공개 키 등록, SSH 연결 테스트를 차례로 다시 확인합니다.
+`Permission denied (publickey)`가 나오면 공개 키가 현재 로그인한 GitHub 계정에 등록됐는지 확인합니다. 설치부터 다시 진행하지 말고 [초기 설정](./lecture/requirements.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Windows 11 x64, Git, GitHub 초기 설정」 · 절 「1. Windows Terminal 설치」)</span>의 기존 키 확인, 공개 키 등록, SSH 연결 테스트를 차례로 다시 확인합니다.
 
 ## push가 rejected 됩니다
 
