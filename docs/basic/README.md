@@ -2,9 +2,9 @@
 
 저장소, stage, commit, branch, merge의 기본 개념을 정리했습니다.
 
-Windows 11에서 실습한다면 먼저 [Windows 11 환경 준비](../windows-11.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Windows 11 x64 실습 안내」 · 절 「개인 실습 저장소 열기」)</span>를 확인합니다.
+Windows 11에서 실습한다면 먼저 [Windows 11 환경 준비](../windows-11.md) <span class="print-reference" data-print-reference="true">(Git · Windows 11 x64 실습 안내 · 개인 실습 저장소 열기)</span>를 확인합니다.
 
-주제별 확인 결과는 [실습 구성](../course-plan.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Git 실습 구성」 · 절 「시작 조건」)</span>, 오류 복구는 [문제 해결](../troubleshooting.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Git 실습 문제 해결」 · 절 「commit에서 이름과 이메일을 요구합니다」)</span>에서 확인합니다.
+주제별 확인 결과는 [실습 구성](../course-plan.md) <span class="print-reference" data-print-reference="true">(Git · Git 실습 구성 · 시작 조건)</span>, 오류 복구는 [문제 해결](../troubleshooting.md) <span class="print-reference" data-print-reference="true">(Git · Git 실습 문제 해결 · commit에서 이름과 이메일을 요구합니다)</span>에서 확인합니다.
 
 Git은 파일의 변경 이력을 저장하고 작업 흐름을 나누거나 합치는 버전 관리 도구입니다. 각 명령을 실행한 뒤 Git 상태가 어떻게 바뀌는지 확인합니다.
 
@@ -12,13 +12,13 @@ Git은 파일의 변경 이력을 저장하고 작업 흐름을 나누거나 합
 
 | 순서 | 문서 | 내용 |
 | --- | --- | --- |
-| 1 | [chapter-1-repository.md](./chapter-1-repository.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Chapter 1. Git 저장소와 작업 폴더」 · 절 「Git이 기록하는 것」)</span> | 저장소, 작업 폴더, 파일 상태 |
-| 2 | [chapter-2-status-stage-commit.md](./chapter-2-status-stage-commit.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Chapter 2. status, stage, commit」 · 절 「변경을 기록하는 흐름」)</span> | status, stage, commit |
-| 3 | [chapter-3-history-head.md](./chapter-3-history-head.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Chapter 3. commit 이력과 HEAD」 · 절 「commit의 연결」)</span> | commit 이력과 HEAD |
-| 4 | [chapter-4-branch.md](./chapter-4-branch.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Chapter 4. branch」 · 절 「branch의 의미」)</span> | branch의 의미와 구조 |
-| 5 | [chapter-5-merge.md](./chapter-5-merge.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Chapter 5. merge」 · 절 「merge의 의미」)</span> | merge의 의미와 결과 |
-| 6 | [chapter-6-conflict.md](./chapter-6-conflict.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Chapter 6. conflict」 · 절 「conflict의 의미」)</span> | conflict의 원인과 해결 원리 |
-| 부록 | [glossary.md](./glossary.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Git 기본 용어」 · 절 「repository」)</span> | Git 기본 용어 |
+| 1 | [chapter-1-repository.md](./chapter-1-repository.md) <span class="print-reference" data-print-reference="true">(Git · Chapter 1. Git 저장소와 작업 폴더 · Git이 기록하는 것)</span> | 저장소, 작업 폴더, 파일 상태 |
+| 2 | [chapter-2-status-stage-commit.md](./chapter-2-status-stage-commit.md) <span class="print-reference" data-print-reference="true">(Git · Chapter 2. status, stage, commit · 변경을 기록하는 흐름)</span> | status, stage, commit |
+| 3 | [chapter-3-history-head.md](./chapter-3-history-head.md) <span class="print-reference" data-print-reference="true">(Git · Chapter 3. commit 이력과 HEAD · commit의 연결)</span> | commit 이력과 HEAD |
+| 4 | [chapter-4-branch.md](./chapter-4-branch.md) <span class="print-reference" data-print-reference="true">(Git · Chapter 4. branch · branch의 의미)</span> | branch의 의미와 구조 |
+| 5 | [chapter-5-merge.md](./chapter-5-merge.md) <span class="print-reference" data-print-reference="true">(Git · Chapter 5. merge · merge의 의미)</span> | merge의 의미와 결과 |
+| 6 | [chapter-6-conflict.md](./chapter-6-conflict.md) <span class="print-reference" data-print-reference="true">(Git · Chapter 6. conflict · conflict의 의미)</span> | conflict의 원인과 해결 원리 |
+| 부록 | [glossary.md](./glossary.md) <span class="print-reference" data-print-reference="true">(Git · Git 기본 용어 · repository)</span> | Git 기본 용어 |
 
 ## 기본 흐름
 

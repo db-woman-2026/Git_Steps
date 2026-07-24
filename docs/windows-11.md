@@ -1,6 +1,6 @@
 # Windows 11 x64 실습 안내
 
-아래 명령은 Windows 11 x64와 Windows Terminal의 `Windows PowerShell` 프로필에서 실행합니다. 프로그램 설치부터 GitHub SSH 연결까지 [초기 설정](./lecture/requirements.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Windows 11 x64, Git, GitHub 초기 설정」 · 절 「1. Windows Terminal 설치」)</span>을 먼저 완료합니다.
+아래 명령은 Windows 11 x64와 Windows Terminal의 `Windows PowerShell` 프로필에서 실행합니다. 프로그램 설치부터 GitHub SSH 연결까지 [초기 설정](./lecture/requirements.md) <span class="print-reference" data-print-reference="true">(Git · Windows 11 x64, Git, GitHub 초기 설정 · 1. Windows Terminal 설치)</span>을 먼저 완료합니다.
 
 ## 개인 실습 저장소 열기
 
@@ -53,4 +53,4 @@ gh auth status --hostname github.com
 ssh -T git@github.com
 ```
 
-명령을 찾지 못하면 Windows Terminal 창을 모두 닫고 새로 엽니다. 자세한 설치 및 복구 절차는 [초기 설정](./lecture/requirements.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Windows 11 x64, Git, GitHub 초기 설정」 · 절 「1. Windows Terminal 설치」)</span>과 [문제 해결](./troubleshooting.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Git 실습 문제 해결」 · 절 「commit에서 이름과 이메일을 요구합니다」)</span>을 따릅니다.
+명령을 찾지 못하면 Windows Terminal 창을 모두 닫고 새로 엽니다. 자세한 설치 및 복구 절차는 [초기 설정](./lecture/requirements.md) <span class="print-reference" data-print-reference="true">(Git · Windows 11 x64, Git, GitHub 초기 설정 · 1. Windows Terminal 설치)</span>과 [문제 해결](./troubleshooting.md) <span class="print-reference" data-print-reference="true">(Git · Git 실습 문제 해결 · commit에서 이름과 이메일을 요구합니다)</span>을 따릅니다.

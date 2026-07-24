@@ -13,7 +13,7 @@ Git에서 변경을 기록하는 기본 흐름은 다음과 같습니다.
 
 `git status`는 작업 폴더와 stage의 현재 상태를 보여줍니다.
 
-> Windows 11에서는 [환경 준비](../windows-11.md) <span class="print-reference" data-print-reference="true">(인쇄본 위치: Git · 장 「Windows 11 x64 실습 안내」 · 절 「개인 실습 저장소 열기」)</span>를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
+> Windows 11에서는 [환경 준비](../windows-11.md) <span class="print-reference" data-print-reference="true">(Git · Windows 11 x64 실습 안내 · 개인 실습 저장소 열기)</span>를 먼저 확인합니다. 아래 `git` 명령은 PowerShell에서도 그대로 실행합니다.
 
 ```powershell
 git status
